@@ -99,6 +99,6 @@ multiple places.
 By using MinIO as a single storage entity, data backups can be 
 orchestrated from a single source. Different data targets can have 
 their own backup policy, so relatively light document databases can 
-be replicated accross multiple cloud services for very little cost. 
+be replicated across multiple cloud services for very little cost. 
 
 
