@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'NYSPI MRI'
+project = 'NARC Arch'
 copyright = '2022, JackGray'
 author = 'Jack'
 

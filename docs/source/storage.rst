@@ -20,7 +20,7 @@ Seamless integration between primary distributed storage
 Think DropBox or OneDrive, but personal, on-premise, 
 custom-fitted, single source.
 
-https://odrive.com/homepage5b
+https://odrive.com/
 
 From odrive:
 
