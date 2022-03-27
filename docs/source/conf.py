@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'NYSPI MRI'
+project = 'NARC Analysis Cluster Architecture'
 copyright = '2022, JackGray'
 author = 'Jack'
 

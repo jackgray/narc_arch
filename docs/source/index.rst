@@ -4,10 +4,11 @@ NARC Cluster Architecture Documentation
 
 How to build a modern hybrid HPC analysis cluster for 
 local + cloud with Kubernetes, MinIO, Concourse CI, 
-and Budibase.
+MongoDB, and Budibase.
 
 This documentation aims to address all needs to an analysis 
 system. 
+
 - Storage 
 - Backup
 - Scheduling
