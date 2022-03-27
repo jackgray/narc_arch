@@ -10,15 +10,40 @@ additional technical knowledge.
 
 Distributed Object Storage with Min.io
 ---------------------------------------
+Main file store for any and everything. Automatically backed up 
+and encrypted, seamless integration with Kubernetes and personal 
+desktops (see section on O-drive).
+
+S3 Object-based Storage: Open source, on-premise S3 buckets.
+    -   Infinitely scalable 
+    -   Universally consumable 
+    -   Uses aws s3 api 
+    -   Query tool (s3-select) based on SQL 
+    -   Integrates seamlessly with multiple cloud 
+storage providers
+    -   Undetectable encryption 
+    -   More efficient storage process enables much faster 
+data-retrieval
+    -   Easily automate backups to cheaper cold storage based 
+on wide option of rules, such as age or last access date 
+    -   Store references of cold-stored files on system alongside 
+on-premise files.
+    -   Easily configure fault tolerability -- easily add more drives 
+and re-adjust percent drive failure allowance on the fly. 
+    -   Automatically transfer oldest files to backup storage if drives 
+overfill 
+
+Installation
+    https://docs.min.io/docs/deploy-minio-on-kubernetes
 
 
-Local / Personal PC Integration with O-Drive
+Personal PC Integration with O-Drive
 ----------------------------------------------
 Seamless integration between primary distributed storage 
 (Min.io server) and local computers. 
 
-Think DropBox or OneDrive, but personal, on-premise, 
-custom-fitted, single source.
+Think DropBox or OneDrive, but custom-fitted, on-premise, 
+single source compatible.
 
 https://odrive.com/
 
@@ -45,3 +70,16 @@ Connect your machines
     connect your virtual machines to all of your storage by installing 
     odrive and logging in with your odrive account, enabling a whole 
     new world of possibilities. 
+
+Advantages
+    -   Free 
+    -   Seamless integration with MinIO and Kubernetes 
+    -   Additional layer of data permanence and revertability 
+    -   Removes risk of data merge conflicts
+    -   On-premise solution is free 
+    -   Expand storage to cloud 
+    -   Directly connected to main cluster object store
+    -   Tracks changes to files and retains previous versions   
+    -   See files on database without downloading them locally 
+    -   Integrate external cloud drives, such as OneDrive, Dropbox, 
+Google Drive, etc. 

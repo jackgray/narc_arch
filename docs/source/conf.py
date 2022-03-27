@@ -1,8 +1,7 @@
 # Configuration file for the Sphinx documentation builder.
 
 # -- Project information
-
-project = 'NARC Arch'
+project = 'NARC Analysis Cluster Architecture'
 copyright = '2022, JackGray'
 author = 'Jack'
 

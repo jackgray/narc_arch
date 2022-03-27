@@ -6,4 +6,4 @@ with Min.io distributed object storage, Kubernetes, MS Access integration,
 and Concourse CI.
 
 Read them here:
-https://nyspimri.readthedocs.io
+https://narcarch.readthedocs.io
