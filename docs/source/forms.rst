@@ -53,7 +53,7 @@ Advantages over MS Access or Airtable:
     -   Free 
     -   HIPAA compliant
         -   Airtable uses a cloud platform that does not meet the criteria for HIPAA compliance, 
-            and can therefore not be used to host PHI.
+        and can therefore not be used to host PHI.
     -   Little to zero learning curve 
     -   Ultimate data control: hosting, format, presentation 
     -   Daily snapshot backups to MinIO (main cluster storage)
