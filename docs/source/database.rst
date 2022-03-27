@@ -9,9 +9,9 @@ interacting with data should include the following:
     -   An intuitive, no-code front-end for manipulating data and form creation
     -   If possible, ability to sync relational database to graph database such as neo4j
 
-The proposed solution:
--   MongoDB with a sharded configuration, and automatic snapshot backup to MinIO storage 
--   Budibase for form generation and user interaction 
+The proposed solution: 
+    -   MongoDB with a sharded configuration, and automatic snapshot backup to MinIO storage 
+    -   Budibase for form generation and user interaction 
 
 Choosing the right Data Model
 ------------------------------
@@ -83,10 +83,11 @@ Leading proposed data solution
 
 Sharde engine allows for distributed storage, making database storage more flexible 
 
-Some notes: https://stackoverflow.com/questions/49671158/mongodb-sharding-key
+Reading Links: 
+    https://stackoverflow.com/questions/49671158/mongodb-sharding-key
 
-Connecting to BudiBase
-    https://www.percona.com/blog/2020/07/17/mariadb-s3-engine-implementation-and-benchmarking/
+    Connecting to BudiBase
+        https://www.percona.com/blog/2020/07/17/mariadb-s3-engine-implementation-and-benchmarking/
 
 ArrangoDB
 ----------

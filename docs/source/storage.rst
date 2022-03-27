@@ -20,18 +20,18 @@ S3 Object-based Storage: Open source, on-premise S3 buckets.
     -   Uses aws s3 api 
     -   Query tool (s3-select) based on SQL 
     -   Integrates seamlessly with multiple cloud 
-storage providers
+        storage providers
     -   Undetectable encryption 
     -   More efficient storage process enables much faster 
-data-retrieval
+        data-retrieval
     -   Easily automate backups to cheaper cold storage based 
-on wide option of rules, such as age or last access date 
+        on wide option of rules, such as age or last access date 
     -   Store references of cold-stored files on system alongside 
-on-premise files.
+        on-premise files.
     -   Easily configure fault tolerability -- easily add more drives 
-and re-adjust percent drive failure allowance on the fly. 
+        and re-adjust percent drive failure allowance on the fly. 
     -   Automatically transfer oldest files to backup storage if drives 
-overfill 
+        overfill 
 
 Installation
     https://docs.min.io/docs/deploy-minio-on-kubernetes
@@ -45,7 +45,8 @@ Seamless integration between primary distributed storage
 Think DropBox or OneDrive, but custom-fitted, on-premise, 
 single source compatible.
 
-https://odrive.com/
+Reference 
+    https://odrive.com/
 
 From odrive:
 
@@ -82,4 +83,4 @@ Advantages
     -   Tracks changes to files and retains previous versions   
     -   See files on database without downloading them locally 
     -   Integrate external cloud drives, such as OneDrive, Dropbox, 
-    Google Drive, etc. 
+        Google Drive, etc. 
