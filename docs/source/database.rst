@@ -39,7 +39,7 @@ extent of previously known relationships?
 
 Exploring the Graph DB Model 
 -----------------------------
-Reading Links
+Reference 
     https://ercim-news.ercim.eu/en125/r-i/graph-based-management-of-neuroscience-data-representation-integration-and-analysis
 
     https://www.researchgate.net/publication/350654192_Graph-based_Management_of_Neuroscience_Data_Representation_Integration_and_Analysis/link/606c25fd299bf13f5d5e30fc/download
@@ -57,7 +57,6 @@ single set of conditions.
 
 CSV files can be easily imported to Budibase and merged with central MongoDB 
 (or whatever is desired) store. 
-
 
 MariaDB
 --------
