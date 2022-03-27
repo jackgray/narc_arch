@@ -51,3 +51,8 @@ the user web interface. No code required.
 can be accessed by any other service or script. 
     - Data is controlled by a single source, but can 
 exist in multiple sources.
+
+Redcap Integration 
+-------------------
+Budibase could potentially replace RedCap, but there are no obvious 
+standardized ways to fuse these two together.
