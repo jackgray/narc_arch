@@ -35,7 +35,7 @@ Is the goal to discover relationships, or to simply quantify the
 extent of previously known relationships?
     
     Graph database models can aid in the discovery of relationships 
-in a dataset.
+    in a dataset.
 
 Exploring the Graph DB Model 
 -----------------------------
