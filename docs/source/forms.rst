@@ -32,11 +32,6 @@ Cons:
 
 Budibase
 ----------
-By storing our data in MongoDB or PostgreSQL, rather than MS Access 
-proprietary .accdb or .mdb format, we make it available and easily 
-consumable by all of our services, including direct calls by  
-python and matlab scripting.
-
 Budibase offers an intuitive web gui for viewing this data store 
 and creating documents and forms from it. Similar to Airtable or 
 the MS Access frontend, only it can be self-hosted on the same 
@@ -44,6 +39,11 @@ kubernetes cluster and is fully customizable. Because they offer
 their own hosting solution, and already have a revenue model, there 
 is good chance that the self-hosted solution will remain free and 
 open-source. 
+
+By storing our data in MongoDB or PostgreSQL, rather than MS Access 
+proprietary .accdb or .mdb format, we make it available and easily 
+consumable by all of our services, including direct calls by  
+python and matlab scripting.
 
 -   Connects to existing database (PostgreSQL, Mongo, etc.)
 -   Allows easy graphical manipulation and addition of data via 
@@ -75,8 +75,12 @@ Redcap Integration
 Budibase could potentially replace RedCap, but there are no obvious 
 standardized ways to fuse these two together.
 
-AirFlow
+AirTable
 --------
+Offers more project management solutions than Budibase 
+
+Paid
+
 MongoDB Integration
     https://airflow.apache.org/docs/apache-airflow-providers-mongo/stable/connections/mongo.html
 
