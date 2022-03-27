@@ -50,25 +50,25 @@ open-source.
     web interface. 
   
 Advantages over MS Access or Airtable:
-    - Free 
-    - HIPAA compliant
-        - Airtable uses a cloud platform that does not meet the criteria for HIPAA compliance, 
-        and can therefore not be used to host PHI.
+    -   Free 
+    -   HIPAA compliant
+        -   Airtable uses a cloud platform that does not meet the criteria for HIPAA compliance, 
+            and can therefore not be used to host PHI.
     -   Little to zero learning curve 
     -   Ultimate data control: hosting, format, presentation 
     -   Daily snapshot backups to MinIO (main cluster storage)
     -   Universal, portable data format 
     -   Replication: the ability to seamlessly sync data to multiple sources, as if it were one 
     -   Distributed storage (sharding): the ability to break up the database in to chunks, or "shards" 
-accross multiple cluster nodes for load balancing requests 
+        accross multiple cluster nodes for load balancing requests 
     -   Intuitive automation pipeline creation interface 
         -   Easily create workflows and notification systems within 
         the user web interface. No code required. 
     -   Upload of data via CSV
     -   Because data is stored in a non-proprietary format and located outside of budibase, it 
-    can be accessed by any other service or script. 
+        can be accessed by any other service or script. 
     -   Data is controlled by a single source, but can 
-    exist in multiple sources.
+        exist in multiple sources.
 
 Redcap Integration 
 -------------------
