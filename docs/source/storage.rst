@@ -82,4 +82,4 @@ Advantages
     -   Tracks changes to files and retains previous versions   
     -   See files on database without downloading them locally 
     -   Integrate external cloud drives, such as OneDrive, Dropbox, 
-Google Drive, etc. 
+    Google Drive, etc. 

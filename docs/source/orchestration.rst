@@ -16,7 +16,7 @@ Generalized pipeline orchestrator/scheduler
     -   Glues together containers and scripts to create complex workflows
     -   "General purpose thing-doer"
 
-    :notes: https://medium.com/concourse-ci/concourse-pipeline-ui-explained-87dfeea83553
+:notes: https://medium.com/concourse-ci/concourse-pipeline-ui-explained-87dfeea83553
 
 Load Balancing
 
@@ -34,21 +34,21 @@ Pros
     -   More granular control of jobs
     -   Can run convert most Docker containers 
     -   Convenient for central resource sharing between disparate 
-groups; (namespacing and auth management)
+    groups; (namespacing and auth management)
 
 Cons 
     -   Additional point of failure with containerization conversion for using 
-Docker containers.
+    Docker containers.
     -   Docker is the standard; offers more PnP pipelines.
     -   No Kubernetes integration - could create complications with resource 
-management (having multiple independent clusters with isolated load balancing )
+    management (having multiple independent clusters with isolated load balancing )
     -   Not as conducive for complicated, automatically triggered 
-pipelines where integration of modern technology is desired 
+    pipelines where integration of modern technology is desired 
 
 Possible Solutions:
    
     -   Investigate possibility of managing multiple clusters under a  
-secondary load balancing service. 
+    secondary load balancing service. 
     -   Investigate what is required to route SLURM resources to a custom endpoint 
 
 ArgoCD
