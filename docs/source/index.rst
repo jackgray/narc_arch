@@ -1,7 +1,21 @@
-Welcome to NYSPI MRI
-===================================
+========================================
+NARC Cluster Architecture Documentation
+========================================
 
-Notes on all psych MRI related things.
+How to build a modern hybrid HPC analysis cluster for 
+local + cloud with Kubernetes, MinIO, Concourse CI, 
+and Budibase.
+
+This documentation aims to address all needs to an analysis 
+system. 
+- Storage 
+- Backup
+- Scheduling
+- Load Balancing
+- User interaction 
+- Database integration
+- System Monitoring
+- Notifications
 
 Contents
 --------  
@@ -12,3 +26,4 @@ Contents
    orchestration
    computation
    database
+   interaction
