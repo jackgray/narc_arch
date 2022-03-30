@@ -78,7 +78,6 @@ Postgres Server
 
 MongoDB 
 ---------
-Leading proposed data solution 
 
 Sharde engine allows for distributed storage, making database storage more flexible 
 
@@ -91,7 +90,7 @@ Reading Links:
 ArrangoDB
 ----------
 
-From arrangodb.com 
+From arrangodb.com:
 
 Advantages of Native Multi-Model
     Unlike many NoSQL databases, ArangoDB is a native multi-model database.  You can store your data as key/value pairs, graphs or documents and access any or all of your data using a single declarative query language.  You can combine different models in one query.  And, due to its native multi-model approach, you can build high performance applications and scale horizontally with all three data models.
@@ -143,6 +142,8 @@ Advantages of ArangoDB
     Transactions
         It is a real challenge to provide transactional guarantees across multiple machines and few NoSQL database provide these guarantees. As a native multi-model database, ArangoDB requires transactions to ensure data consistency.  ArangoDB provides strong consistency on single instances and atomic single document operations when running in cluster mode.
 
+Consuming data in Python:
+    https://github.com/ArangoDB-Community/python-arango
 
 Backing Up
 -----------

@@ -70,24 +70,16 @@ Advantages over MS Access or Airtable:
     -   Data is controlled by a single source, but can 
         exist in multiple sources.
 
+Combine tables and export them as CSV or JSON
+
 Redcap Integration 
 -------------------
-Budibase could potentially replace RedCap, but there are no obvious 
-standardized ways to fuse these two together.
+Data from RedCap can be automatically exported as JSON or CSV using 
+the RedCap API and cron scheduling, or event triggers
 
 AirTable
 --------
-Offers more project management solutions than Budibase 
-
-Paid
-
-MongoDB Integration
-    https://airflow.apache.org/docs/apache-airflow-providers-mongo/stable/connections/mongo.html
-
-Also works with PostgreSQL
-
-Running on Kubernetes
-    https://airflow.apache.org/docs/helm-chart/stable/index.html
+Not HIPAA Compliant 
 
 KeXi
 -----
