@@ -60,32 +60,22 @@ CSV files can be easily imported to Budibase and merged with central MongoDB
 
 MariaDB
 --------
-Possible solution for distributed SQL
-Potential integration with S3 storage, but uncertain usefulness
+If SQL is needed, Maria may be the best option for horizontal scaling 
+
+Potential integration with S3 storage, but undetermined utility.
 
 Using the S3 Engine 
     https://www.percona.com/blog/2020/07/17/mariadb-s3-engine-implementation-and-benchmarking/
 
-Spark Storage
---------------
-Temporary store for data computations. 
-
-Breaks data up and uses process graphs to optimize 
-data storage and retrieval between nodes.
-
-Postgres Server 
-----------------
 
 MongoDB 
 ---------
 
-Sharde engine allows for distributed storage, making database storage more flexible 
+Shard engine allows for distributed storage, making database storage more flexible 
 
-Reading Links: 
+Reference: 
     https://stackoverflow.com/questions/49671158/mongodb-sharding-key
 
-    Connecting to BudiBase
-        https://www.percona.com/blog/2020/07/17/mariadb-s3-engine-implementation-and-benchmarking/
 
 ArrangoDB
 ----------
@@ -144,6 +134,7 @@ Advantages of ArangoDB
 
 Consuming data in Python:
     https://github.com/ArangoDB-Community/python-arango
+
 
 Backing Up
 -----------
