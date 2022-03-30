@@ -2,9 +2,9 @@
 Form Generation
 ========================
 
-Researchers need an easy way to interact with their 
-data--we need a single source of truth with high-availability 
-redundancy, and fault tolerance (replication). 
+Researchers need an easy way to interact with their data 
+    A single source of truth with high-availability, 
+    redundancy, and fault tolerance (replication). 
 
 The proposed solution laid forth aims to:
 -   Replace MS Access 
@@ -38,8 +38,8 @@ Budibase
 ----------
 Budibase offers an intuitive web gui for viewing this data store 
 and creating documents and forms from it. Similar to Airtable or 
-the MS Access frontend, only it can be self-hosted on the same 
-kubernetes cluster and is fully customizable. Because they offer 
+the MS Access frontend, only it can be self-hosted on the pre-existing  
+Kubernetes cluster and is fully customizable. Because they offer 
 their own hosting solution, and already have a revenue model, there 
 is good chance that the self-hosted solution will remain free and 
 open-source. 
