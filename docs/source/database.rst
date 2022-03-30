@@ -45,36 +45,40 @@ Reference
     https://www.researchgate.net/publication/350654192_Graph-based_Management_of_Neuroscience_Data_Representation_Integration_and_Analysis/link/606c25fd299bf13f5d5e30fc/download
 
 
-MinIO S3 Object-based Storage
-------------------------------
+MinIO S3 Select API
+--------------------
 Used primarily for the storage of files as opposed to tabular data, 
-(i.e. MRI, EEG), but MinIO's s3 select API allows data to be manipulated 
-directly or consumed automatically by custom scripts or pipelines.
+(i.e. MRI, EEG)
 
-Tabular data within CSVs can even be selected with SQL-like queries. For 
+If desired, however, CSV or JSON data files can be directly queried 
+using MinIO's s3 select API 
+
+Tabular data within CSVs can be selected with SQL-like queries. For 
 example, data could be aggregated accross multiple CSV files, satisfying a 
 single set of conditions. 
 
-CSV files can be easily imported to Budibase and merged with central MongoDB 
-(or whatever is desired) store. 
+CSV files can be easily imported to Budibase and merged with central data store. 
 
 MariaDB
 --------
-If SQL is needed, Maria may be the best option for horizontal scaling 
+If SQL is needed, Maria may be the best option for horizontal scaling- built in cluster options
 
 Potential integration with S3 storage, but undetermined utility.
 
 Using the S3 Engine 
     https://www.percona.com/blog/2020/07/17/mariadb-s3-engine-implementation-and-benchmarking/
 
+With s3 integration, audit trailing and backups may be simplified, due to MinIO's 
+built-in file versioning system
+
 
 MongoDB 
 ---------
 
 Shard engine allows for distributed storage, making database storage more flexible 
-
-Reference: 
-    https://stackoverflow.com/questions/49671158/mongodb-sharding-key
+    -   Added layer of complexity
+    -   Reference: 
+        -   https://stackoverflow.com/questions/49671158/mongodb-sharding-key
 
 
 ArrangoDB
