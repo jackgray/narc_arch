@@ -25,7 +25,14 @@ DNS Autoscaling
 
 AirFlow
 --------
-Intuitive graphically designed automations for form data 
+Graphical workflow manager for cloud data services.
+
+Advantages over Budibase or Concourse
+    -   Smaller learning curve than Concourse 
+
+Disadvantages 
+    -   Geared for cloud- may not be ideal for hybrid model 
+    -   A good workflow manager should traverse the cloud and bare-metal seamlessly
 
 SLURM
 ------
@@ -36,14 +43,14 @@ cluster management, and load balancing engines.
 
 Pros
     -   More granular control of jobs
-    -   Can run convert most Docker containers 
+    -   Can convert and run most Docker containers 
     -   Convenient for central resource sharing between disparate 
-        groups; (namespacing and auth management)
+        groups; (namespacing and auth isolation)
 
 Cons 
     -   Additional point of failure with containerization conversion for using 
         Docker containers.
-    -   Docker is the standard; offers more PnP pipelines.
+    -   Docker is the standard; offers more plug-and-play pipelines.
     -   No Kubernetes integration - could create complications with resource 
         management (having multiple independent clusters with isolated load balancing )
     -   Not as conducive for complicated, automatically triggered 
