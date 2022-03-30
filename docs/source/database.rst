@@ -159,3 +159,23 @@ their own backup policy, so relatively light document databases can
 be replicated across multiple cloud services for very little cost. 
 
 
+Audit Trailing
+---------------
+It's nice to have a history of how your data changes, so you can 
+better trust in its accuracy. 
+
+For document-based databases, this feature is not directly built-in 
+for free, but there are some design patterns that can be used to create 
+this effect, like schema versioning, and document versioning patterns.
+
+https://www.mongodb.com/blog/post/building-with-patterns-the-schema-versioning-pattern
+
+https://www.mongodb.com/blog/post/building-with-patterns-the-document-versioning-pattern
+
+
+There are also paid enterprise editions of many database 
+cloud providers that offer this feature.
+
+https://www.mongodb.com/docs/manual/core/auditing/
+
+https://www.arangodb.com/docs/stable/security-auditing-audit-events.html

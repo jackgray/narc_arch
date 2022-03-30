@@ -23,11 +23,15 @@ MongoDB integration
 
 Pros: 
     -   Free with MS Office 365 Suite 
-
+    -   Already implemented and working 
 
 Cons:
     -   Proprietary data format (.accdb and .mdb)
     -   Not Python friendly
+    -   Unpopular user interface 
+    -   Not open-source 
+    -   Limited outside integrations
+    -   Not easy enough for layperson to access data
 
 
 Budibase
@@ -75,7 +79,21 @@ Combine tables and export them as CSV or JSON
 Redcap Integration 
 -------------------
 Data from RedCap can be automatically exported as JSON or CSV using 
-the RedCap API and cron scheduling, or event triggers
+the RedCap API and cron scheduling, or event triggers.
+
+Advantages
+    -   Guaranteed HIPAA compliance 
+    -   "Just works" -managed by institute
+    -   Built-in audi trails
+    -   Caters to researchers 
+    -   Claims to play nice with SPSS, SAS, R..
+
+Disadvantages 
+    -   Weak documentation 
+    -   Small, tight knit community, slow advancement (relative to other solutions)
+    -   Does not integrate with other moder DBMS
+ 
+Do we need Budibase *and* RedCap, or one or the other?
 
 AirTable
 --------
@@ -84,7 +102,7 @@ Not HIPAA Compliant
 KeXi
 -----
 KeXi claims to be an open-source alternative to MS Access. 
-It's free, but only agailagle on Linux.
+It's free, but only available on Linux.
 
 http://www.kexi-project.org/screenshots.html
 
