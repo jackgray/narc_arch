@@ -24,8 +24,9 @@ Contents
 .. toctree::
    
    storage
-   orchestration
-   computation
    database
    forms
+   orchestration
+   preprocessing
+   computation
    todo
