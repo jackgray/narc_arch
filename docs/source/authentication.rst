@@ -17,3 +17,7 @@ https://github.com/minio/kes/wiki/Hashicorp-Vault-Keystore
 
 MinIO Automatic Encryption
 ---------------------------
+"Zero-knowledge" encryption of data at rest 
+
+Uses central KMS 
+

@@ -58,23 +58,25 @@ Advantages over MS Access or Airtable:
     -   HIPAA compliant
         -   Airtable uses a cloud platform that does not meet the criteria for HIPAA compliance, 
         and can therefore not be used to host PHI.
-    -   Little to zero learning curve 
-    -   Ultimate data control: hosting, format, presentation 
-    -   Daily snapshot backups to MinIO (main cluster storage)
-    -   Universal, portable data format 
-    -   Replication: the ability to seamlessly sync data to multiple sources, as if it were one 
+        -   Budibase can be self-hosted, providing complete control over security methods
+    -   Small learning curve 
     -   Distributed storage (sharding): the ability to break up the database in to chunks, or "shards" 
         accross multiple cluster nodes for load balancing requests 
     -   Intuitive automation pipeline creation interface 
         -   Easily create workflows and notification systems within 
         the user web interface. No code required. 
     -   Upload of data via CSV
-    -   Because data is stored in a non-proprietary format and located outside of budibase, it 
-        can be accessed by any other service or script. 
+    -   Combine tables and export them as CSV or JSON
+    -   Ultimate data control: hosting, format, presentation 
+    -   Data backend agnostic, independent
+    -   Data is stored in a non-proprietary format and located outside of Budibase
+        -   can be accessed by any other service or script. 
     -   Data is controlled by a single source, but can 
         exist in multiple sources.
+    -   Replication: the ability to seamlessly sync data to multiple sources, as if it were one 
+        -   Minimizes outages by offering more than one server for access. 
 
-Combine tables and export them as CSV or JSON
+
 
 Redcap Integration 
 -------------------
@@ -84,14 +86,14 @@ the RedCap API and cron scheduling, or event triggers.
 Advantages
     -   Guaranteed HIPAA compliance 
     -   "Just works" -managed by institute
-    -   Built-in audi trails
+    -   Built-in audit trails
     -   Caters to researchers 
     -   Claims to play nice with SPSS, SAS, R..
 
 Disadvantages 
     -   Weak documentation 
     -   Small, tight knit community, slow advancement (relative to other solutions)
-    -   Does not integrate with other moder DBMS
+    -   Does not integrate with other modern DBMS
  
 Do we need Budibase *and* RedCap, or one or the other?
 

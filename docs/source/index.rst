@@ -1,5 +1,5 @@
 ========================================
-NARC Cluster Architecture Documentation
+How To Make a Research HPC Cluster
 ========================================
 
 How to build a modern hybrid HPC analysis cluster for 

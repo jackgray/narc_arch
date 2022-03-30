@@ -1,4 +1,4 @@
-NARC Lab Tech Architecture Documentation
+How To Make A Research HPC Cluster
 =======================================
 
 This repository contains notes on how to build a modern hybrid cloud analysis cluster
