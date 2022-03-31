@@ -4,10 +4,10 @@ Security
 HIPAA Compliance 
 -----------------
 Security practices should be monitored closely in order to maintain 
-HIPAA compliance 
-    https://www.hipaajournal.com/hipaa-compliance-checklist/
+HIPAA compliance and safeguard PHI.
 
-From HIPAA:
+From HIPAA:   https://www.hipaajournal.com/hipaa-compliance-checklist/
+
 Technical Safeguards
    The Technical Safeguards concern the technology that is used to protect ePHI and provide 
    access to the data. The only stipulation is that ePHI; whether at rest or in transit; must 
@@ -76,15 +76,17 @@ Pysical Safeguards
 |  Implementation Specification                    | Required or | Further Information                                     |
 |                                                  | Addressable |                                                         |       
 +==================================================+=============+=========================================================+
-| Facility access controls must be implemented     | Required    |   This not only means assigning a centrally controlled  |
-|                                                  |             |   unique username and PIN code for each user, but also  |
-|                                                  |             |   establishing procedures to govern the release or      |
-|                                                  |             |   disclosure of ePHI during an emergency.               |   
+| Facility access controls must be implemented     | Required    |   Controls who has physical access to the location      |
+|                                                  |             |   where ePHI is stored and includes software engineers, |
+|                                                  |             |   cleaners, etc. The procedures must also include       |
+|                                                  |             |   safeguards to prevent unauthorized physical access,   |
+|                                                  |             |   tampering, and theft.                                 |
 +--------------------------------------------------+-------------+---------------------------------------------------------+
-| Policies for the use/positioning of workstations | Required    |   This not only means assigning a centrally controlled  |
-|                                                  |             |   unique username and PIN code for each user, but also  |
-|                                                  |             |   establishing procedures to govern the release or      |
-|                                                  |             |   disclosure of ePHI during an emergency.               |   
+| Policies for the use/positioning of workstations | Required    |   Policies must be devised and implemented to restrict  |
+|                                                  |             |   the use of workstations that have access to ePHI, to  |
+|                                                  |             |   specify the protective surrounding of a workstation   |
+|                                                  |             |   and govern how functions are to be performed on the   |
+|                                                  |             |   workstations.                                         |   
 +--------------------------------------------------+-------------+---------------------------------------------------------+
 | Policies and procedures for mobile devices       | Required    |   This guideline relates to the devices used by         |
 |                                                  |             |   authorized users, which must have the functionality   |
@@ -92,10 +94,11 @@ Pysical Safeguards
 |                                                  |             |   an internal firewalled server, and decrypt            |
 |                                                  |             |   those messages when they are received.                |   
 +--------------------------------------------------+-------------+---------------------------------------------------------+
-| Introduce activity logs and audit controls       | Required    | This not only means assigning a centrally controlled    |
-|                                                  |             | unique username and PIN code for each user, but also    |
-|                                                  |             | establishing procedures to govern the release or        |
-|                                                  |             | disclosure of ePHI during an emergency.                 |   
+| Introduce activity logs and audit controls       | Required    |   If users are allowed to access ePHI from their mobile | 
+|                                                  |             |   devices, policies must be devised and implemented to  |
+|                                                  |             |   govern how ePHI is removed from the devices if the    |
+|                                                  |             |   user leaves the organization or the device is re-used,| 
+|                                                  |             |   sold, etc.                                            |   
 +--------------------------------------------------+-------------+---------------------------------------------------------+
 | Inventory of hardware                            | Required    | This not only means assigning a centrally controlled    |
 |                                                  |             | unique username and PIN code for each user, but also    |
