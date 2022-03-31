@@ -49,6 +49,20 @@ Physical Safeguards
    .. "Introduce activity logs and audit controls",            "Required",      "The audit controls required under the technical safeguards are there to register attempted access to ePHI and record what is done with that data once it has been accessed."
    .. "Inventory of hardware",                                 "Addressable",   "This function logs authorized personnel off of the device they are using to access or communicate ePHI after a pre-defined period of time. This prevents unauthorized access of ePHI should the device be left unattended."
 
+Administrative Safeguards
+   The Administrative Safeguards are the policies and procedures which bring the 
+   Privacy Rule and the Security Rule together. They are the pivotal elements of 
+   a HIPAA compliance checklist and require that a Security Officer and a Privacy 
+   Officer be assigned to put the measures in place to protect ePHI, while they 
+   also govern the conduct of the workforce.
+
+   The OCR pilot audits identified risk assessments as the major area of Security 
+   Rule non-compliance. Risk assessments are going to be checked thoroughly in 
+   subsequent audit phases; not just to make sure that the organization in question 
+   has conducted one, but to ensure to ensure they are comprehensive and ongoing. 
+   A HIPAA compliant risk assessment is not a one-time requirement, but a regular 
+   task necessary to ensure continued HIPAA compliance.
+   
 .. image:: ./hipaa-administrative-safeguards.png
    :width: 650
    :alt: Could not load table
