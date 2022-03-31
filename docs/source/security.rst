@@ -76,7 +76,7 @@ Pysical Safeguards
 |  Implementation Specification                    | Required or | Further Information                                  |
 |                                                  | Addressable |                                                      |       
 +==================================================+=============+======================================================+
-| Facility access controls must be implemented     | Required    | This not only means assigning a centrally controlled |
+| Facility access controls must be implemented     | Required    |This not only means assigning a centrally controlled |
 |                                                  |             |unique username and PIN code for each user, but also  |
 |                                                  |             |establishing procedures to govern the release or      |
 |                                                  |             |disclosure of ePHI during an emergency.               |   
@@ -109,7 +109,11 @@ A central key management system will be employed to integrate with all cluster
 services requiring authentication.
 
 This will allow:
-   -  Automatic generation of keys during service installations that implement security.
+   -  Automatic generation of keys during most service installations that implement security.
+   -  One key for every user 
+   -  RBAC: Role-based Access Control 
+      -  Unique access profiles for each user 
+      -  Granular control over access and permissions
 
 Hashicorp Vault Keystore
 -------------------------
