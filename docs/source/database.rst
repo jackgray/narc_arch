@@ -7,11 +7,9 @@ interacting with data should include the following:
     -   Vertical and horizontal scalability
     -   Distributability accross the cluster 
     -   An intuitive, no-code front-end for manipulating data and form creation
-    -   If possible, ability to sync relational database to graph database such as neo4j
+    -   If possible, ability to accommodate graph models
 
-The proposed solution: 
-    -   MongoDB with a sharded configuration, and automatic snapshot backup to MinIO storage 
-    -   Budibase for form generation and user interaction 
+This document will review some possible options to suite these needs.
 
 Choosing the right Data Model
 ------------------------------

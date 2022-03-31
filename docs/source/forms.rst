@@ -51,14 +51,14 @@ python and matlab scripting.
 
 -   Connects to existing database (PostgreSQL, Mongo, etc.)
 -   Allows easy graphical manipulation and addition of data via 
-    web interface. 
+    web interface and user-built apps
   
 Advantages over MS Access or Airtable:
     -   Free 
     -   HIPAA compliant
         -   Airtable uses a cloud platform that does not meet the criteria for HIPAA compliance, 
-        and can therefore not be used to host PHI.
-        -   Budibase can be self-hosted, providing complete control over security methods
+         so can't be used to host PHI.
+        -   Self-hosted- complete control over security methods
     -   Small learning curve 
     -   Distributed storage (sharding): the ability to break up the database in to chunks, or "shards" 
         accross multiple cluster nodes for load balancing requests 
@@ -68,14 +68,16 @@ Advantages over MS Access or Airtable:
     -   Upload of data via CSV
     -   Combine tables and export them as CSV or JSON
     -   Ultimate data control: hosting, format, presentation 
-    -   Data backend agnostic, independent
+    -   Backend agnostic, independent to underlying DB
     -   Data is stored in a non-proprietary format and located outside of Budibase
         -   can be accessed by any other service or script. 
     -   Data is controlled by a single source, but can 
-        exist in multiple sources.
+        exist in multiple places.
     -   Replication: the ability to seamlessly sync data to multiple sources, as if it were one 
         -   Minimizes outages by offering more than one server for access. 
-
+        -   If one goes out, the others keep data access live 
+    -   Web-based access 
+        -   Don't need to be on site to create forms 
 
 
 Redcap Integration 
@@ -84,33 +86,20 @@ Data from RedCap can be automatically exported as JSON or CSV using
 the RedCap API and cron scheduling, or event triggers.
 
 Advantages
-    -   Guaranteed HIPAA compliance 
+    -   Out of the box HIPAA compliance 
     -   "Just works" -managed by institute
     -   Built-in audit trails
     -   Caters to researchers 
     -   Claims to play nice with SPSS, SAS, R..
 
 Disadvantages 
-    -   Weak documentation 
-    -   Small, tight knit community, slow advancement (relative to other solutions)
-    -   Does not integrate with other modern DBMS
+    -   Poorly documentated
+    -   Smaller community: 
+        -   Fewer integrations 
+        -   Slower advancement
  
-Do we need Budibase *and* RedCap, or one or the other?
 
 AirTable
 --------
 Not HIPAA Compliant 
 
-KeXi
------
-KeXi claims to be an open-source alternative to MS Access. 
-It's free, but only available on Linux.
-
-http://www.kexi-project.org/screenshots.html
-
-
-NocoDB
--------
-Open source alternative to Airtable 
-
-Poorly documented and seems less active in development than Budibase 
