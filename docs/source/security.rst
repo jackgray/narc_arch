@@ -63,12 +63,16 @@ Technical Safeguards
 |                                                  |             | disclosure of ePHI during an emergency.              |   
 +--------------------------------------------------+-------------+------------------------------------------------------+
 
-Pysical Safeguards
+Physical Safeguards
    The Physical Safeguards focus on physical access to ePHI irrespective of its location. 
    ePHI could be stored in a remote data center, in the cloud, or on servers which are 
    located within the premises of the HIPAA Covered Entity. They also stipulate how 
    workstations and mobile devices should be secured against unauthorized access:
 
+.. image:: ./hipaa-physical-safeguards.png
+   :width: 700
+   :alt: Could not load table
+   
    .. "Facility access controls must be implemented",          "Required",      "This not only means assigning a centrally-controlled unique username and PIN code for each user, but also establishing procedures to govern the release or disclosure of ePHI during an emergency."
    .. "Policies for the use/positioning of workstations",      "Addressable",   "This mechanism is essential in order to comply with HIPAA regulations as it confirms whether ePHI has been altered or destroyed in an unauthorized manner."
    .. "Policies and procedures for mobile devices	",          "Addressable",   "This guideline relates to the devices used by authorized users, which must have the functionality to encrypt messages when they are sent beyond an internal firewalled server, and decrypt those messages when they are received."
