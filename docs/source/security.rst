@@ -29,33 +29,33 @@ From HIPAA:
 ..    "Introduce activity logs and audit controls",        "Required",    "The audit controls required under the technical safeguards are there to register attempted access to ePHI and record what is done with that data once it has been accessed."
 ..    "Facilitate automatic log-off of PCs and devices",   "Addressable", "This function logs authorized personnel off of the device they are using to access or communicate ePHI after a pre-defined period of time. This prevents unauthorized access of ePHI should the device be left unattended."
 
-+--------------------------------------------------+-------------+------------------------------------------------------+
-|  Implementation                                  | Required or | Further Information                                  |
-|  Specification                                   | Addressable |                                                      |       
-+==================================================+=============+======================================================+
-| Implement a means of access control              | Required    | This not only means assigning a centrally controlled |
-|                                                  |             | unique username and PIN code for each user, but also |
-|                                                  |             | establishing procedures to govern the release or     |
++--------------------------------------------------+-------------+------------------------------------------------------+ 
+|  Implementation                                  | Required or | Further Information                                  | 
+|  Specification                                   | Addressable |                                                      |        
++==================================================+=============+======================================================+ 
+| Implement a means of access control              | Required    | This not only means assigning a centrally controlled | 
+|                                                  |             | unique username and PIN code for each user, but also | 
+|                                                  |             | establishing procedures to govern the release or     | 
 |                                                  |             | disclosure of ePHI during an emergency.              |   
-+--------------------------------------------------+-------------+------------------------------------------------------+
-| Introduce a mechanism to authenticate ePHI       | Required    | This not only means assigning a centrally controlled |
-|                                                  |             | unique username and PIN code for each user, but also |
-|                                                  |             | establishing procedures to govern the release or     |
++--------------------------------------------------+-------------+------------------------------------------------------+ 
+| Introduce a mechanism to authenticate ePHI       | Required    | This not only means assigning a centrally controlled | 
+|                                                  |             | unique username and PIN code for each user, but also | 
+|                                                  |             | establishing procedures to govern the release or     | 
 |                                                  |             | disclosure of ePHI during an emergency.              |   
-+--------------------------------------------------+-------------+------------------------------------------------------+
-| Implement tools for encryption and decryption    | Required    | This not only means assigning a centrally controlled |
-|                                                  |             | unique username and PIN code for each user, but also |
-|                                                  |             | establishing procedures to govern the release or     |
++--------------------------------------------------+-------------+------------------------------------------------------+ 
+| Implement tools for encryption and decryption    | Required    | This not only means assigning a centrally controlled | 
+|                                                  |             | unique username and PIN code for each user, but also | 
+|                                                  |             | establishing procedures to govern the release or     | 
 |                                                  |             | disclosure of ePHI during an emergency.              |   
-+--------------------------------------------------+-------------+------------------------------------------------------+
-| Introduce activity logs and audit controls       | Required    | This not only means assigning a centrally controlled |
-|                                                  |             | unique username and PIN code for each user, but also |
-|                                                  |             | establishing procedures to govern the release or     |
++--------------------------------------------------+-------------+------------------------------------------------------+ 
+| Introduce activity logs and audit controls       | Required    | This not only means assigning a centrally controlled | 
+|                                                  |             | unique username and PIN code for each user, but also | 
+|                                                  |             | establishing procedures to govern the release or     | 
 |                                                  |             | disclosure of ePHI during an emergency.              |   
-+--------------------------------------------------+-------------+------------------------------------------------------+
-| Facilitate automatic log-off of PCs and devices  | Required    | This not only means assigning a centrally controlled |
-|                                                  |             | unique username and PIN code for each user, but also |
-|                                                  |             | establishing procedures to govern the release or     |
++--------------------------------------------------+-------------+------------------------------------------------------+ 
+| Facilitate automatic log-off of PCs and devices  | Required    | This not only means assigning a centrally controlled | 
+|                                                  |             | unique username and PIN code for each user, but also | 
+|                                                  |             | establishing procedures to govern the release or     | 
 |                                                  |             | disclosure of ePHI during an emergency.              |   
 +--------------------------------------------------+-------------+------------------------------------------------------+
 
@@ -104,14 +104,23 @@ workstations and mobile devices should be secured against unauthorized access:
 
 Key Management System (KMS)
 ----------------------------
+A central key management system will be employed to integrate with all cluster 
+services requiring authentication.
+
+This will allow:
+   -  Automatic generation of keys during service installations that implement security.
 
 Hashicorp Vault Keystore
 -------------------------
 Reccommended KMS
 
+Hashicorp Vault is free to use as a self-hosted solution, and supported by 
+all major clustering solutions.
+
 https://github.com/minio/kes/wiki/Hashicorp-Vault-Keystore
 
 -   Reputible 
+-   Widely used and supported
 -   Self-hosted (more secure)
 -   Free
 -   Established/Good Support Community
