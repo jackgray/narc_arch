@@ -4,19 +4,24 @@ Pre-Processing Automations
 
 MRI Data 
 ---------
+# Stages
 
-After collection, MRI data is pushed from the scanning console to a central XNAT database managed by the institute.
+Collection -> XNAT 
+    After collection, MRI data is pushed from the scanning console to a central XNAT database managed by the institute.
 
-Daily checks should be performed by the private lab server to detect when new data is available on XNAT.
+    Daily checks should be performed by the private lab server to detect when new data is available on XNAT.
 
-When new data is detected, a download service will be triggered to download the data, rename, organize, and store according to BIDS 
-criteria. 
+XNAT -> Private Lab Server  
+    When new data is detected, a download service will be triggered to download the data, rename, organize, and store according to BIDS 
+    criteria. 
 
-dcm2bids or dcm2niix should be performed on XNAT server automatically to mitigate high I/O load during download of uncompressed DICOM data
+    dcm2bids or dcm2niix should be performed on XNAT server prior to downloading to mitigate high I/O load during download of uncompressed DICOM data
 
-Once the new session is downloaded, further processing steps will be triggered.
-    -   fmriprep 
-    -   abcd
+nipreps/fmriprep 
+    Once the new session is downloaded, further processing steps will be triggered.
+        -   fmriprep 
+        -   abcd
 
-Once preprocessing is complete, a slack notification will be sent, and additional processing automations can be performed. 
+Additional Processing 
+    Once preprocessing is complete, a slack notification will be sent, and additional processing automations can be performed. 
 
