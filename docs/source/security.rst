@@ -72,7 +72,7 @@ Administrative Safeguards
    :header: "Implementation Specification", "Required or Addressable", "Further Information"
    :widths: 20, 7, 30
 
-"Conducting risk assessments",	         "Required",	      "Among the Security Officer\´s main tasks is the compilation of a risk assessment to identify every area in which ePHI is being used, and to determine all of the ways in which breaches of ePHI could occur."
+"Conducting risk assessments",	         "Required",	      "Among the Security Officers main tasks is the compilation of a risk assessment to identify every area in which ePHI is being used, and to determine all of the ways in which breaches of ePHI could occur."
 "Introducing a risk management policy",	"Required",	      "The risk assessment must be repeated at regular intervals with measures introduced to reduce the risks to an appropriate level. A sanctions policy for employees who fail to comply with HIPAA regulations must also be introduced."
 "Training employees to be secure",	      "Addressable",	   "Training schedules must be introduced to raise awareness of the policies and procedures governing access to ePHI and how to identify malicious software attacks and malware. All training must be documented."
 "Developing a contingency plan",	         "Required",	      "In the event of an emergency, a contingency plan must be ready to enable the continuation of critical business processes while protecting the integrity of ePHI while an organization operates in emergency mode."
