@@ -39,9 +39,12 @@ Physical Safeguards
    located within the premises of the HIPAA Covered Entity. They also stipulate how 
    workstations and mobile devices should be secured against unauthorized access:
 
+
 .. image:: ./hipaa-physical-safeguards.png
    :width: 650
    :alt: Could not load physical safeguards table
+
+
 
    .. "Facility access controls must be implemented",          "Required",      "This not only means assigning a centrally-controlled unique username and PIN code for each user, but also establishing procedures to govern the release or disclosure of ePHI during an emergency."
    .. "Policies for the use/positioning of workstations",      "Addressable",   "This mechanism is essential in order to comply with HIPAA regulations as it confirms whether ePHI has been altered or destroyed in an unauthorized manner."
@@ -63,9 +66,11 @@ Administrative Safeguards
    A HIPAA compliant risk assessment is not a one-time requirement, but a regular 
    task necessary to ensure continued HIPAA compliance.
 
+
 .. image:: ./hipaa-administrative-safeguards.png
    :width: 650
    :alt: Could not load administrative safeguards table
+
 
 Key Management System (KMS)
 ----------------------------
