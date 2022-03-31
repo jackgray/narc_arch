@@ -32,6 +32,7 @@ Graphical workflow manager for cloud data services.
 
 Advantages over Budibase or Concourse
     -   Smaller learning curve than Concourse 
+    -   Can automate more things than Budibase
 
 Disadvantages 
     -   Geared for cloud- may not be ideal for hybrid model 
