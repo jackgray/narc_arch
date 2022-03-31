@@ -76,7 +76,7 @@ Pysical Safeguards
 |  Implementation Specification                    | Required or | Further Information                                  |
 |                                                  | Addressable |                                                      |       
 +==================================================+=============+======================================================+
-| Facility access controls must be implemented     | Required    |This not only means assigning a centrally controlled |
+| Facility access controls must be implemented     | Required    |This not only means assigning a centrally controlled  |
 |                                                  |             |unique username and PIN code for each user, but also  |
 |                                                  |             |establishing procedures to govern the release or      |
 |                                                  |             |disclosure of ePHI during an emergency.               |   
