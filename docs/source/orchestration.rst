@@ -70,3 +70,23 @@ ArgoCD
 Simple solution for continuous deployment of apps
 
 Launch updates that self-revert on failure.
+
+IBM Spectrum LSF
+------------------
+A way to simplify management and maintenance of HPC Cluster.
+
+Future admins would not need to be Kubernetes experts.
+
+"The IBM Spectrum LSF ("LSF", short for load sharing facility) software is 
+industry-leading enterprise-class software. LSF distributes work across 
+existing heterogeneous IT resources to create a shared, scalable, and 
+fault-tolerant infrastructure, that delivers faster, more reliable workload 
+performance and reduces cost. LSF balances load and allocates resources, 
+and provides access to those resources.
+
+LSF provides a resource management framework that takes your job requirements, 
+finds the best resources to run the job, and monitors its progress. Jobs always 
+run according to host load and site policies."
+
+https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=overview-lsf-introduction
+https://www.ibm.com/products/hpc-workload-management
