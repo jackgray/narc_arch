@@ -29,4 +29,6 @@ Contents
    orchestration
    preprocessing
    computation
+   authentication
+   hardware
    todo
