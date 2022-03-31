@@ -16,6 +16,9 @@ Technical Safeguards
    undecipherable and unusable. Thereafter organizations are free to select whichever mechanisms 
    are most appropriate to:
 
+.. image:: ./hipaa-technical-safeguards.png
+   :width: 400
+   :alt: Could not load table
 
 .. .. csv-table:: Technical Safeguards :rst:dir:`csv-table`
 ..    :header: "Implementation Specification", "Required or Addressable", "Further Information"
