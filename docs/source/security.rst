@@ -33,36 +33,6 @@ Technical Safeguards
 ..    "Introduce activity logs and audit controls",        "Required",    "The audit controls required under the technical safeguards are there to register attempted access to ePHI and record what is done with that data once it has been accessed."
 ..    "Facilitate automatic log-off of PCs and devices",   "Addressable", "This function logs authorized personnel off of the device they are using to access or communicate ePHI after a pre-defined period of time. This prevents unauthorized access of ePHI should the device be left unattended."
 
-+--------------------------------------------------+-------------+------------------------------------------------------+ 
-|  Implementation                                  | Required or | Further Information                                  | 
-|  Specification                                   | Addressable |                                                      |        
-+==================================================+=============+======================================================+ 
-| Implement a means of access control              | Required    | This not only means assigning a centrally controlled | 
-|                                                  |             | unique username and PIN code for each user, but also | 
-|                                                  |             | establishing procedures to govern the release or     | 
-|                                                  |             | disclosure of ePHI during an emergency.              |   
-+--------------------------------------------------+-------------+------------------------------------------------------+ 
-| Introduce a mechanism to authenticate ePHI       | Required    | This not only means assigning a centrally controlled | 
-|                                                  |             | unique username and PIN code for each user, but also | 
-|                                                  |             | establishing procedures to govern the release or     | 
-|                                                  |             | disclosure of ePHI during an emergency.              |   
-+--------------------------------------------------+-------------+------------------------------------------------------+ 
-| Implement tools for encryption and decryption    | Required    | This not only means assigning a centrally controlled | 
-|                                                  |             | unique username and PIN code for each user, but also | 
-|                                                  |             | establishing procedures to govern the release or     | 
-|                                                  |             | disclosure of ePHI during an emergency.              |   
-+--------------------------------------------------+-------------+------------------------------------------------------+ 
-| Introduce activity logs and audit controls       | Required    | This not only means assigning a centrally controlled | 
-|                                                  |             | unique username and PIN code for each user, but also | 
-|                                                  |             | establishing procedures to govern the release or     | 
-|                                                  |             | disclosure of ePHI during an emergency.              |   
-+--------------------------------------------------+-------------+------------------------------------------------------+ 
-| Facilitate automatic log-off of PCs and devices  | Required    | This not only means assigning a centrally controlled | 
-|                                                  |             | unique username and PIN code for each user, but also | 
-|                                                  |             | establishing procedures to govern the release or     | 
-|                                                  |             | disclosure of ePHI during an emergency.              |   
-+--------------------------------------------------+-------------+------------------------------------------------------+
-
 Physical Safeguards
    The Physical Safeguards focus on physical access to ePHI irrespective of its location. 
    ePHI could be stored in a remote data center, in the cloud, or on servers which are 
@@ -70,49 +40,18 @@ Physical Safeguards
    workstations and mobile devices should be secured against unauthorized access:
 
 .. image:: ./hipaa-physical-safeguards.png
-   :width: 700
+   :width: 650
    :alt: Could not load table
-   
+
    .. "Facility access controls must be implemented",          "Required",      "This not only means assigning a centrally-controlled unique username and PIN code for each user, but also establishing procedures to govern the release or disclosure of ePHI during an emergency."
    .. "Policies for the use/positioning of workstations",      "Addressable",   "This mechanism is essential in order to comply with HIPAA regulations as it confirms whether ePHI has been altered or destroyed in an unauthorized manner."
    .. "Policies and procedures for mobile devices	",          "Addressable",   "This guideline relates to the devices used by authorized users, which must have the functionality to encrypt messages when they are sent beyond an internal firewalled server, and decrypt those messages when they are received."
    .. "Introduce activity logs and audit controls",            "Required",      "The audit controls required under the technical safeguards are there to register attempted access to ePHI and record what is done with that data once it has been accessed."
    .. "Inventory of hardware",                                 "Addressable",   "This function logs authorized personnel off of the device they are using to access or communicate ePHI after a pre-defined period of time. This prevents unauthorized access of ePHI should the device be left unattended."
 
-+--------------------------------------------------+-------------+---------------------------------------------------------+
-|  Implementation Specification                    | Required or | Further Information                                     |
-|                                                  | Addressable |                                                         |       
-+==================================================+=============+=========================================================+
-| Facility access controls must be implemented     | Required    |   Controls who has physical access to the location      |
-|                                                  |             |   where ePHI is stored and includes software engineers, |
-|                                                  |             |   cleaners, etc. The procedures must also include       |
-|                                                  |             |   safeguards to prevent unauthorized physical access,   |
-|                                                  |             |   tampering, and theft.                                 |
-+--------------------------------------------------+-------------+---------------------------------------------------------+
-| Policies for the use/positioning of workstations | Required    |   Policies must be devised and implemented to restrict  |
-|                                                  |             |   the use of workstations that have access to ePHI, to  |
-|                                                  |             |   specify the protective surrounding of a workstation   |
-|                                                  |             |   and govern how functions are to be performed on the   |
-|                                                  |             |   workstations.                                         |   
-+--------------------------------------------------+-------------+---------------------------------------------------------+
-| Policies and procedures for mobile devices       | Required    |   This guideline relates to the devices used by         |
-|                                                  |             |   authorized users, which must have the functionality   |
-|                                                  |             |   to encrypt messages when they are sent beyond         |
-|                                                  |             |   an internal firewalled server, and decrypt            |
-|                                                  |             |   those messages when they are received.                |   
-+--------------------------------------------------+-------------+---------------------------------------------------------+
-| Introduce activity logs and audit controls       | Required    |   If users are allowed to access ePHI from their mobile | 
-|                                                  |             |   devices, policies must be devised and implemented to  |
-|                                                  |             |   govern how ePHI is removed from the devices if the    |
-|                                                  |             |   user leaves the organization or the device is re-used,| 
-|                                                  |             |   sold, etc.                                            |   
-+--------------------------------------------------+-------------+---------------------------------------------------------+
-| Inventory of hardware                            | Required    | This not only means assigning a centrally controlled    |
-|                                                  |             | unique username and PIN code for each user, but also    |
-|                                                  |             | establishing procedures to govern the release or        |
-|                                                  |             | disclosure of ePHI during an emergency.                 |   
-+--------------------------------------------------+-------------+---------------------------------------------------------+
-
+.. image:: ./hipaa-administrative-safeguards.png
+   :width: 650
+   :alt: Could not load table
 
 Key Management System (KMS)
 ----------------------------
