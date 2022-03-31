@@ -77,14 +77,14 @@ Pysical Safeguards
 |                                                  | Addressable |                                                      |       
 +==================================================+=============+======================================================+
 | Facility access controls must be implemented     | Required    | This not only means assigning a centrally controlled |
-|                                                  |             | unique username and PIN code for each user, but also |
-|                                                  |             | establishing procedures to govern the release or     |
-|                                                  |             | disclosure of ePHI during an emergency.              |   
+|                                                  |             |unique username and PIN code for each user, but also  |
+|                                                  |             |establishing procedures to govern the release or      |
+|                                                  |             |disclosure of ePHI during an emergency.               |   
 +--------------------------------------------------+-------------+------------------------------------------------------+
 | Policies for the use/positioning of workstations | Required    | This not only means assigning a centrally controlled |
-|                                                  |             | unique username and PIN code for each user, but also |
-|                                                  |             | establishing procedures to govern the release or     |
-|                                                  |             | disclosure of ePHI during an emergency.              |   
+|                                                  |             |unique username and PIN code for each user, but also  |
+|                                                  |             |establishing procedures to govern the release or      |
+|                                                  |             |disclosure of ePHI during an emergency.               |   
 +--------------------------------------------------+-------------+------------------------------------------------------+
 | Policies and procedures for mobile devices       | Required    | This not only means assigning a centrally controlled |
 |                                                  |             | unique username and PIN code for each user, but also |
