@@ -34,9 +34,10 @@ Dask vs. Spark
 Integrating Ray.io and Apache Spark
 ------------------------------------
 
-SLURM
--------
+Workload Management and Distribution 
+-------------------------------------
+This section aims to cater to more granular control over cluster resources 
+from within computational code. See the section on Orchestration for solutions 
+on load balancing resources at the container level.
 
-IBM Cloud LSF
---------------
 
