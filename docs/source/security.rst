@@ -30,8 +30,8 @@ From HIPAA:
 ..    "Facilitate automatic log-off of PCs and devices",   "Addressable", "This function logs authorized personnel off of the device they are using to access or communicate ePHI after a pre-defined period of time. This prevents unauthorized access of ePHI should the device be left unattended."
 
 +--------------------------------------------------+-------------+------------------------------------------------------+
-|  Implementation Specification                    | Required or | Further Information                                  |
-|                                                  | Addressable |                                                      |       
+|  Implementation                                  | Required or | Further Information                                  |
+|  Specification                                   | Addressable |                                                      |       
 +==================================================+=============+======================================================+
 | Implement a means of access control              | Required    | This not only means assigning a centrally controlled |
 |                                                  |             | unique username and PIN code for each user, but also |
