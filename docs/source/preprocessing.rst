@@ -18,9 +18,7 @@ XNAT -> Private Lab Server
     dcm2bids or dcm2niix should be performed on XNAT server prior to downloading to mitigate high I/O load during download of uncompressed DICOM data
 
 nipreps/fmriprep 
-    Once the new session is downloaded, further processing steps will be triggered.
-        -   fmriprep 
-        -   abcd
+    Once the new session is downloaded, further processing steps will be triggered: fmriprep, abcd, etc.
 
 Additional Processing 
     Once preprocessing is complete, a slack notification will be sent, and additional processing automations can be performed. 
