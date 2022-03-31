@@ -4,7 +4,7 @@ Computation
 
 Distributed Processing with Ray.io Cluster
 -------------------------------------------
-What is Ray?
+From Ray.io
     Ray is an open-source project developed at UC Berkeley RISE Lab. As a general-purpose and universal distributed 
     compute framework, you can flexibly run any compute-intensive Python workload — from distributed training or 
     hyperparameter tuning to deep reinforcement learning and production model serving.

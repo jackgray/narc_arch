@@ -6,7 +6,7 @@ How to build a modern hybrid HPC analysis cluster for
 local + cloud with Kubernetes, MinIO, Concourse CI, 
 MongoDB, and Budibase.
 
-This documentation aims to address all needs to an analysis 
+This documentation aims to address all needs of an analysis 
 system. 
 
 - Storage 
