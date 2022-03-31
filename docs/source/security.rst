@@ -86,3 +86,5 @@ MinIO Automatic Encryption
 
 Uses central KMS 
 
+NIST Cybersecurity Framework 
+-----------------------------
