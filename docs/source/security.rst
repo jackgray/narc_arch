@@ -8,6 +8,7 @@ HIPAA compliance
     https://www.hipaajournal.com/hipaa-compliance-checklist/
 
 From HIPAA:
+Technical Safeguards
    The Technical Safeguards concern the technology that is used to protect ePHI and provide 
    access to the data. The only stipulation is that ePHI; whether at rest or in transit; must 
    be encrypted to NIST standards once it travels beyond an organizations internal firewalled 
@@ -59,11 +60,11 @@ From HIPAA:
 |                                                  |             | disclosure of ePHI during an emergency.              |   
 +--------------------------------------------------+-------------+------------------------------------------------------+
 
-
-The Physical Safeguards focus on physical access to ePHI irrespective of its location. 
-ePHI could be stored in a remote data center, in the cloud, or on servers which are 
-located within the premises of the HIPAA Covered Entity. They also stipulate how 
-workstations and mobile devices should be secured against unauthorized access:
+Pysical Safeguards
+   The Physical Safeguards focus on physical access to ePHI irrespective of its location. 
+   ePHI could be stored in a remote data center, in the cloud, or on servers which are 
+   located within the premises of the HIPAA Covered Entity. They also stipulate how 
+   workstations and mobile devices should be secured against unauthorized access:
 
    .. "Facility access controls must be implemented",          "Required",      "This not only means assigning a centrally-controlled unique username and PIN code for each user, but also establishing procedures to govern the release or disclosure of ePHI during an emergency."
    .. "Policies for the use/positioning of workstations",      "Addressable",   "This mechanism is essential in order to comply with HIPAA regulations as it confirms whether ePHI has been altered or destroyed in an unauthorized manner."
