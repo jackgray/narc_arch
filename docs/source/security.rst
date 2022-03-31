@@ -72,6 +72,36 @@ From HIPAA:
    "Introduce activity logs and audit controls",            "Required",      "The audit controls required under the technical safeguards are there to register attempted access to ePHI and record what is done with that data once it has been accessed."
    "Inventory of hardware",                                 "Addressable",   "This function logs authorized personnel off of the device they are using to access or communicate ePHI after a pre-defined period of time. This prevents unauthorized access of ePHI should the device be left unattended."
 
++--------------------------------------------------+-------------+------------------------------------------------------+
+|  Implementation Specification                    | Required or | Further Information                                  |
+|                                                  | Addressable |                                                      |       
++==================================================+=============+======================================================+
+| Facility access controls must be implemented     | Required    | This not only means assigning a centrally controlled |
+|                                                  |             | unique username and PIN code for each user, but also |
+|                                                  |             | establishing procedures to govern the release or     |
+|                                                  |             | disclosure of ePHI during an emergency.              |   
++--------------------------------------------------+-------------+------------------------------------------------------+
+| Policies for the use/positioning of workstations | Required    | This not only means assigning a centrally controlled |
+|                                                  |             | unique username and PIN code for each user, but also |
+|                                                  |             | establishing procedures to govern the release or     |
+|                                                  |             | disclosure of ePHI during an emergency.              |   
++--------------------------------------------------+-------------+------------------------------------------------------+
+| Policies and procedures for mobile devices       | Required    | This not only means assigning a centrally controlled |
+|                                                  |             | unique username and PIN code for each user, but also |
+|                                                  |             | establishing procedures to govern the release or     |
+|                                                  |             | disclosure of ePHI during an emergency.              |   
++--------------------------------------------------+-------------+------------------------------------------------------+
+| Introduce activity logs and audit controls       | Required    | This not only means assigning a centrally controlled |
+|                                                  |             | unique username and PIN code for each user, but also |
+|                                                  |             | establishing procedures to govern the release or     |
+|                                                  |             | disclosure of ePHI during an emergency.              |   
++--------------------------------------------------+-------------+------------------------------------------------------+
+| Inventory of hardware                            | Required    | This not only means assigning a centrally controlled |
+|                                                  |             | unique username and PIN code for each user, but also |
+|                                                  |             | establishing procedures to govern the release or     |
+|                                                  |             | disclosure of ePHI during an emergency.              |   
++--------------------------------------------------+-------------+------------------------------------------------------+
+
 
 Key Management System (KMS)
 ----------------------------
