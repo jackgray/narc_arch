@@ -21,7 +21,8 @@ Deploying on Kubernetes
 
 Apache Spark
 --------------
-
+Setting up PySpark, JupyterHub, Kubeflow and Minio on Kubernetes
+    https://medium.com/@szinck/setting-up-pyspark-jupyter-and-minio-on-kubeflow-kubernetes-aab98874794f
 
 Dask
 ------
