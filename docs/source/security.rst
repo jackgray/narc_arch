@@ -15,7 +15,6 @@ Technical Safeguards
    servers. This is so that any breach of confidential patient data renders the data unreadable, 
    undecipherable and unusable. Thereafter organizations are free to select whichever mechanisms 
    are most appropriate to:
-
 .. .. image:: ./hipaa-technical-safeguards.png
 ..    :width: 650
 ..    :alt: Could not load technical safeguards table
@@ -29,12 +28,14 @@ Technical Safeguards
    "Introduce activity logs and audit controls",        "Required",    "The audit controls required under the technical safeguards are there to register attempted access to ePHI and record what is done with that data once it has been accessed."
    "Facilitate automatic log-off of PCs and devices",   "Addressable", "This function logs authorized personnel off of the device they are using to access or communicate ePHI after a pre-defined period of time. This prevents unauthorized access of ePHI should the device be left unattended."
 
+
+
+
 Physical Safeguards
    The Physical Safeguards focus on physical access to ePHI irrespective of its location. 
    ePHI could be stored in a remote data center, in the cloud, or on servers which are 
    located within the premises of the HIPAA Covered Entity. They also stipulate how 
    workstations and mobile devices should be secured against unauthorized access:
-
 .. .. image:: ./hipaa-physical-safeguards.png
 ..    :width: 650
 ..    :alt: Could not load physical safeguards table
@@ -46,6 +47,9 @@ Physical Safeguards
    "Policies for the use/positioning of workstations",      "Required",         "Policies must be devised and implemented to restrict the use of workstations that have access to ePHI, to specify the protective surrounding of a workstation and govern how functions are to be performed on the workstations."
    "Policies and procedures for mobile devices	",          "Required",         "If users are allowed to access ePHI from their mobile devices, policies must be devised and implemented to govern how ePHI is removed from the devices if the user leaves the organization or the device is re-used, sold, etc."
    "Introduce activity logs and audit controls",            "Addressable",      "An inventory of all hardware must be maintained, together with a record of the movements of each item. A retrievable exact copy of ePHI must be made before any equipment is moved."
+
+
+
 
 Administrative Safeguards
    The Administrative Safeguards are the policies and procedures which bring the 
@@ -60,7 +64,6 @@ Administrative Safeguards
    has conducted one, but to ensure to ensure they are comprehensive and ongoing. 
    A HIPAA compliant risk assessment is not a one-time requirement, but a regular 
    task necessary to ensure continued HIPAA compliance.
-
 .. RST documentation lies a lot.... below does not work
 .. .. image:: ./hipaa-administrative-safeguards.png
 ..    :width: 650
@@ -68,8 +71,8 @@ Administrative Safeguards
 .. csv-table:: Administrative Safeguards :rst:dir:`csv-table`
    :header: "Implementation Specification", "Required or Addressable", "Further Information"
    :widths: 20, 7, 30
-   
-"Conducting risk assessments",	         "Required",	      "Among the Security Officer´s main tasks is the compilation of a risk assessment to identify every area in which ePHI is being used, and to determine all of the ways in which breaches of ePHI could occur."
+
+"Conducting risk assessments",	         "Required",	      "Among the Security Officer\´s main tasks is the compilation of a risk assessment to identify every area in which ePHI is being used, and to determine all of the ways in which breaches of ePHI could occur."
 "Introducing a risk management policy",	"Required",	      "The risk assessment must be repeated at regular intervals with measures introduced to reduce the risks to an appropriate level. A sanctions policy for employees who fail to comply with HIPAA regulations must also be introduced."
 "Training employees to be secure",	      "Addressable",	   "Training schedules must be introduced to raise awareness of the policies and procedures governing access to ePHI and how to identify malicious software attacks and malware. All training must be documented."
 "Developing a contingency plan",	         "Required",	      "In the event of an emergency, a contingency plan must be ready to enable the continuation of critical business processes while protecting the integrity of ePHI while an organization operates in emergency mode."
