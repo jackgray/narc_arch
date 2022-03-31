@@ -3,10 +3,10 @@ Storage
 ===========
 
 The storage solution will consist of a primary (hot) distributed system
-with 100% fault tolerance, a cold storage hybrid cloud, a rolling 
-backup policy to move files as the drive fills into the cold storage,
-and a local user interface to seamlessly access the data without any 
-additional technical knowledge.
+with 100% fault tolerance, a cold storage hybrid cloud for emergency overflow 
+and secure offsite backup, a rolling backup policy to move files as the drive 
+fills into the cold storage, and a graphical user interface (frontend client) 
+to seamlessly access the data with little additional technical knowledge required.
 
 Distributed Object Storage with Min.io
 ---------------------------------------
@@ -21,17 +21,29 @@ S3 Object-based Storage: Open source, on-premise S3 buckets.
     -   Query tool (s3-select) based on SQL 
     -   Integrates seamlessly with multiple cloud 
         storage providers
-    -   Undetectable encryption 
-    -   More efficient storage process enables much faster 
+    -   Zero-knowledge encryption in transport and at rest 
+    -   More efficient storage process enables faster 
         data-retrieval
     -   Easily automate backups to cheaper cold storage based 
         on wide option of rules, such as age or last access date 
+         -   Automatically transfer oldest files to backup storage if drives 
+        overfill 
     -   Store references of cold-stored files on system alongside 
         on-premise files.
-    -   Easily configure fault tolerability -- easily add more drives 
+    -   Fault tolerant 
+        -   easily add more drives 
         and re-adjust percent drive failure allowance on the fly. 
-    -   Automatically transfer oldest files to backup storage if drives 
-        overfill 
+        -   Example: 
+            -   a cluster with 8 nodes
+            -   each node has 2 1TB drives
+            -   total of 16 drives => 16TB of data
+            -   drive parity set to maximum of 8 would allow for 8 drives 
+            to fail at once, without any loss of data 
+            -   on any drive failure, the missing data chunks are rebuilt automatically, 
+            giving the admin time to replace the failed drives.
+            -   when failed drives are replaced, the recovered data is automatically 
+            backed up to return to previous state
+   
 
 Installation
     https://docs.min.io/docs/deploy-minio-on-kubernetes
@@ -44,6 +56,13 @@ Seamless integration between primary distributed storage
 
 Think DropBox or OneDrive, but custom-fitted, on-premise, 
 single source compatible.
+    -   Combine from multiple cloud service providers 
+
+Zero-knowledge server connection
+    -   Once set up on a personal computer, folders on the server 
+    will look like any other local folder.
+
+Reverse-sync local folders to server.
 
 Reference 
     https://odrive.com/
