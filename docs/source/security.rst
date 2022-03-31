@@ -17,7 +17,7 @@ Technical Safeguards
    are most appropriate to:
 
 .. image:: ./hipaa-technical-safeguards.png
-   :width: 400
+   :width: 700
    :alt: Could not load table
 
 .. .. csv-table:: Technical Safeguards :rst:dir:`csv-table`
