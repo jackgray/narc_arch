@@ -4,6 +4,9 @@ Pipeline Orchestration
 
 Kubernetes
 -------------
+The brain of the cluster. All service installations should be done through Kubernetes 
+and utilize its ingress controller for cohesive load balancing of services and efficient 
+distribution of computational resources.
 -   Manages Cluster
 -   Provides DNS routing for all services
 -   Load Balancing 
