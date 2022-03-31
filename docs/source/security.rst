@@ -86,10 +86,11 @@ Pysical Safeguards
 |                                                  |             |   establishing procedures to govern the release or      |
 |                                                  |             |   disclosure of ePHI during an emergency.               |   
 +--------------------------------------------------+-------------+---------------------------------------------------------+
-| Policies and procedures for mobile devices       | Required    | This not only means assigning a centrally controlled    |
-|                                                  |             | unique username and PIN code for each user, but also    |
-|                                                  |             | establishing procedures to govern the release or        |
-|                                                  |             | disclosure of ePHI during an emergency.                 |   
+| Policies and procedures for mobile devices       | Required    |   This guideline relates to the devices used by         |
+|                                                  |             |   authorized users, which must have the functionality   |
+|                                                  |             |   to encrypt messages when they are sent beyond         |
+|                                                  |             |   an internal firewalled server, and decrypt            |
+|                                                  |             |   those messages when they are received.                |   
 +--------------------------------------------------+-------------+---------------------------------------------------------+
 | Introduce activity logs and audit controls       | Required    | This not only means assigning a centrally controlled    |
 |                                                  |             | unique username and PIN code for each user, but also    |
