@@ -30,7 +30,21 @@ are most appropriate to:
    "Introduce activity logs and audit controls",        "Required",    "The audit controls required under the technical safeguards are there to register attempted access to ePHI and record what is done with that data once it has been accessed."
    "Facilitate automatic log-off of PCs and devices",   "Addressable", "This function logs authorized personnel off of the device they are using to access or communicate ePHI after a pre-defined period of time. This prevents unauthorized access of ePHI should the device be left unattended."
 
-```
++----------------------------------------+-------------+------------------------------------------------------+
+|  Implementation Specification          | Required or | Further Information                                  |
+|                                        | Addressable |                                                      |       
++========================================+=============+======================================================+
+| Implement a means of access control    | Required    | This not only means assigning a centrally controlled |
+|                                        |             | unique username and PIN code for each user, but also |
+|                                        |             | establishing procedures to govern the release or     |
+|                                        |             | disclosure of ePHI during an emergency.              |   
++----------------------------------------+-------------+------------------------------------------------------+
+| Implement a means of access control    | Required    | This not only means assigning a centrally controlled |
+|                                        |             | unique username and PIN code for each user, but also |
+|                                        |             | establishing procedures to govern the release or     |
+|                                        |             | disclosure of ePHI during an emergency.              |   
++----------------------------------------+-----------+--------------------------------------------------------+
+
 The Physical Safeguards focus on physical access to ePHI irrespective of its location. 
 ePHI could be stored in a remote data center, in the cloud, or on servers which are 
 located within the premises of the HIPAA Covered Entity. They also stipulate how 
