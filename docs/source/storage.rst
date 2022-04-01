@@ -103,3 +103,93 @@ Advantages
     -   See files on database without downloading them locally 
     -   Integrate external cloud drives, such as OneDrive, Dropbox, 
         Google Drive, etc. 
+
+Backup Policy
+--------------
+To support a truly fault tolerant system, the cluster should be able to 
+handle drive failures without loss of data or interuption of service. 
+
+Fortunately, MinIO makes mitigating such failures fairly easy with its 
+Erasure Code feature. 
+
+"MinIO Erasure Coding is a data redundancy and availability feature 
+that allows MinIO deployments to automatically reconstruct objects 
+on-the-fly despite the loss of multiple drives or nodes in the cluster. 
+Erasure Coding provides object-level healing with less overhead than 
+adjacent technologies such as RAID or replication.
+
+MinIO splits each new object into data and parity blocks, where 
+parity blocks support reconstruction of missing or corrupted data 
+blocks. MinIO writes these blocks to a single erasure set in the 
+deployment. Since erasure set drives are striped across the deployment, 
+a given node typically contains only a portion of data or parity blocks 
+for each object. MinIO can therefore tolerate the loss of multiple 
+drives or nodes in the deployment depending on the configured parity 
+and deployment topology."
+
+Bucket Replication
+    For some projects, it might be desirable to share data between 
+    teams accross labs or sites. Bucket replication can allow a 
+    two-way syncronization between buckets on disparate systems. 
+    This means data that is collected or artifacts that are processed
+    by one team are immediately available to the other teams. Each 
+    site can have their own erasure code configurations, increasing 
+    the integrity of the data for each replication.
+
+    "MinIO supports server-side and client-side replication of 
+    objects between source and destination buckets.
+
+    Server-Side Bucket Replication
+    Configure per-bucket rules for automatically synchronizing 
+    objects between buckets within the same MinIO cluster or 
+    between two independent MinIO Clusters. MinIO applies rules 
+    as part of object write operations (e.g. PUT) and automatically 
+    synchronizes new objects and object mutations, such as new 
+    object versions or changes to object metadata.
+
+    MinIO server-side bucket replication only supports MinIO 
+    clusters for the remote replication target.
+
+    Client-side Bucket Replication
+    Use The command process to synchronize objects between buckets 
+    within the same S3-compatible cluster or between two independent 
+    S3-compatible clusters. Client-side replication using mc mirror 
+    supports MinIO-to-S3 and similar replication configurations.
+    Server-Side Bucket Replication
+
+    MinIO server-side bucket replication is an automatic 
+    bucket-level configuration that synchronizes objects between a source and destination bucket. MinIO server-side replication requires the source and destination bucket be MinIO clusters. The source and destination bucket may be the same MinIO cluster or two independent MinIO clusters.
+
+    For each write operation to the bucket, MinIO checks all 
+    configured replication rules for the bucket and applies 
+    the matching rule with highest configured priority. MinIO 
+    synchronizes new objects and object mutations, such as new 
+    object versions or changes to object metadata. This includes 
+    metadata operations such as enabling or modifying object 
+    locking or retention settings.
+
+    MinIO server-side bucket replication is functionally similar 
+    to Amazon S3 replication while adding the following MinIO-only 
+    features:
+    -   Source and destination bucket names can match, supporting 
+    site-to-site use cases such as Splunk or Veeam BC/DR.
+    -   Simplified implementation than S3 bucket replication 
+    configuration, removing the need to configure settings like 
+    -   AccessControlTranslation, Metrics, and SourceSelectionCriteria.
+    -   Active-Active (Two-Way) replication of objects between source 
+    and destination buckets. Multi-Site replication of objects 
+    between three or more MinIO deployments."
+
+Object Transition (Tiering)
+    MinIO supports creating object transition lifecycle management 
+    rules, where MinIO can automatically move an object to a remote 
+    storage “tier”. MinIO supports any S3-compatible service as a 
+    remote tier in addition to the following public cloud storage 
+    services:
+    -   Amazon S3
+    -   Google Cloud Storage
+    -   Microsoft Azure Blob Storage
+    -   MinIO object transition supports use cases like moving aged data from MinIO clusters in private or public cloud infrastructure to low-cost private or public cloud storage solutions. MinIO manages retrieving tiered objects on-the-fly without any additional application-side logic.
+
+    Use the mc admin tier command to create a remote target for tiering data to a supported Cloud Service Provider object storage. You can then use the mc ilm add --transition-days command to transition objects to the remote tier after a specified number of calendar days.
+
