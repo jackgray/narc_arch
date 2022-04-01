@@ -31,7 +31,7 @@ Technical Safeguards
 
 
 
-
+| --------------------------------------------------------------------
 Physical Safeguards
    The Physical Safeguards focus on physical access to ePHI irrespective of its location. 
    ePHI could be stored in a remote data center, in the cloud, or on servers which are 
@@ -51,7 +51,7 @@ Physical Safeguards
 
 
 
-
+| --------------------------------------------------------------------
 Administrative Safeguards
    The Administrative Safeguards are the policies and procedures which bring the 
    Privacy Rule and the Security Rule together. They are the pivotal elements of 
