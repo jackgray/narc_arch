@@ -15,9 +15,15 @@ distribution of computational resources.
 
 Concourse-CI
 -------------
-Generalized pipeline orchestrator/scheduler
-    -   Glues together containers and scripts to create complex workflows
-    -   "General purpose thing-doer"
+Concourse is the conductor. It looks for trigger events, like say, 
+a "True" response from the output of a Docker service that checks 
+XNAT for new exams to download, and then can launch any number of 
+processes from there. For instance, another docker service that 
+downloads and organizes the data, the successful completion of which
+could trigger yet another event, such as fmriprep, with artifacts  
+passed to any stage
+
+
 
 References
     https://medium.com/concourse-ci/concourse-pipeline-ui-explained-87dfeea83553
@@ -28,7 +34,7 @@ DNS Autoscaling
 
 AirFlow
 --------
-Graphical workflow manager for cloud data services.
+Graphical workflow manager geared toward cloud services.
 
 Advantages over Budibase or Concourse
     -   Smaller learning curve than Concourse 
