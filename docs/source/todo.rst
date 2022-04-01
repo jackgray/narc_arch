@@ -4,11 +4,16 @@ Planning & Design Considerations
 
 Assessing and Prioritizing Needs
 ---------------------------------
-What are the bottlenecks in data flow?
 
-What are the most pressing needs/immediate goals?
+Design Approach: Important questions to ask:
+    What are the bottlenecks in data flow?
 
-What are the long term goals?
+    What are the most pressing needs/immediate goals?
+
+    What are the long term goals of the lab?
+
+    What is the current data process like? What are the 
+    familiar/comfortable methods of the team.
 
 Maintenance
 ------------
