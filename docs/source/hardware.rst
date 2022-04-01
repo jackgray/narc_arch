@@ -5,8 +5,10 @@ Hardware Requirements
 Networking
 -----------
 Router
-    The router must support enough bandwidth to keep up with the 
-    processing power of the cluster. 
+    Fast and reliable communication is imperative for an effective 
+    cluster service. The connection between nodes is maintained by 
+    a central ethernet switch, or router, that handles the routing 
+    of packets into the ethernet ports of their intended targets. 
 
 
 Wireless
@@ -20,7 +22,7 @@ Wireless
 Hot Storage
 ------------
 Fast access- for actively or commonly used files 
-More expensive
+More expensive, but fast
 
 -   NVMe 
 -   SSD 

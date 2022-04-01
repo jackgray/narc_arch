@@ -72,22 +72,46 @@ Simple solution for continuous deployment of apps
 
 Launch updates that self-revert on failure.
 
+Pre-packaged Solutions
+----------------------
+
 IBM Spectrum LSF
-------------------
-A way to simplify management and maintenance of HPC Cluster.
+    A way to simplify management and maintenance of HPC Cluster 
+    is to go with a pre-packaged and professionally maintained 
+    all-in-one solution.
 
-Future admins would not need to be Kubernetes experts.
+    Future admins would not need to be Kubernetes experts.
 
-"The IBM Spectrum LSF ("LSF", short for load sharing facility) software is 
-industry-leading enterprise-class software. LSF distributes work across 
-existing heterogeneous IT resources to create a shared, scalable, and 
-fault-tolerant infrastructure, that delivers faster, more reliable workload 
-performance and reduces cost. LSF balances load and allocates resources, 
-and provides access to those resources.
+    "The IBM Spectrum LSF ("LSF", short for load sharing facility) software is 
+    industry-leading enterprise-class software. LSF distributes work across 
+    existing heterogeneous IT resources to create a shared, scalable, and 
+    fault-tolerant infrastructure, that delivers faster, more reliable workload 
+    performance and reduces cost. LSF balances load and allocates resources, 
+    and provides access to those resources.
 
-LSF provides a resource management framework that takes your job requirements, 
-finds the best resources to run the job, and monitors its progress. Jobs always 
-run according to host load and site policies."
+    LSF provides a resource management framework that takes your job requirements, 
+    finds the best resources to run the job, and monitors its progress. Jobs always 
+    run according to host load and site policies."
 
-https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=overview-lsf-introduction
-https://www.ibm.com/products/hpc-workload-management
+    https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=overview-lsf-introduction
+    https://www.ibm.com/products/hpc-workload-management
+
+    Pricing?
+
+Cloudera CDP Private Cloud 
+
+    Another all-in-one solution 
+
+    Reading:
+        https://www.forbes.com/sites/patrickmoorhead/2021/05/03/clouderas-data-platform-private-and-public-cloud-both-ga-and-its-time-to-migrate/?sh=46c1e6c72801
+
+    -   Out of the box
+    -   Hybrid
+    -   Less configuration and management
+        -   Fewer points of failure
+        -   Frees up resources 
+    -   Explore multiple configurations of products without having 
+    to learn all of them
+
+    Reliant on paid service. Analysis should be performed to 
+    assess annual cost of service and 
