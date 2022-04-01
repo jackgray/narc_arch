@@ -16,9 +16,11 @@ distribution of computational resources.
 Concourse-CI
 -------------
 Concourse is the conductor. It looks for trigger events, like say, 
-a "True" response from the output of a Docker service that checks 
+artifacts from a Docker service that checks 
 XNAT for new exams to download, and then can launch any number of 
-processes from there. For instance, another docker service that 
+processes from there. The artifacts can be passed as the input(s) 
+for other services. For instance, a change to the session manifest 
+for a project tanother docker service that 
 downloads and organizes the data, the successful completion of which
 could trigger yet another event, such as fmriprep, with artifacts  
 passed to any stage
@@ -105,19 +107,34 @@ IBM Spectrum LSF
     Pricing?
 
 Cloudera CDP Private Cloud 
-
     Another all-in-one solution 
 
     Reading:
         https://www.forbes.com/sites/patrickmoorhead/2021/05/03/clouderas-data-platform-private-and-public-cloud-both-ga-and-its-time-to-migrate/?sh=46c1e6c72801
+   
+    Advantages
+        -   Out of the box
+        -   Hybrid
+        -   Less configuration and management
+            -   Fewer points of failure
+            -   Frees up resources 
+        -   Explore multiple configurations of products without having 
+        to learn all of them
 
-    -   Out of the box
-    -   Hybrid
-    -   Less configuration and management
-        -   Fewer points of failure
-        -   Frees up resources 
-    -   Explore multiple configurations of products without having 
-    to learn all of them
+    Disadvantages 
+        Reliant on paid service. Analysis should be performed to 
+        assess annual cost of service and 
 
-    Reliant on paid service. Analysis should be performed to 
-    assess annual cost of service and 
+Workload Priority
+------------------
+It should be possible to divide computational allocation of cluster 
+resources by project, so that when resources are being competed for, 
+a precedence can be determined.
+
+One means of employing this could be to use *PriorityClass* in 
+Kubernetes. A priority class is set when the Pod is created, and its 
+value can be anywhere from 0 to 1,000,000,000. The default value is 
+0 if not set.
+
+https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/
+
