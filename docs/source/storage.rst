@@ -180,14 +180,14 @@ Object Transition (Tiering)
     storage “tier”. MinIO supports any S3-compatible service as a 
     remote tier in addition to the following public cloud storage 
     services:
-    -   Amazon S3
-    -   Google Cloud Storage
-    -   Microsoft Azure Blob Storage
-    -   MinIO object transition supports use cases like moving aged 
-    data from MinIO clusters in private or public cloud infrastructure 
-    to low-cost private or public cloud storage solutions. MinIO 
-    manages retrieving tiered objects on-the-fly without any additional 
-    application-side logic.
+        -   Amazon S3
+        -   Google Cloud Storage
+        -   Microsoft Azure Blob Storage
+        -   MinIO object transition supports use cases like moving aged 
+            data from MinIO clusters in private or public cloud infrastructure 
+            to low-cost private or public cloud storage solutions. MinIO 
+            manages retrieving tiered objects on-the-fly without any additional 
+            application-side logic.
 
     Use the mc admin tier command to create a remote target for 
     tiering data to a supported Cloud Service Provider object storage. 
