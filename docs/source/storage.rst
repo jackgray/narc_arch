@@ -18,8 +18,8 @@ storage if desired, without loss of service.
 
 It runs on Kubernetes, can utilize its central key management 
 system (KMS) for authentication, providing zero-knowledge 
-encryption during transfer, and at rest, and can be interacted 
-with using both POSIX-flavored and aws's s3-select commands alike.
+encryption during transfer and at rest, and can be interacted 
+with using both POSIX-flavored and AWS s3-select commands alike.
 
 Feature Summary:
     -   Infinitely scalable 
@@ -36,6 +36,7 @@ Feature Summary:
     -   Store references of cold-stored files on system alongside 
         on-premise files.
     -   Fault tolerant- easily add more drives and re-adjust percent drive failure allowance on the fly. 
+       
         -   Example: 
         -   Cluster with 8 nodes 
         -   Each node has 2 1TB drives 
