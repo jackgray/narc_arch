@@ -70,15 +70,12 @@ will look like any other local folder on your computer.
 
 Reverse-sync local folders to server.
 
-This marriage between server and client PC enables the system to 
+This marriage between server and personal computer enables the system to 
 maintain a single source of truth for all lab files, without 
-having to ssh to the file server and download data that you may 
-want to interact with locally.
+requiring users to ssh to the file server and download data that 
+they may want to interact with locally.
 
-Reference 
-    https://odrive.com/
-
-From odrive:
+Here's some more info from odrive:
 
 Sync unlimited data
     odrive's Infinite Sync shows files available in your storage 
@@ -109,11 +106,13 @@ Advantages
     -   Removes risk of data merge conflicts
     -   On-premise solution is free 
     -   Expand storage to cloud 
-    -   Directly connected to main cluster object store
+    -   Directly connected to central cluster file storage
     -   Tracks changes to files and retains previous versions   
     -   See files on database without downloading them locally 
     -   Integrate external cloud drives, such as OneDrive, Dropbox, 
         Google Drive, etc. 
+
+(https://odrive.com/)
 
 Fault Tolerability & Disaster Recovery
 ---------------------------------------
