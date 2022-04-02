@@ -64,6 +64,7 @@ A means of creating forms and storing entries into the core database must exist.
 
 6.  Audit Trailing 
 --------------------
+A means of tracing changes to a database or filesystem must exist. 
 
 7.  Monitoring 
 ---------------
