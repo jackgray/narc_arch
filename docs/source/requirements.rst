@@ -72,8 +72,7 @@ There must be a means of monitoring the consumption of resources.
 
 **7.1.** Graphical dashboard 
 
-    :7.1.1.: The cluster must provide a method for displaying breakdowns of 
-    all consumed resources. 
+    :7.1.1.: The cluster must provide a method for displaying breakdowns of all consumed resources. 
 
 **7.2.** Notifications 
 
