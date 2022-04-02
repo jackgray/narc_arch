@@ -36,16 +36,6 @@ MongoDB integration
     More
         https://www.progress.com/odbc/mongodb
 
-Advantages: 
-    -   Free with MS Office 365 Suite 
-    -   Already implemented and working 
-
-Disadvantages:
-    -   Proprietary data format (.accdb and .mdb)
-    -   Not Python friendly
-    -   Unpopular user interface 
-    -   Limited 3rd party integrations 
-    -   Not very intuitive (learning curve too high)
 
 Budibase
 ----------
