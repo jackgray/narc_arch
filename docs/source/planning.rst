@@ -32,14 +32,14 @@ Because of the fairly direct trade-off between cost of paid, pre-packaged
 or externally maintained systems and the cost of staffing expertise 
 needed to maintain a custom-built and cost effective solution, a few key 
 factors should be considered when making this decision:
-    -   annual costs of an all-in-one cluster management solution
-    -   the salary of Cloud Engineers in the private market (worst case scenario/budget ceiling)
-    -   the salary and ambition of a less experienced developer 
+    -   Annual costs of an all-in-one cluster management solution
+    -   Annual salary of cloud engineers in the private market
+    -   Annual salary and ambition of a less experienced developer 
         potentially capable of filling the needs
-    -   the risk trade-off of the aforementioned factor 
-    -   the chances that a post-doctoral or Phd candidate will be familiar 
-        with complex DevOps tools in this document not directly relating to the analyis 
-        of data.
+    -   Risk trade-off of hiring someone less experienced to manage data systems 
+    -   Whether it is desired for future post-docs to be able to manage the data 
+        without necessarily needing to employ a systems maintainer full-time (who do you 
+        want the system maintenance to accessible to)
     -   the learning curve of the various tools and required time 
         investment feasability
 
