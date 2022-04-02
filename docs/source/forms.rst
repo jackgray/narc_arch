@@ -50,15 +50,15 @@ open-source.
 By storing our data in MongoDB or PostgreSQL, rather than MS Access 
 proprietary .accdb or .mdb format, we make it available and easily 
 consumable by all of our services, including direct calls by  
-python and matlab scripting.
+Python, R, MATLAB, SPSS, and the like.
 
--   Connects to existing database (PostgreSQL, Mongo, etc.)
+-   Connects to existing standalone database (PostgreSQL, Mongo, etc.)
 -   Allows easy graphical manipulation and addition of data via 
     web interface and user-built apps
   
 Advantages over MS Access or Airtable:
-    -   Free 
-    -   HIPAA compliant
+    -   Free for self-hosted option
+    -   HIPAA compliance
         -   Airtable uses a cloud platform that does not meet the criteria for HIPAA compliance, 
          so can't be used to host PHI.
         -   Self-hosted- complete control over security methods
