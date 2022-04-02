@@ -14,19 +14,27 @@ The proposed solution laid forth aims to provide the following:
 
 Microsoft Access
 -----------------
-MS Access provides both a database, and software client all in one. 
-It can be very powerful when combined with other Microsoft tools, 
-but as it is a proprietary, closed-source project, does not integrate 
-nicely with non-Microsoft tools. 
+MS Access provides both a database and software client in one solution. 
+It is included at no additional cost with the Office 365 suite, and 
+can be very powerful when combined with other Microsoft tools.
+It has another advantage of already being implemented and functional.
 
-MS Access could be the most sensible option if teammembers are 
-already proficient in using it, however there are now more 
-modern solutions with friendlier user interface.
+MS Access could be the most sensible option if team members are 
+already accustomed to it, however there are more 
+modern solutions with friendlier user interface and a smaller 
+learning curve. Using Access may pose additional obstacles 
+in workflow however, since the data format is not open and 
+cannot be as easily integrated into processes outside of 
+the Microsoft suite, whereas a solution such as Budibase 
+is database agnostic, meaning it can be used with a wide array 
+of commonly used and supported data formats. 
+Note: there currently are no integrations from Budibase for MS Access 
+databases.
 
 MongoDB integration 
     If working in a noSQL document-based data model, it may be useful 
     to convert or connect the existing MS Access database with 
-    a JSON-based document model such as MongoDB. Drivers exist 
+    a document database such as MongoDB. Drivers exist 
     for some of these databases, that aid in this conversion.
 
     More
