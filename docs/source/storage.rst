@@ -19,7 +19,7 @@ storage if desired, without loss of service.
 It runs on Kubernetes, can utilize its central key management 
 system (KMS) for authentication, providing zero-knowledge 
 encryption during transfer, and at rest, and can be interacted 
-with using POSIX inspired commands.
+with using POSIX-inspired commands.
 
 Feature Summary:
     -   Infinitely scalable 
@@ -110,7 +110,7 @@ Advantages
     -   Tracks changes to files and retains previous versions   
     -   See files on database without downloading them locally 
     -   Integrate external cloud drives, such as OneDrive, Dropbox, 
-        Google Drive, etc. 
+    Google Drive, etc. 
 
 (https://odrive.com/)
 
