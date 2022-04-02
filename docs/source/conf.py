@@ -1,7 +1,7 @@
 # Configuration file for the Sphinx documentation builder.
 
 # -- Project information
-project = 'Designing A Modern HPC Cluster'
+project = 'Designing A Modern Research Cluster'
 copyright = '2022, JackGray'
 author = 'Jack'
 
