@@ -32,9 +32,7 @@ Feature Summary:
     -   More efficient storage process enables faster 
         data-retrieval
     -   Easily automate backups to cheaper cold storage based 
-        on wide option of rules, such as age or last access date 
-         -   Automatically transfer oldest files to backup storage if drives 
-        overfill 
+        on wide option of rules, such as age or last access date  
     -   Store references of cold-stored files on system alongside 
         on-premise files.
     -   Fault tolerant 
@@ -51,7 +49,6 @@ Feature Summary:
             -   when failed drives are replaced, the recovered data is automatically 
             backed up to return to previous state
    
-
 Installation
     https://docs.min.io/docs/deploy-minio-on-kubernetes
 
@@ -100,7 +97,6 @@ Connect your machines
     new world of possibilities. 
 
 Advantages
-    -   Free 
     -   Seamless integration with MinIO and Kubernetes 
     -   Additional layer of data permanence and revertability 
     -   Removes risk of data merge conflicts
@@ -112,19 +108,18 @@ Advantages
     -   Integrate external cloud drives, such as OneDrive, Dropbox, 
     Google Drive, etc. 
 
-(https://odrive.com/)
+https://odrive.com/
 
-Fault Tolerability & Disaster Recovery
----------------------------------------
-To support a truly fault tolerant system, every component must be 
-fault-tolerant. The cluster storage solution should be able to 
+Fault Tolerance
+----------------
+The cluster storage solution should be able to 
 handle multiple concurrent drive failures without loss of data 
 or interuption of service. Additionally, data should be replicated 
-off-site to protect against location related failures, such as 
+off-site to protect against location related adverse events, such as 
 power outage, flood, fire, A/C failure electric surge, etc.
 
 Fortunately, MinIO makes mitigating such failures fairly easy with its 
-Erasure Code, Bucket Replication, and Tiering features.
+Erasure Coding, Bucket Replication, and Object Transitioning (Tiering) features.
 
 Erasure Coding 
     "MinIO Erasure Coding is a data redundancy and availability feature 
@@ -141,7 +136,8 @@ Erasure Coding
     for each object. MinIO can therefore tolerate the loss of multiple 
     drives or nodes in the deployment depending on the configured parity 
     and deployment topology."
-    -   https://docs.min.io/minio/baremetal/concepts/erasure-coding.html#minio-erasure-coding
+    
+    - https://docs.min.io/minio/baremetal/concepts/erasure-coding.html#minio-erasure-coding
 
 Bucket Replication
     For some projects, it might be desirable to share data between 
@@ -165,17 +161,18 @@ Bucket Replication
 
     MinIO server-side bucket replication is functionally similar 
     to Amazon S3 replication while adding the following MinIO-only 
-    features:
+    features: 
+
     -   Source and destination bucket names can match, supporting 
-    site-to-site use cases such as Splunk or Veeam BC/DR.
+    site-to-site use cases such as Splunk or Veeam BC/DR. 
     -   Simplified implementation than S3 bucket replication 
     configuration, removing the need to configure settings like 
-    -   AccessControlTranslation, Metrics, and SourceSelectionCriteria.
+    -   AccessControlTranslation, Metrics, and SourceSelectionCriteria. 
     -   Active-Active (Two-Way) replication of objects between source 
     and destination buckets. Multi-Site replication of objects 
     between three or more MinIO deployments."
 
-    -   https://docs.min.io/minio/baremetal/replication/replication-overview.html
+    - https://docs.min.io/minio/baremetal/replication/replication-overview.html
 
 Object Transition (Tiering)
     "MinIO supports creating object transition lifecycle management 
