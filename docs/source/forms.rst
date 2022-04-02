@@ -11,6 +11,7 @@ System Requirements:
     -   Upload and export data via CSV 
     -   Redcap integration 
     -   database backend agnostic 
+    -   built-in workflow management and automation
 
 Microsoft Access
 -----------------
