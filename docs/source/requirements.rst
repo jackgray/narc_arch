@@ -31,7 +31,7 @@ of infrastructure.
 Commonly used resources from the computing system must be able to 
 be accessed and utilized without specialized knowledge. 
 
-3.1.    Data Accessibility
+**3.1.**    Data Accessibility
     :3.1.1: Tabular data from the underlying core database must have a graphical access client that does not require specialized knowledge to use.
     
     :3.1.2: Data that is acquired by digital forms must be automatically stored 
@@ -43,7 +43,12 @@ System resources must be considerately assigned to system processes in
 order to maximize their efficiency. This usually involves distributing 
 tasks, files, and data accross multiple nodes.
 
-**4.1.**    A load balancing solution must exist to efficiently distribute compute 
-requests accross all available resources
+**4.1.**    Load balancing 
+    :4.1.1: An ingress router solution must be implemented to efficiently distribute server requests accross all available resources
 
-**4.2**     File storage should be distributed
+**4.2**     Distributed File Storage 
+    :4.2.1: Files should be stored in a distributed filesystem, such as Hadoop (HDFS) or S3 (Amazon, MinIO, Azure Blob)
+
+5.  Form Generation 
+---------------------
+A means of creating forms and storing entries into the core database must exist.
