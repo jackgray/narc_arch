@@ -17,6 +17,15 @@ Each component throughout the entire system should be able
 to expand with the needs of the lab without any redesign 
 of infrastructure. 
 
+**2.1** Storage 
+    :2.1.1: Storage should be infinitely expandable without demanding changes in configuration
+    
+**2.2** Computation 
+    :2.2.1: The cluster should be able to accept new nodes without serious overhead or reconfiguration of other nodes. 
+
+**2.3** Database
+    :2.3.1: The database should have a  distributed model, where it is stored accross multiple nodes, to avoid potential interruptions or major intervention when the data fills up a drive.
+
 3.  Accessibility
 ------------------
 Commonly used resources from the computing system must be able to 
@@ -30,5 +39,11 @@ be accessed and utilized without specialized knowledge.
 
 4.  Resource Efficiency
 -------------------------
-4.1.    A load balancing solution must exist to efficiently distribute 
+System resources must be considerately assigned to system processes in 
+order to maximize their efficiency. This usually involves distributing 
+tasks, files, and data accross multiple nodes.
 
+**4.1.**    A load balancing solution must exist to efficiently distribute compute 
+requests accross all available resources
+
+**4.2**     File storage should be distributed
