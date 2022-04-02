@@ -34,9 +34,12 @@ be accessed and utilized without specialized knowledge.
 **3.1.**    Data Accessibility
     :3.1.1: Tabular data from the underlying core database must have a graphical access client that does not require specialized knowledge to use.
     
-    :3.1.2: Data that is acquired by digital forms must be automatically stored into the core db without user initiation or intervention.
+    :3.1.2: Data that is acquired by digital forms must be automatically stored into the core database without user initiation or intervention.
 
-4.  Resource Efficiency
+**3.2** File Accessibility
+    :3.2.1: End users must have a convenient means of accessing files stored on the main server. The solution should be seamless and feel like a normal folder to the user.
+
+1.  Resource Efficiency
 -------------------------
 System resources must be considerately assigned to system processes in 
 order to maximize their efficiency. This usually involves distributing 
