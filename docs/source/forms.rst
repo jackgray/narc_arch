@@ -20,19 +20,12 @@ It is included at no additional cost with the Office 365 suite, and
 can be very powerful when combined with other Microsoft tools.
 It has another advantage of already being implemented and functional.
 
-MS Access could be the most sensible option if team members are 
-already accustomed, however there are more 
-modern solutions with friendlier user interface and a smaller 
-learning curve. 
-
-Using Access may pose additional obstacles 
-in workflows however, since the data format is not open and 
-cannot be as easily integrated into processes outside of 
-the Microsoft suite, whereas a solution such as Budibase 
-is database agnostic, meaning it can be used with a wide array 
-of commonly used and supported data formats. 
-Note: there currently are no integrations from Budibase for MS Access 
-databases.
+One major drawback of relying on MS Access is the proprietary .accdb 
+format. Databases like mySQL, PostgreSQL, MariaDB, MongoDB, etc. provide 
+APIs for nearly every programming language, have a large community for 
+support, and come with greater control over data management and distribution.
+Using an open-source data format means more choices in how you consume 
+it. 
 
 MongoDB integration 
     If working in a noSQL document-based data model, it may be useful 
@@ -99,6 +92,11 @@ Advantages over MS Access or Airtable:
     -   Web-based access 
         -   Don't need to be on site to create forms 
 
+Drawbacks:
+-   No built-in audit trailing, but there are potential workarounds 
+for implementing that..
+-   Mature, but not as industry standard as MS Access or SQL. The 
+learning curve should be low 
 
 Redcap  
 --------
