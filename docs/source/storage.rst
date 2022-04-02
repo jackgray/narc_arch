@@ -164,15 +164,15 @@ Bucket Replication
     features: 
 
     -   Source and destination bucket names can match, supporting 
-    site-to-site use cases such as Splunk or Veeam BC/DR. 
+    -   site-to-site use cases such as Splunk or Veeam BC/DR. 
     -   Simplified implementation than S3 bucket replication 
-    configuration, removing the need to configure settings like 
+        configuration, removing the need to configure settings like 
     -   AccessControlTranslation, Metrics, and SourceSelectionCriteria. 
     -   Active-Active (Two-Way) replication of objects between source 
-    and destination buckets. Multi-Site replication of objects 
-    between three or more MinIO deployments."
+        and destination buckets. Multi-Site replication of objects 
+        between three or more MinIO deployments."
 
-    - https://docs.min.io/minio/baremetal/replication/replication-overview.html
+  (https://docs.min.io/minio/baremetal/replication/replication-overview.html)
 
 Object Transition (Tiering)
     "MinIO supports creating object transition lifecycle management 
