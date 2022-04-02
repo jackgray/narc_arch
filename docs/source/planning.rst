@@ -31,26 +31,30 @@ Because of the fairly direct trade-off between cost of paid, pre-packaged
 or externally maintained systems and cost of on-premise expertise 
 to maintain a custom-built and cost effective solution, a few key 
 factors should be considered when making this decision:
+    -   annual costs of an all-in-one cluster management solution
     -   the salary of Cloud Engineers in the private market (worst case scenario/budget ceiling)
     -   the salary and ambition of a less experienced developer 
-    potentially capable of filling the needs
+        potentially capable of filling the needs
     -   the risk trade-off of the aforementioned factor 
     -   the chances that a post-doctoral or Phd candidate will be familiar 
-    with any tools in this document not directly relating to the analyis 
-    of data.
+        with complex DevOps tools in this document not directly relating to the analyis 
+        of data.
     -   the learning curve of the various tools and required time 
-    investment feasability
+        investment feasability
 
 
-Tentative/Dynamic Setup Outline
+Tentative Setup Outline
 --------------------------------
+This section serves as a tentative action plan for implementing the cluster 
+being proposed. It will change and evolve as more design choices are cemented. 
+
 Create Cluster 
     Install Kubernetes 
 
 Database Conversion
-    Convert MS Access to MongoDB
+    Convert MS Access to document or SQL database
 
-    Install MongoDB Shard
+    Install and configure new database for cluster 
 
     Install BudiBase
         - https://docs.budibase.com/docs/kubernetes-k8s
@@ -64,6 +68,7 @@ Database Conversion
             helm install --create-namespace --namespace budibase budibase budibase/budibase
         
         Get IP of ingress controller
+
         .. code-block:: sh
 
             kubectl get pods -n budibase 
@@ -95,17 +100,19 @@ Database Conversion
                                 number: 10000 
 
         
+        Import MS Access database 
 
-        Connect BudiBase to MongoDB
+        Connect BudiBase to newly created database 
 
         Set up user accounts
 
 Storage 
     Install MinIO 
-        Or attempt to utilize MinIO service created by Budibase 
+        Move lab files from existing RAID storage into buckets on MinIO  
         
-        Connect MongoDB backups
+        Connect and configure automated MongoDB snapshot backups
 
         Install O-Drive
-            Setup User Accounts
+            Set up User Accounts
+            
             Install MinIO Buckets as folders on user computers 
