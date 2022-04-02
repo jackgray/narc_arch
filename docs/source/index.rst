@@ -1,5 +1,5 @@
 ========================================
-How To Make a Research HPC Cluster
+How To Make a Modern Research Cluster
 ========================================
 
 A modern computing cluster should contain some implementation of the 
@@ -27,6 +27,7 @@ Contents
 
 .. toctree::
    
+   requirements
    storage
    database
    forms
