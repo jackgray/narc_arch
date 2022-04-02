@@ -106,7 +106,7 @@ Advantages
     -   Tracks changes to files and retains previous versions   
     -   See files on database without downloading them locally 
     -   Integrate external cloud drives, such as OneDrive, Dropbox, 
-    Google Drive, etc. 
+        Google Drive, etc. 
 
 https://odrive.com/
 
@@ -137,7 +137,7 @@ Erasure Coding
     drives or nodes in the deployment depending on the configured parity 
     and deployment topology."
     
-    - https://docs.min.io/minio/baremetal/concepts/erasure-coding.html#minio-erasure-coding
+    (https://docs.min.io/minio/baremetal/concepts/erasure-coding.html#minio-erasure-coding)
 
 Bucket Replication
     For some projects, it might be desirable to share data between 
@@ -180,6 +180,7 @@ Object Transition (Tiering)
     storage “tier”. MinIO supports any S3-compatible service as a 
     remote tier in addition to the following public cloud storage 
     services:
+
         -   Amazon S3
         -   Google Cloud Storage
         -   Microsoft Azure Blob Storage
@@ -195,4 +196,4 @@ Object Transition (Tiering)
     transition objects to the remote tier after a specified number 
     of calendar days.
 
-    -   https://docs.min.io/minio/baremetal/lifecycle-management/lifecycle-management-overview.html#minio-lifecycle-management-tiering
+(https://docs.min.io/minio/baremetal/lifecycle-management/lifecycle-management-overview.html#minio-lifecycle-management-tiering)
