@@ -57,26 +57,33 @@ single set of conditions.
 
 CSV files can be easily imported to Budibase and merged with central data store. 
 
-MariaDB
---------
-If SQL is needed, Maria may be the best option for horizontal scaling- built in cluster options
+MariaDB, PostgreSQL, mySQL
+---------------------------
+If SQL-based is needed, Maria may be the best option for horizontal scaling; it 
+features built in cluster options, growing community support, and promises 
+continued long-term growth. MariaDB, PostgreSQL, and mySQL are all widely accepted 
+and supported, and aren't at risk of dying out any time in the foreseeable future.
 
-Potential integration with S3 storage, but undetermined utility.
+MariaDB has potential for integrating with S3 storage, but more investigating is needed to 
+determine the extent of its utility.
 
 Using the S3 Engine 
     https://www.percona.com/blog/2020/07/17/mariadb-s3-engine-implementation-and-benchmarking/
 
-With s3 integration, audit trailing and backups may be simplified, due to MinIO's 
-built-in file versioning system
-
+With S3 integration, audit trailing and backups may be simplified, due to MinIO's 
+built-in file versioning system that allow files to be returned to previous states.
 
 MongoDB 
 ---------
+MongoDB is one of the leading standards for document-based database solutions. It 
+is among the most mature and feature-rich, and is a great generalized solution likely 
+to fit a wide range of needs. 
 
-Shard engine allows for distributed storage, making database storage more flexible 
+Mongo's shard engine allows for distributed storage of documents, making database storage more flexible 
     -   Added layer of complexity
-    -   Reference: 
-        -   https://stackoverflow.com/questions/49671158/mongodb-sharding-key
+  
+MongoDB access endpoint with sharding implemented: 
+    https://stackoverflow.com/questions/49671158/mongodb-sharding-key
 
 Connecting AccessDB to MongoDB
     https://www.mongodb.com/blog/post/odbc-driver-for-the-mongodb-connector-for-business-intelligence
