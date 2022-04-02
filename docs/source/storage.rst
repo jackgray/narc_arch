@@ -3,18 +3,25 @@ Storage
 ===========
 
 The storage solution will consist of a primary (hot) distributed system
-with 100% fault tolerance, a cold storage hybrid cloud for emergency overflow 
+for frequently accessed files, a cold storage hybrid cloud for emergency overflow 
 and secure offsite backup, a rolling backup policy to move files as the drive 
 fills into the cold storage, and a graphical user interface (frontend client) 
 to seamlessly access the data with little additional technical knowledge required.
 
 Distributed Object Storage with Min.io
 ---------------------------------------
-Main file store for any and everything. Automatically backed up 
-and encrypted, seamless integration with Kubernetes and personal 
-desktops (see section on O-drive).
+Built on the same concept as Amazon's S3 bucket storage, MinIO 
+makes infinitely scalable clustered data storage available on-premise. 
+It integrates seamlessly with other cloud providers for instant 
+expansion when necessary, allowing time to increase hardware 
+storage if desired, without loss of service.
 
-S3 Object-based Storage: Open source, on-premise S3 buckets.
+It runs on Kubernetes, can utilize its central key management 
+system (KMS) for authentication, providing zero-knowledge 
+encryption during transfer, and at rest, and can be interacted 
+with using POSIX inspired commands.
+
+Feature Summary:
     -   Infinitely scalable 
     -   Universally consumable 
     -   Uses aws s3 api 
@@ -37,8 +44,8 @@ S3 Object-based Storage: Open source, on-premise S3 buckets.
             -   a cluster with 8 nodes
             -   each node has 2 1TB drives
             -   total of 16 drives => 16TB of data
-            -   drive parity set to maximum of 8 would allow for 8 drives 
-            to fail at once, without any loss of data 
+            -   drive parity set to maximum of 8 would allow for half of the 
+            drives to fail at once, without any loss of data 
             -   on any drive failure, the missing data chunks are rebuilt automatically, 
             giving the admin time to replace the failed drives.
             -   when failed drives are replaced, the recovered data is automatically 
@@ -51,18 +58,22 @@ Installation
 
 Personal PC Integration with O-Drive
 ----------------------------------------------
-Seamless integration between primary distributed storage 
-(Min.io server) and local computers. 
+O-Drive makes file access to multiple storage sources, including MinIO 
+seamless to a personal computer, appearing as a regular folder. Think 
+DropBox or OneDrive, but custom-fitted and on-premise. You can even 
+add any of your existing cloud storage services into the mix, syncing and organizing them 
+centrally through O-Drive. 
 
-Think DropBox or OneDrive, but custom-fitted, on-premise, 
-single source compatible.
-    -   Combine from multiple cloud service providers 
-
-Zero-knowledge server connection
-    -   Once set up on a personal computer, folders on the server 
-    will look like any other local folder.
+O-Drive offers zero-knowledge server connection to the file store. 
+Once set up on a personal computer, folders on the server 
+will look like any other local folder on your computer. 
 
 Reverse-sync local folders to server.
+
+This marriage between server and client PC enables the system to 
+maintain a single source of truth for all lab files, without 
+having to ssh to the file server and download data that you may 
+want to interact with locally.
 
 Reference 
     https://odrive.com/
