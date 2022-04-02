@@ -76,4 +76,4 @@ There must be a means of monitoring the consumption of resources.
 
 **7.2.** Notifications 
 
-    :7.2.1: A notification system should be implemented 
+    :7.2.1: A notification system should be implemented to alert system administrators of system failures.
