@@ -123,7 +123,6 @@ or interuption of service. Additionally, data should be replicated
 off-site to protect against location related failures, such as 
 power outage, flood, fire, A/C failure electric surge, etc.
 
-
 Fortunately, MinIO makes mitigating such failures fairly easy with its 
 Erasure Code, Bucket Replication, and Tiering features.
 
