@@ -17,19 +17,20 @@ Design Approach: Important questions to ask:
 
 Maintenance
 ------------
-As a general rule, the more granular control one seeks in a system, the more 
-resources and specialized knowledge is required to maintain or build on top 
-of it. This also generally applies to product cost: if a service is free, you 
-will either have to host and maintain it yourself, or you will not have access 
-to all features, or the service will either grow and incur a blind cost model that 
-you will essentially be hostage to, lest potantially the entire infrastructure 
-will need redesigning.
+As a general rule, the more granular control offered by a system, the more 
+resources and expertise are required to maintain or build on it. This  
+generally applies to product cost as well: if a solution is free, you 
+will probably have to host and maintain it yourself, not have access 
+to all features, or the service will eventually mature to the point of 
+incurring an unpredictable cost model that 
+you will essentially be hostage to without redesigning  
+at least some parts of the system. 
 
-Paid Service vs. On-Prem Savings and Trade-offs 
+Paid Solutions vs. Self-Hosted/Maintained
 ------------------------------------------------
 Because of the fairly direct trade-off between cost of paid, pre-packaged 
-or externally maintained systems and cost of on-premise expertise 
-to maintain a custom-built and cost effective solution, a few key 
+or externally maintained systems and the cost of staffing expertise 
+needed to maintain a custom-built and cost effective solution, a few key 
 factors should be considered when making this decision:
     -   annual costs of an all-in-one cluster management solution
     -   the salary of Cloud Engineers in the private market (worst case scenario/budget ceiling)
@@ -114,5 +115,5 @@ Storage
 
         Install O-Drive
             Set up User Accounts
-            
+
             Install MinIO Buckets as folders on user computers 
