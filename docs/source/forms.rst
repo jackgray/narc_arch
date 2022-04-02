@@ -86,7 +86,7 @@ Drawbacks:
 -   No built-in audit trailing, but there are potential workarounds 
 for implementing that..
 -   Mature, but not as industry standard as MS Access or SQL. The 
-learning curve should be low 
+learning curve should be low for this product to be a viable solution.
 
 Redcap  
 --------

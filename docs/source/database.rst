@@ -9,7 +9,7 @@ interacting with data should include the following:
     -   An intuitive, no-code front-end for manipulating data and form creation
     -   If possible, ability to accommodate graph models
 
-This document will review some possible options to suite these needs.
+This document will review some possible options to suit these needs.
 
 Choosing the right Data Model
 ------------------------------
