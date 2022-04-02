@@ -2,13 +2,13 @@
 Storage
 ===========
 
-The storage solution will consist of a primary (hot) distributed system
-for frequently accessed files, a cold storage hybrid cloud for emergency overflow 
-and secure offsite backup, a rolling backup policy to move files as the drive 
-fills into the cold storage, and a graphical user interface (frontend client) 
-to seamlessly access the data with little additional technical knowledge required.
+An ideal storage solution is expandable, dependible, secure,  
+easy to access, and easy to manage. These will require some kind 
+of distributed storage solution, allocation management, a 
+comprehensive backup strategy, a key management system (KMS), 
+and a means of accessing the files remotely.
 
-Distributed Object Storage with Min.io
+S3 Buckets with Min.io
 ---------------------------------------
 Built on the same concept as Amazon's S3 bucket storage, MinIO 
 makes infinitely scalable clustered data storage available on-premise. 
@@ -19,7 +19,7 @@ storage if desired, without loss of service.
 It runs on Kubernetes, can utilize its central key management 
 system (KMS) for authentication, providing zero-knowledge 
 encryption during transfer, and at rest, and can be interacted 
-with using POSIX-inspired commands.
+with using both POSIX-flavored and aws's s3-select commands alike.
 
 Feature Summary:
     -   Infinitely scalable 
