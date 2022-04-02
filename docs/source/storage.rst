@@ -35,20 +35,19 @@ Feature Summary:
         on wide option of rules, such as age or last access date  
     -   Store references of cold-stored files on system alongside 
         on-premise files.
-    -   Fault tolerant 
-        -   easily add more drives and re-adjust percent drive failure allowance on the fly. 
+    -   Fault tolerant- easily add more drives and re-adjust percent drive failure allowance on the fly. 
         -   Example: 
-            -   a cluster with 8 nodes
-            -   each node has 2 1TB drives
-            -   total of 16 drives => 16TB of data
-            -   drive parity set to maximum of 8 would allow for half of the 
-            drives to fail at once, without any loss of data 
-            -   on any drive failure, the missing data chunks are rebuilt automatically, 
+        -   a cluster with 8 nodes
+        -   each node has 2 1TB drives
+        -   total of 16 drives => 16TB of data
+        -   drive parity set to maximum of 8 would provide effectively 8TB of usable 
+            space, but allow for half of the drives to fail at once, without any loss of data 
+        -   on any drive failure, the missing data chunks are rebuilt automatically, 
             giving the admin time to replace the failed drives.
-            -   when failed drives are replaced, the recovered data is automatically 
+        -   when failed drives are replaced, the recovered data is automatically 
             backed up to return to previous state
-   
-Installation
+
+Deployment on Kubernetes
     https://docs.min.io/docs/deploy-minio-on-kubernetes
 
 
@@ -69,7 +68,9 @@ Reverse-sync local folders to server.
 This marriage between server and personal computer enables the system to 
 maintain a single source of truth for all lab files, without 
 requiring users to ssh to the file server and download data that 
-they may want to interact with locally.
+they may want to interact with locally, and without having to worry about 
+merge conflicts between multiple manipulations on the same data by different 
+sources.
 
 Here's some more info from odrive:
 
