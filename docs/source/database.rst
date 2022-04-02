@@ -80,7 +80,8 @@ is among the most mature and feature-rich, and is a great generalized solution l
 to fit a wide range of needs. 
 
 Mongo's shard engine allows for distributed storage of documents, making database storage more flexible 
-    -   Added layer of complexity
+    -   Added layer of complexity 
+    -   If database storage requirements are small, sharding may effectively decrease access efficiency 
   
 MongoDB access endpoint with sharding implemented: 
     https://stackoverflow.com/questions/49671158/mongodb-sharding-key
