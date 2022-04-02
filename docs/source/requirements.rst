@@ -82,4 +82,4 @@ There must be a means of monitoring the consumption of resources.
 8. Project Management 
 -----------------------
 A software solution that allows the use of Gantt Charts, Kanban boards, scrum boards, or balanced score cards 
-for tracking immediate and long term goals of individual projects and the lab as a whole.
+for tracking immediate and long term goals of individual projects and the lab as a whole should exist.
