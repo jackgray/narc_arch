@@ -123,13 +123,13 @@ Cloudera CDP Private Cloud
 
     Disadvantages 
         Reliant on paid service. Analysis should be performed to 
-        assess annual cost of service and 
+        assess annual cost of service and overhead.
 
-Workload Priority
-------------------
+Workload Prioritization
+------------------------
 It should be possible to divide computational allocation of cluster 
 resources by project, so that when resources are being competed for, 
-a precedence can be determined.
+the desired precedence can be enforced.
 
 One means of employing this could be to use *PriorityClass* in 
 Kubernetes. A priority class is set when the Pod is created, and its 
