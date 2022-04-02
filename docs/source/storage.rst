@@ -37,14 +37,14 @@ Feature Summary:
         on-premise files.
     -   Fault tolerant- easily add more drives and re-adjust percent drive failure allowance on the fly. 
         -   Example: 
-        -   a cluster with 8 nodes
-        -   each node has 2 1TB drives
-        -   total of 16 drives => 16TB of data
-        -   drive parity set to maximum of 8 would provide effectively 8TB of usable 
+        -   Cluster with 8 nodes 
+        -   Each node has 2 1TB drives 
+        -   Total of 16 drives => 16TB of data 
+        -   Drive parity set to maximum of 8 would provide effectively 8TB of usable 
             space, but allow for half of the drives to fail at once, without any loss of data 
-        -   on any drive failure, the missing data chunks are rebuilt automatically, 
+        -   On any drive failure, the missing data chunks are rebuilt automatically, 
             giving the admin time to replace the failed drives.
-        -   when failed drives are replaced, the recovered data is automatically 
+        -   When failed drives are replaced, the recovered data is automatically 
             backed up to return to previous state
 
 Deployment on Kubernetes
