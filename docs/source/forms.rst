@@ -6,11 +6,11 @@ of a query language
 or specialized software. New forms should be easily created with a 
 shallow learning curve.  
 
-The proposed solution laid forth aims to provide the following:     
-    -   Replacement for MS Access 
+System Requirements:
     -   "No-code" data access 
-    -   Upload data via CSV 
+    -   Upload and export data via CSV 
     -   Redcap integration 
+    -   database backend agnostic 
 
 Microsoft Access
 -----------------
