@@ -117,7 +117,7 @@ The cluster storage solution should be able to
 handle multiple concurrent drive failures without loss of data 
 or interuption of service. Additionally, data should be replicated 
 off-site to protect against location related adverse events, such as 
-power outage, flood, fire, A/C failure electric surge, etc.
+power outage, flood, fire, A/C failure, electric surge, etc.
 
 Fortunately, MinIO makes mitigating such failures fairly easy with its 
 Erasure Coding, Bucket Replication, and Object Transitioning (Tiering) features.
@@ -138,7 +138,7 @@ Erasure Coding
     drives or nodes in the deployment depending on the configured parity 
     and deployment topology."
     
-    (https://docs.min.io/minio/baremetal/concepts/erasure-coding.html#minio-erasure-coding)
+    https://docs.min.io/minio/baremetal/concepts/erasure-coding.html#minio-erasure-coding
 
 Bucket Replication
     For some projects, it might be desirable to share data between 
@@ -196,4 +196,4 @@ Object Transition (Tiering)
     transition objects to the remote tier after a specified number 
     of calendar days.
 
-https://docs.min.io/minio/baremetal/lifecycle-management/lifecycle-management-overview.html#minio-lifecycle-management-tiering
+    https://docs.min.io/minio/baremetal/lifecycle-management/lifecycle-management-overview.html#minio-lifecycle-management-tiering

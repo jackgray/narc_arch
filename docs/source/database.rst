@@ -35,8 +35,8 @@ extent of previously known relationships?
     Graph database models can aid in the discovery of relationships 
     in a dataset.
 
-Exploring the Graph DB Model 
------------------------------
+Exploring the Graph Database Model 
+-----------------------------------
 Reference 
     https://ercim-news.ercim.eu/en125/r-i/graph-based-management-of-neuroscience-data-representation-integration-and-analysis
 
