@@ -37,4 +37,4 @@ Contents
    security
    hardware
    knowledge
-   todo
+   planning
