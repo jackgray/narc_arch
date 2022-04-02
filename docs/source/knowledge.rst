@@ -34,11 +34,10 @@ Born from a student design project at MIT, RemNote is
 an "all-in-one tool for thinking and learning"
 
 Claims to replace:
--   Microsoft Notes 
--   Microsoft Word 
--   Obsidian
--   Notion 
--   Evernote 
+    -   Microsoft Notes 
+    -   Microsoft Word 
+    -   Obsidian
+    -   Notion 
+    -   Evernote 
 
-Try It Out:
-    https://www.remnote.com/w/guest/FWpu7xxPMSLFTHWRD
+Try it out in the browser:  https://www.remnote.com/w/guest/FWpu7xxPMSLFTHWRD
