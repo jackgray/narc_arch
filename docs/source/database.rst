@@ -3,7 +3,7 @@ Data Organization
 ==================
 
 The best solution for storing, organizing, and 
-interacting with data should include the following:
+interacting with data should meet the following requirements: 
     -   Vertical and horizontal scalability
     -   Distributability accross the cluster 
     -   An intuitive, no-code front-end for manipulating data and form creation
