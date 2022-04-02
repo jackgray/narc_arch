@@ -56,7 +56,7 @@ tasks, files, and data accross multiple nodes.
     :4.1.1.: Ingress routing must be implemented to efficiently distribute server requests across all available resources
 
 **4.2.**     Distributed File Storage 
-    :4.2.1: Files should be stored in a distributed filesystem, such as Hadoop (HDFS) or S3 (Amazon, MinIO, Azure Blob)
+    :4.2.1: Files should be stored in a distributed filesystem, such as Hadoop (HDFS) or S3 (AWS, MinIO, Azure Blob)
 
 5.  Form Generation 
 ---------------------
