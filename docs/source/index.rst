@@ -2,12 +2,12 @@
 How To Make a Research HPC Cluster
 ========================================
 
-How to build a modern hybrid HPC analysis cluster for 
-local + cloud with Kubernetes, MinIO, Concourse CI, 
-MongoDB, and Budibase.
+A modern computing cluster is comprised of severak components: file storage, 
+a database, a pipeline orchestrator, a load balancer and resource manager, 
 
 This documentation aims to address all needs of an analysis 
-system. 
+system. It will serve as a live, evolving store for ideas and 
+considerations throughout the design process. 
 
 - Storage 
 - Backup
@@ -17,6 +17,8 @@ system.
 - Database integration
 - System Monitoring
 - Notifications
+
+
 
 Contents
 --------  
@@ -31,4 +33,5 @@ Contents
    computation
    security
    hardware
+   knowledge
    todo
