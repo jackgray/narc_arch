@@ -36,8 +36,7 @@ Feature Summary:
     -   Store references of cold-stored files on system alongside 
         on-premise files.
     -   Fault tolerant 
-        -   easily add more drives 
-        and re-adjust percent drive failure allowance on the fly. 
+        -   easily add more drives and re-adjust percent drive failure allowance on the fly. 
         -   Example: 
             -   a cluster with 8 nodes
             -   each node has 2 1TB drives
@@ -162,17 +161,16 @@ Bucket Replication
     MinIO server-side bucket replication is functionally similar 
     to Amazon S3 replication while adding the following MinIO-only 
     features: 
+        -   Source and destination bucket names can match, supporting 
+        -   site-to-site use cases such as Splunk or Veeam BC/DR. 
+        -   Simplified implementation than S3 bucket replication 
+            configuration, removing the need to configure settings like 
+        -   AccessControlTranslation, Metrics, and SourceSelectionCriteria. 
+        -   Active-Active (Two-Way) replication of objects between source 
+            and destination buckets. Multi-Site replication of objects 
+            between three or more MinIO deployments."
 
-    -   Source and destination bucket names can match, supporting 
-    -   site-to-site use cases such as Splunk or Veeam BC/DR. 
-    -   Simplified implementation than S3 bucket replication 
-        configuration, removing the need to configure settings like 
-    -   AccessControlTranslation, Metrics, and SourceSelectionCriteria. 
-    -   Active-Active (Two-Way) replication of objects between source 
-        and destination buckets. Multi-Site replication of objects 
-        between three or more MinIO deployments."
-
-  (https://docs.min.io/minio/baremetal/replication/replication-overview.html)
+  https://docs.min.io/minio/baremetal/replication/replication-overview.html
 
 Object Transition (Tiering)
     "MinIO supports creating object transition lifecycle management 
@@ -180,15 +178,15 @@ Object Transition (Tiering)
     storage “tier”. MinIO supports any S3-compatible service as a 
     remote tier in addition to the following public cloud storage 
     services:
-
         -   Amazon S3
         -   Google Cloud Storage
         -   Microsoft Azure Blob Storage
-        -   MinIO object transition supports use cases like moving aged 
-            data from MinIO clusters in private or public cloud infrastructure 
-            to low-cost private or public cloud storage solutions. MinIO 
-            manages retrieving tiered objects on-the-fly without any additional 
-            application-side logic.
+  
+    MinIO object transition supports use cases like moving aged 
+    data from MinIO clusters in private or public cloud infrastructure 
+    to low-cost private or public cloud storage solutions. MinIO 
+    manages retrieving tiered objects on-the-fly without any additional 
+    application-side logic.
 
     Use the mc admin tier command to create a remote target for 
     tiering data to a supported Cloud Service Provider object storage. 
@@ -196,4 +194,4 @@ Object Transition (Tiering)
     transition objects to the remote tier after a specified number 
     of calendar days.
 
-(https://docs.min.io/minio/baremetal/lifecycle-management/lifecycle-management-overview.html#minio-lifecycle-management-tiering)
+https://docs.min.io/minio/baremetal/lifecycle-management/lifecycle-management-overview.html#minio-lifecycle-management-tiering
