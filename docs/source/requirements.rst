@@ -10,6 +10,7 @@ and serve as a reference throughout the design process.
 1.  Replication
 ----------------
 *All* files and data should be replicated in at least one other separate location. 
+
 **1.1.** Database Replication 
     :1.1.1: When space allows, the database should be fully replicated on each of the nodes, so that if one of the nodes go down or is corrupted, data can be accessed without interruption through any of the other nodes. 
     
