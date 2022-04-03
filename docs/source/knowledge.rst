@@ -31,13 +31,29 @@ MkDocs
 RemNote
 --------
 Born from a student design project at MIT, RemNote is 
-an "all-in-one tool for thinking and learning"
+an "all-in-one tool for thinking and learning", focusing 
+on general long-term knowledge management. 
 
 Claims to replace:
-    -   Microsoft Notes 
-    -   Microsoft Word 
-    -   Obsidian
-    -   Notion 
-    -   Evernote 
+-   Microsoft Notes 
+-   Microsoft Word 
+-   Obsidian
+-   Notion 
+-   Evernote 
 
-Try it out in the browser:  https://www.remnote.com/w/guest/FWpu7xxPMSLFTHWRD
+Could be used to
+    -   Formulate, track, and organize ideas as they grow 
+from abstract to concrete.
+    -   Build a lab wiki 
+        -   Can be contributed to by any team members to with little inertia
+
+Offerings
+    Notes, Docs, & Outlines 
+        Capture and link ideas
+    PDFs & Web Articles
+        Easily highlight, reference, and link all of your source 
+        material. No application switching 
+    
+
+Try It Out:
+    https://www.remnote.com/w/guest/FWpu7xxPMSLFTHWRD

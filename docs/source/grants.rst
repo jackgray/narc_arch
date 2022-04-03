@@ -4,14 +4,21 @@ Potential Grants
 
 NSF - Principles and Practice of Scalable Systems
 --------------------------------------------------
+https://www.nsf.gov/pubs/2022/nsf22507/nsf22507.htm
+
 "PPoSS specifically seeks to fund projects that span the entire 
 hardware/software stack and that lay the foundations for sustainable 
 approaches for implementing performant, scalable, and correct and 
 accurate computing applications that run on heterogeneous platforms."
 
-- Grants available for $250,000 or $1,000,000
+:Deadline: January 23, 2023 (large grants only)
 
-:Program solicitation document: https://www.nsf.gov/pubs/2022/nsf22507/nsf22507.htm
+:Award Amount: $250,000 or $1,000,000
+
+:Type:  Standard or Continuing Grant 
+
+:Total Available:   4 per year / $56,000,000
+
 
 https://beta.nsf.gov/funding/opportunities/principles-and-practice-scalable-systems-pposs
 

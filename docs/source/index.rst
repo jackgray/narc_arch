@@ -13,13 +13,9 @@ following components:
    - System Monitoring
    - Notifications
 
-
 This documentation aims to address all needs of an analysis 
 system. It will serve as a live, evolving store for ideas and 
 considerations throughout the design process. 
-
-
-
 
 
 Contents
@@ -32,10 +28,10 @@ Contents
    database
    forms
    orchestration
-   preprocessing
+   lifecycle
    computation
    analysis
-   toolboxes
+   tools
    pipelines 
    security
    hardware

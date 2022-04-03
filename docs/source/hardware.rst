@@ -4,19 +4,29 @@ Hardware Requirements
 
 Networking
 -----------
-Router
-    Fast and reliable communication is imperative for an effective 
-    cluster service. The connection between nodes is maintained by 
-    a central ethernet switch, or router, that handles the routing 
-    of packets into the ethernet ports of their intended targets. 
 
+    Fast and reliable communication is imperative for an effective 
+    and fault tolerant cluster service. If the nodes can't communicate
+    with one another due to packet loss or latency, then they will go 
+    offline and potentially create service interruptions or delays. 
+
+Router  
+    The connection between nodes is maintained by 
+    a central ethernet switch, or router, that handles the routing 
+    of packets into the ethernet ports of their intended targets.
+
+Bandwidth
+    For most cases, bandwidth between nodes will not be as 
+    important as reliability. Most cluster traffic is lightweight. 
+
+    If computing nifti files using a MapReduce model, this may 
+    increase, and the switch should be audited for bottlenecks.
 
 Wireless
     Check with institute on broadcasting VPNs. 
 
     Port forwarding to make endpoints publically available could be handled in-house, 
     or by the institute.
-
 
 
 Hot Storage
