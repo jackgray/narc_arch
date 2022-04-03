@@ -129,6 +129,10 @@ Erasure Coding
     Erasure Coding provides object-level healing with less overhead than 
     adjacent technologies such as RAID or replication.
 
+    .. image:: ./images/minio_backup.png
+        :width: 650
+        :alt: Could not load
+
     MinIO splits each new object into data and parity blocks, where 
     parity blocks support reconstruction of missing or corrupted data 
     blocks. MinIO writes these blocks to a single erasure set in the 

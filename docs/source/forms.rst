@@ -55,6 +55,10 @@ Python, R, MATLAB, SPSS, and the like.
 -   Connects to existing standalone database (PostgreSQL, Mongo, etc.)
 -   Allows easy graphical manipulation and addition of data via 
     web interface and user-built apps
+
+.. image:: ./images/lsl-flow.png
+   :width: 650
+   :alt: Could not load 
   
 Advantages over MS Access or Airtable:
     -   Free for self-hosted option
@@ -87,6 +91,18 @@ Drawbacks:
 for implementing that..
 -   Mature, but not as industry standard as MS Access or SQL. The 
 learning curve should be low for this product to be a viable solution.
+
+.. image:: ./images/budibase-forms.png
+   :width: 650
+   :alt: Could not load
+
+.. image:: ./images/budibase-formfeatures.png
+   :width: 650
+   :alt: Could not load
+
+.. image:: ./images/budibase-templates.png
+   :width: 650
+   :alt: Could not load
 
 Redcap  
 --------

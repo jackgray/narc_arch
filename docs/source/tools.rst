@@ -107,6 +107,9 @@ Lab Streaming Layer (LSL)
 https://sccn.ucsd.edu/githubwiki/files/EEGLAB2021-LSL%201-Intro-short.pdf
 https://www.brainlatam.com/blog/labstreaminglayer-lsl-eeg-bci--2088 
 
+.. image:: ./images/lsl-flow.png
+   :width: 650
+   :alt: Could not load
 
 Emotive Lab Streaming Layer interface   
     https://github.com/Emotiv/labstreaminglayer

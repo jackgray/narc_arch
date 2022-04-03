@@ -41,11 +41,9 @@ Claims to replace:
 -   Notion 
 -   Evernote 
 
-Could be used to
-    -   Formulate, track, and organize ideas as they grow 
-from abstract to concrete.
-    -   Build a lab wiki 
-        -   Can be contributed to by any team members to with little inertia
+Could be used to formulate, track, and organize ideas as they grow 
+from abstract to concrete, or build a lab wiki. Can be contributed to 
+by any team members to with little inertia.
 
 Offerings
     Notes, Docs, & Outlines 
@@ -54,6 +52,9 @@ Offerings
         Easily highlight, reference, and link all of your source 
         material. No application switching 
     
+.. image:: ./images/remnote.png
+   :width: 650
+   :alt: Could not load
 
 Try It Out:
     https://www.remnote.com/w/guest/FWpu7xxPMSLFTHWRD
