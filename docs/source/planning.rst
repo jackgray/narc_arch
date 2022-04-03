@@ -37,6 +37,7 @@ needed to maintain a custom-built and cost effective solution, a few key
 factors should be considered when making this decision:
     -   Annual costs of an all-in-one cluster management solution
     -   How much you want to spend on full time data management staff 
+        developers, and solutions architects
     -   the learning curve of the various tools and required time 
         investment feasability
 

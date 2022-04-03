@@ -31,7 +31,7 @@ Technical Safeguards
 
 
 
-| --------------------------------------------------------------------
+| --------------------------------------------------------------------------------------
 Physical Safeguards
    The Physical Safeguards focus on physical access to ePHI irrespective of its location. 
    ePHI could be stored in a remote data center, in the cloud, or on servers which are 
@@ -51,7 +51,7 @@ Physical Safeguards
 
 
 
-| --------------------------------------------------------------------
+| -----------------------------------------------------------------------------------------
 Administrative Safeguards
    The Administrative Safeguards are the policies and procedures which bring the 
    Privacy Rule and the Security Rule together. They are the pivotal elements of 
@@ -67,13 +67,13 @@ Administrative Safeguards
    task necessary to ensure continued HIPAA compliance.
 
 .. csv-table:: Technical Safeguards :rst:dir:`csv-table`
-:header: "Implementation Specification", "Required or Addressable", "Further Information"
-:widths: 20, 7, 30
+   :header: "Implementation Specification", "Required or Addressable", "Further Information"
+   :widths: 20, 7, 30
 
-"Facility access controls must be implemented",          "Addressable",      "Controls who has physical access to the location where ePHI is stored and includes software engineers, cleaners, etc. The procedures must also include safeguards to prevent unauthorized physical access, tampering, and theft."
-"Policies for the use/positioning of workstations",      "Required",         "Policies must be devised and implemented to restrict the use of workstations that have access to ePHI, to specify the protective surrounding of a workstation and govern how functions are to be performed on the workstations."
-"Policies and procedures for mobile devices	",          "Required",         "If users are allowed to access ePHI from their mobile devices, policies must be devised and implemented to govern how ePHI is removed from the devices if the user leaves the organization or the device is re-used, sold, etc."
-"Introduce activity logs and audit controls",            "Addressable",      "An inventory of all hardware must be maintained, together with a record of the movements of each item. A retrievable exact copy of ePHI must be made before any equipment is moved."
+   "Facility access controls must be implemented",          "Addressable",      "Controls who has physical access to the location where ePHI is stored and includes software engineers, cleaners, etc. The procedures must also include safeguards to prevent unauthorized physical access, tampering, and theft."
+   "Policies for the use/positioning of workstations",      "Required",         "Policies must be devised and implemented to restrict the use of workstations that have access to ePHI, to specify the protective surrounding of a workstation and govern how functions are to be performed on the workstations."
+   "Policies and procedures for mobile devices	",          "Required",         "If users are allowed to access ePHI from their mobile devices, policies must be devised and implemented to govern how ePHI is removed from the devices if the user leaves the organization or the device is re-used, sold, etc."
+   "Introduce activity logs and audit controls",            "Addressable",      "An inventory of all hardware must be maintained, together with a record of the movements of each item. A retrievable exact copy of ePHI must be made before any equipment is moved."
 
 .. RST documentation lies a lot.... below does not work
 .. .. image:: ./hipaa-administrative-safeguards.png
@@ -83,13 +83,13 @@ Administrative Safeguards
    :header: "Implementation Specification", "Required or Addressable", "Further Information"
    :widths: 20, 7, 30
 
-"Conducting risk assessments",	         "Required",	      "Among the Security Officers main tasks is the compilation of a risk assessment to identify every area in which ePHI is being used, and to determine all of the ways in which breaches of ePHI could occur."
-"Introducing a risk management policy",	"Required",	      "The risk assessment must be repeated at regular intervals with measures introduced to reduce the risks to an appropriate level. A sanctions policy for employees who fail to comply with HIPAA regulations must also be introduced."
-"Training employees to be secure",	      "Addressable",	   "Training schedules must be introduced to raise awareness of the policies and procedures governing access to ePHI and how to identify malicious software attacks and malware. All training must be documented."
-"Developing a contingency plan",	         "Required",	      "In the event of an emergency, a contingency plan must be ready to enable the continuation of critical business processes while protecting the integrity of ePHI while an organization operates in emergency mode."
-"Testing of contingency plan",	         "Addressable",	   "The contingency plan must be tested periodically to assess the relative criticality of specific applications. There must also be accessible backups of ePHI and procedures to restore lost data in the event of an emergency."
-"Restricting third-party access",	      "Required",    	"It is vital to ensure ePHI is not accessed by unauthorized parent organizations and subcontractors, and that Business Associate Agreements are signed with business partners who will have access to ePHI."
-"Reporting security incidents",	         "Addressable", 	"The reporting of security incidents is different from the Breach Notification Rule (below) inasmuch as incidents can be contained and data retrieved before the incident develops into a breach."
+   "Conducting risk assessments",	         "Required",	      "Among the Security Officers main tasks is the compilation of a risk assessment to identify every area in which ePHI is being used, and to determine all of the ways in which breaches of ePHI could occur."
+   "Introducing a risk management policy",	"Required",	      "The risk assessment must be repeated at regular intervals with measures introduced to reduce the risks to an appropriate level. A sanctions policy for employees who fail to comply with HIPAA regulations must also be introduced."
+   "Training employees to be secure",	      "Addressable",	   "Training schedules must be introduced to raise awareness of the policies and procedures governing access to ePHI and how to identify malicious software attacks and malware. All training must be documented."
+   "Developing a contingency plan",	         "Required",	      "In the event of an emergency, a contingency plan must be ready to enable the continuation of critical business processes while protecting the integrity of ePHI while an organization operates in emergency mode."
+   "Testing of contingency plan",	         "Addressable",	   "The contingency plan must be tested periodically to assess the relative criticality of specific applications. There must also be accessible backups of ePHI and procedures to restore lost data in the event of an emergency."
+   "Restricting third-party access",	      "Required",    	"It is vital to ensure ePHI is not accessed by unauthorized parent organizations and subcontractors, and that Business Associate Agreements are signed with business partners who will have access to ePHI."
+   "Reporting security incidents",	         "Addressable", 	"The reporting of security incidents is different from the Breach Notification Rule (below) inasmuch as incidents can be contained and data retrieved before the incident develops into a breach."
 
 Key Management System (KMS)
 ----------------------------
