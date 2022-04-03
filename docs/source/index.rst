@@ -37,4 +37,5 @@ Contents
    hardware
    knowledge
    planning
+   resources
    grants
