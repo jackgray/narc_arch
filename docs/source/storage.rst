@@ -66,6 +66,10 @@ will look like any other local folder on your computer.
 
 Reverse-sync local folders to server.
 
+.. image:: ./images/odrive.png
+   :width: 650
+   :alt: Could not load
+
 This marriage between server and personal computer enables the system to 
 maintain a single source of truth for all lab files, without 
 requiring users to ssh to the file server and download data that 
@@ -152,6 +156,10 @@ Bucket Replication
     by one team are immediately available to the other teams. Each 
     site can have their own erasure code configurations, increasing 
     the integrity of the data for each replication.
+
+    .. image:: ./images/minio-replication.png
+        :width: 650
+        :alt: Could not load
 
     "Configure per-bucket rules for automatically synchronizing 
     objects between buckets within the same MinIO cluster or 
