@@ -34,9 +34,9 @@ Contents
    orchestration
    preprocessing
    computation
-   pipelines 
-   analysis 
+   analysis
    toolboxes
+   pipelines 
    security
    hardware
    knowledge
