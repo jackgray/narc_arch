@@ -2,8 +2,6 @@
 Data Collection Tools 
 =========================
 
-For EEG
---------
 EEG + fMRI 
 ------------
 EEG and fMRI data collected in tandem can open a world of 
@@ -98,13 +96,14 @@ NeurOne Tesla by Cortech
 Analysis Tools
 ===============================
 
+EEG
+--------
 EEG Data Restructuring Toolbox (DRT)
 --------------------------------------
 https://www.sciencedirect.com/science/article/pii/S2352711021001709
 
 Lab Streaming Layer (LSL)
 --------------------------
-
 https://sccn.ucsd.edu/githubwiki/files/EEGLAB2021-LSL%201-Intro-short.pdf
 https://www.brainlatam.com/blog/labstreaminglayer-lsl-eeg-bci--2088 
 
@@ -127,6 +126,61 @@ BV2BIDS is a command line tool that creates the EEG-BIDS
 folder hierarchy from BVCD files.
 
 
-For MRI 
+MRI 
 --------
+
+fmriprep
+---------
+https://fmriprep.org/en/stable/
+
+Original HCP Pipeline
+------------------------------
+https://github.com/Washington-University/HCPpipelines
+
+The HCP Pipelines product is a set of tools (primarily, but not exclusively, 
+shell scripts) for processing MRI images for the Human Connectome Project. 
+Among other things, these tools implement the Minimal Preprocessing Pipeline 
+(MPP) described in Glasser et al. 2013
+
+DCAN-HCP 
+-----------
+https://github.com/DCAN-Labs/DCAN-HCP
+
+This repository is the DCAN labs' modified HCP Pipelines for the processing 
+of functional MRI images.
+
+In particular, the DCAN labs repository includes several modifications of primary 
+shell scripts for processing functional MRI data.
+
+The changes include:
+    -   Microsoftupdating the nonlinear registration tool to ANTs
+    -   Removesusing denoising and N4BiasCorrection to increase consistency over 
+    -   extreme noise or bias in anatomical scans
+    -   optional processing with no T2-weighted image
+    -   adjusting the order of some image processing operations
+    -   several additional options for processing
+
+This is the backend component for the processing of data. It is not designed for 
+direct use as a user interface. For the pipeline interface in the form of a dockerized 
+bids application, please refer to the official application repository.
+
+ABCD-HCP 
+---------
+https://github.com/DCAN-Labs/abcd-hcp-pipeline
+
+This software provides an interface for processing BIDS-formatted MRI datasets 
+using the DCAN-HCP pipeline and supporting modules including DCANBOLDProcessing 
+and DCAN Executive Summary.
+
+
+ABCD-BIDS tfMRI Pipeline 
+---------------------------
+https://github.com/DCAN-Labs/abcd-bids-tfmri-pipeline
+
+This tool can be used to complete Level 1 and Level 2 analyses of task fMRI dtseries 
+data. Specifically, this tool was designed to work with data that were minimally 
+processed using the DCAN Labs' ABCD-HCP-Pipeline, including their Collection 3165 
+release through NDA. Inputs must be in the same format as ABCD-HCP-Pipeline outputs 
+after running filemap. The files output from this pipeline were fully processed and 
+prepared for higher-level statistics.
 
