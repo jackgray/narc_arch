@@ -40,7 +40,7 @@ Physical Safeguards
 .. .. image:: ./hipaa-physical-safeguards.png
 ..    :width: 650
 ..    :alt: Could not load physical safeguards table
-.. csv-table:: Technical Safeguards :rst:dir:`csv-table`
+.. csv-table:: Physical Safeguards :rst:dir:`csv-table`
    :header: "Implementation Specification", "Required or Addressable", "Further Information"
    :widths: 20, 7, 30
 
@@ -66,7 +66,7 @@ Administrative Safeguards
    A HIPAA compliant risk assessment is not a one-time requirement, but a regular 
    task necessary to ensure continued HIPAA compliance.
 
-.. csv-table:: Technical Safeguards :rst:dir:`csv-table`
+.. csv-table:: Administrative Safeguards :rst:dir:`csv-table`
    :header: "Implementation Specification", "Required or Addressable", "Further Information"
    :widths: 20, 7, 30
 
@@ -79,6 +79,7 @@ Administrative Safeguards
 .. .. image:: ./hipaa-administrative-safeguards.png
 ..    :width: 650
 ..    :alt: Could not load administrative safeguards table
+
 .. csv-table:: Administrative Safeguards :rst:dir:`csv-table`
    :header: "Implementation Specification", "Required or Addressable", "Further Information"
    :widths: 20, 7, 30
