@@ -15,6 +15,9 @@ Design Approach: Important questions to ask:
     What is the current data process like? What are the 
     familiar/comfortable methods of the team.
 
+    What aspects of dataflow are users attached to, and which 
+    ones are particularly disfavored or cumbersome? 
+
 Maintenance
 ------------
 As a general rule, the more granular control offered by a system, the more 
@@ -33,15 +36,10 @@ or externally maintained systems and the cost of staffing expertise
 needed to maintain a custom-built and cost effective solution, a few key 
 factors should be considered when making this decision:
     -   Annual costs of an all-in-one cluster management solution
-    -   Annual salary of cloud engineers in the private market
-    -   Annual salary and ambition of a less experienced developer 
-        potentially capable of filling the needs
-    -   Risk trade-off of hiring someone less experienced to manage data systems 
-    -   Whether it is desired for future post-docs to be able to manage the data 
-        without necessarily needing to employ a systems maintainer full-time (who do you 
-        want the system maintenance to accessible to)
+    -   How much you want to spend on full time data management staff 
     -   the learning curve of the various tools and required time 
         investment feasability
+
 
 
 Tentative Setup Outline
