@@ -4,6 +4,11 @@ Pipeline Orchestration
 
 Kubernetes
 -------------
+
+.. image:: ./images/budibase-forms.png
+   :width: 650
+   :alt: Could not load
+
 The brain of the cluster. All service installations should be done through Kubernetes 
 and utilize its ingress controller for cohesive load balancing of services and efficient 
 distribution of computational resources.
@@ -12,6 +17,9 @@ distribution of computational resources.
 -   Load Balancing 
 -   Environment for running containers (i.e. Docker)
 
+.. image:: ./images/kube-pods.png
+   :width: 650
+   :alt: Could not load
 
 Concourse-CI
 -------------
@@ -26,6 +34,9 @@ could trigger yet another event, such as fmriprep, with artifacts
 being passed to any further stages. Notifications via Slack, Email, etc. 
 can be seamlessly added for any event.
 
+.. image:: ./images/concourse.png
+   :width: 650
+   :alt: Could not load
 
 
 References
