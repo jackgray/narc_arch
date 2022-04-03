@@ -56,9 +56,9 @@ Python, R, MATLAB, SPSS, and the like.
 -   Allows easy graphical manipulation and addition of data via 
     web interface and user-built apps
 
-.. image:: ./images/lsl-flow.png
+.. image:: ./images/budibase-forms.png
    :width: 650
-   :alt: Could not load 
+   :alt: Could not load
   
 Advantages over MS Access or Airtable:
     -   Free for self-hosted option
@@ -87,14 +87,11 @@ Advantages over MS Access or Airtable:
         -   Don't need to be on site to create forms 
 
 Drawbacks:
--   No built-in audit trailing, but there are potential workarounds 
-for implementing that..
--   Mature, but not as industry standard as MS Access or SQL. The 
-learning curve should be low for this product to be a viable solution.
+    -   No built-in audit trailing, but there are potential workarounds 
+    for implementing that.. 
+    -   Mature, but not as industry standard as MS Access or SQL. The 
+    learning curve should be low for this product to be a viable solution. 
 
-.. image:: ./images/budibase-forms.png
-   :width: 650
-   :alt: Could not load
 
 .. image:: ./images/budibase-formfeatures.png
    :width: 650
