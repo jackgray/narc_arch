@@ -37,6 +37,27 @@ extent of previously known relationships?
 
 Exploring the Graph Database Model 
 -----------------------------------
+"In a nutshell, graph databases store schema-free objects 
+(vertices or nodes) where arbitrary data can be stored 
+(properties) and relations between the objects (edges). 
+Edges typically have a direction going from one object to 
+another or multiple objects. Vertices and edges form a 
+network of data points which is called a “graph”.
+
+.. image:: ./images/arrango_propertygraph.png
+   :width: 650
+   :alt: Could not load
+
+.. image:: ./images/arrango_graph.png
+   :width: 650
+   :alt: Could not load
+
+In discrete mathematics, a graph is defined as a set of vertices 
+and edges. In computing, it is considered an abstract data type 
+which is really good at representing connections or relations – 
+unlike the tabular data structures of relational database systems, 
+which are ironically very limited in expressing relations." - Arrangodb.com
+
 Reference 
     https://ercim-news.ercim.eu/en125/r-i/graph-based-management-of-neuroscience-data-representation-integration-and-analysis
 
