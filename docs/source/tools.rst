@@ -75,6 +75,10 @@ BrainAmp by Brain Products
         KRIOS system the electrodes will be equipped with 
         permanent reflectors in a high quality and precise manner.
 
+        .. image:: ./images/krios.png
+            :width: 650
+            :alt: Could not load
+            
         Receive real-time scanning feedback – scanner LED status 
         indicator lights notify operators of successful/failed 
         marker acquisition, while the software provides a running 
