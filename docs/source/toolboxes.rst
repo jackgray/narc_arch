@@ -1,6 +1,6 @@
-===============================
-Analysis Tools
-===============================
+=========================
+Data Collection Tools 
+=========================
 
 For EEG
 --------
@@ -94,6 +94,10 @@ NeurOne Tesla by Cortech
 
     https://cortechsolutions.com/product-category/tools-for-fmri/eeg-for-fmri/
 
+===============================
+Analysis Tools
+===============================
+
 EEG Data Restructuring Toolbox (DRT)
 --------------------------------------
 https://www.sciencedirect.com/science/article/pii/S2352711021001709
@@ -125,3 +129,4 @@ folder hierarchy from BVCD files.
 
 For MRI 
 --------
+

@@ -4,8 +4,6 @@ Standardized Data Structures
 
 BIDS - Brain Imaging Data Structure
 ------------------------------------
-
-
 https://bids.neuroimaging.io
 
 App Containerization Standards 

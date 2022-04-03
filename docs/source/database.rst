@@ -46,10 +46,10 @@ Reference
 MinIO S3 Select API
 --------------------
 Used primarily for the storage of files as opposed to tabular data, 
-(i.e. MRI, EEG)
+(i.e. MRI, EEG).
 
 If desired, however, CSV or JSON data files can be directly queried 
-using MinIO's s3 select API 
+using MinIO's s3 select API.
 
 Tabular data within CSVs can be selected with SQL-like queries. For 
 example, data could be aggregated accross multiple CSV files, satisfying a 
@@ -59,7 +59,7 @@ CSV files can be easily imported to Budibase and merged with central data store.
 
 MariaDB, PostgreSQL, mySQL
 ---------------------------
-If SQL-based is needed, Maria may be the best option for horizontal scaling; it 
+If an SQL-based model is needed, Maria may be the best option for horizontal scaling; it 
 features built in cluster options, growing community support, and promises 
 continued long-term growth. MariaDB, PostgreSQL, and mySQL are all widely accepted 
 and supported, and aren't at risk of dying out any time in the foreseeable future.
@@ -79,10 +79,10 @@ MongoDB is one of the leading standards for document-based database solutions. I
 is among the most mature and feature-rich, and is a great generalized solution likely 
 to fit a wide range of needs. 
 
-Mongo's shard engine allows for distributed storage of documents, making database storage more flexible 
-    -   Added layer of complexity 
-    -   If database storage requirements are small, sharding may effectively decrease access efficiency 
-  
+Mongo's shard engine allows for distributed storage of documents, making database storage more flexible.
+If database storage requirements are small, however, sharding may effectively decrease access efficiency, 
+so be sure to assess the long term storage needs of your data.
+
 MongoDB access endpoint with sharding implemented: 
     https://stackoverflow.com/questions/49671158/mongodb-sharding-key
 
@@ -154,7 +154,7 @@ Backing Up
 For a data storage solution to be robust and reliable, it must be backed up accross 
 multiple sources and allow for multiple concurrent points of failure.
 
-The goal is for data to have a single source of truth, but exist in 
+Data should have a single source of truth, but exist in 
 multiple places.
 
 By using MinIO as a single storage entity, data backups can be 
