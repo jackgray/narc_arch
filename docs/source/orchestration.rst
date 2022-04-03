@@ -85,6 +85,9 @@ user, SLURM is less ideal.
 
 The latter is an ambitious concept, but the direction data processing seems to be headed.
 
+It may be possible to integrate calls to an external SLURM cluster (i.e. one provided 
+by the institute, possibly at a discount) into the primary pipeline system.
+
 
 ArgoCD
 ------
@@ -136,6 +139,37 @@ Cloudera CDP Private Cloud
     Disadvantages 
         Reliant on paid service. Analysis should be performed to 
         assess annual cost of service and 
+
+CloudLab 
+-----------
+https://cloudlab.us/index.php
+
+A product of NSFCloud Program https://www.nsf.gov/pubs/2013/nsf13602/nsf13602.htm
+
+"Build Your Own Cloud
+    CloudLab provides researchers with control and visibility all the way 
+    down to the bare metal. Provisioning an entire cloud inside of CloudLab 
+    takes only minutes. Most CloudLab resources provide hard isolation from 
+    other users, so it can support hundreds of simultaneous "slices", with 
+    each getting an artifact-free environment suitable for scientific 
+    experimentation with new cloud architectures. Run standard cloud software 
+    stacks such as OpenStack, Hadoop, and Kubernetes. Or, build your own from 
+    the ground up. The bare metal's the limit!
+
+    CloudLab is built from the software technologies that make up Emulab and 
+    parts of GENI, so it provides a familiar, consistent interface for 
+    researchers.
+
+On Our Hardware
+    The CloudLab clusters have almost 1,000 machines distributed across three 
+    sites around the United States: Utah, Wisconsin, and South Carolina. In 
+    addition, it provides access to a number of federated facilities around and 
+    outside of the US. CloudLab is interconnected with nationwide and 
+    international infrastructure from Internet2, so it is possible to extend 
+    private, software-defined networks right to every server.
+
+    CloudLab interoperates with existing testbeds including GENI and Emulab, 
+    so you can take advantage of hardware at dozens of sites around the world."
 
 Workload Priority
 ------------------
