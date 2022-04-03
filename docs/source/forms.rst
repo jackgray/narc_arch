@@ -62,16 +62,16 @@ Python, R, MATLAB, SPSS, and the like.
   
 Advantages over MS Access or Airtable:
     -   Free for self-hosted option
-    -   HIPAA compliance
+    -   HIPAA compliance 
         -   Airtable uses a cloud platform that does not meet the criteria for HIPAA compliance, 
-         so can't be used to host PHI.
+            so can't be used to host PHI.
         -   Self-hosted- complete control over security methods
     -   Small learning curve 
     -   Distributed storage (sharding): the ability to break up the database in to chunks, or "shards" 
         accross multiple cluster nodes for load balancing requests 
     -   Intuitive automation pipeline creation interface 
         -   Easily create workflows and notification systems within 
-        the user web interface. No code required. 
+            the user web interface. No code required. 
     -   Upload of data via CSV
     -   Combine tables and export them as CSV or JSON
     -   Ultimate data control: hosting, format, presentation 
@@ -88,9 +88,9 @@ Advantages over MS Access or Airtable:
 
 Drawbacks:
     -   No built-in audit trailing, but there are potential workarounds 
-    for implementing that.. 
+        for implementing that.. 
     -   Mature, but not as industry standard as MS Access or SQL. The 
-    learning curve should be low for this product to be a viable solution. 
+        learning curve should be low for this product to be a viable solution. 
 
 
 .. image:: ./images/budibase-formfeatures.png
