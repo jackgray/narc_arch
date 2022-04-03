@@ -20,10 +20,11 @@ artifacts from a Docker service that checks
 XNAT for new exams to download, and then can launch any number of 
 processes from there. The artifacts can be passed as the input(s) 
 for other services. For instance, a change to the session manifest 
-for a project tanother docker service that 
+for a project triggers another Docker service that 
 downloads and organizes the data, the successful completion of which
 could trigger yet another event, such as fmriprep, with artifacts  
-passed to any stage
+being passed to any further stages. Notifications via Slack, Email, etc. 
+can be seamlessly added for any event.
 
 
 
@@ -31,6 +32,7 @@ References
     https://medium.com/concourse-ci/concourse-pipeline-ui-explained-87dfeea83553
 
 Load Balancing
+    Load balancing is the active monitoring of 
 
 DNS Autoscaling
 
@@ -73,6 +75,16 @@ Possible Solutions:
     -   Investigate possibility of managing multiple clusters under a  
         secondary load balancing service. 
     -   Investigate what is required to route SLURM resources to a custom endpoint 
+
+SLURM seams to be best for large institutes to provide and manage resources 
+for potentially over a thousand users. If you want granular control over when and how 
+you submit jobs, or you don't have the resources to create fully hands-off pipelines for 
+every user of the cluster), SLURM is good. If both your data and analysis processes are 
+uniform, and you have the resources to create complete hands-off pipelines for each 
+user, SLURM is less ideal. 
+
+The latter is an ambitious concept, but the direction data processing seems to be headed.
+
 
 ArgoCD
 ------
@@ -119,17 +131,17 @@ Cloudera CDP Private Cloud
             -   Fewer points of failure
             -   Frees up resources 
         -   Explore multiple configurations of products without having 
-            to learn all of them
+        to learn all of them
 
     Disadvantages 
         Reliant on paid service. Analysis should be performed to 
-        assess annual cost of service and overhead.
+        assess annual cost of service and 
 
-Workload Prioritization
-------------------------
+Workload Priority
+------------------
 It should be possible to divide computational allocation of cluster 
 resources by project, so that when resources are being competed for, 
-the desired precedence can be enforced.
+a precedence can be determined.
 
 One means of employing this could be to use *PriorityClass* in 
 Kubernetes. A priority class is set when the Pod is created, and its 

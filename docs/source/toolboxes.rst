@@ -15,7 +15,7 @@ filtering can become difficult to impossible.
 Here are some possible solutions. 
 
 BrainAmp by Brain Products
-    ExG MR - integrate with other physio
+    ExG MR - Integrate with peripheral physio
         "The increased interest in simultaneous EEG/fMRI recordings 
         to investigate brain activity very quickly led to the need 
         to also co-register other types of physiological data such 
@@ -23,14 +23,63 @@ BrainAmp by Brain Products
         bridges this gap and makes the recording of bipolar and 
         polygraphic signals in the MRI environment a simple procedure."
 
-    MR Plus - MR compatible EEG amp 
+    MR Plus - MR compatible EEG amplifier
         "Multiple amplifiers can be combined and stacked on top 
         of each other in order to increase the maximum number of 
         available channels to 128 for recordings in the MRI 
         environment and up to 256 channels for laboratory 
         applications."
-        
+    
         https://www.brainproducts.com/productdetails.php?id=6
+    
+    R-Net MR - Electrode cap
+        "The R-Net MR consists of saltwater sponges and passive 
+        Ag/AgCl electrodes housed in a durable and flexible 
+        silicone structure. The MR version of the R-Net also has 
+        current limiting resistors for safe recordings in the MRI 
+        environment and has a gel-based ECG electrode. The R-Net 
+        MR is available for the BrainAmp MR (plus) and can be 
+        used in scanners up to 3 T. Its use is subject to our 
+        general 3 T EEG-fMRI safety guidelines.
+
+        "The R-Net MR can be equipped with carbon wire loops 
+        (CWL) for better correction of motion related artefacts. 
+        The CWLs are bipolar channels and the measurement 
+        requires a BrainAmp ExG MR."
+
+        https://www.brainproducts.com/productdetails.php?id=32
+
+
+    SyncBox - phase synchronization
+        "Designed to boost data quality for concurrent EEG and fMRI 
+        recordings.
+        Phase synchronization between the EEG equipment and the MRI 
+        scanner results in temporal stability of the EEG acquisition 
+        in relation to the switching of the gradients during the MR 
+        acquisition. This leads to significant improvement of the 
+        recorded data quality
+
+        It significantly reduces timing related errors and boosts the 
+        quality of MRI artifact correction by synchronizing the clock 
+        of the BrainAmp MR / BrainAmp MR plus amplifier with the clock 
+        driving the MRI scanner’s gradient switching system.""
+
+        https://www.brainproducts.com/productdetails.php?id=19
+
+    KRIOS - Co-registration 
+        "KRIOS by Northern Digital Instruments NDI is an infrared 
+        camera system including software to digitize individual, 
+        real-life electrode positions. In order to work with 
+        KRIOS system the electrodes will be equipped with 
+        permanent reflectors in a high quality and precise manner.
+
+        Receive real-time scanning feedback – scanner LED status 
+        indicator lights notify operators of successful/failed 
+        marker acquisition, while the software provides a running 
+        tally of localized markers."
+
+        https://www.neurospec.com/Content/Files/Support/Brochures/Ndi/NEUROSPEC-Polaris-Krios.pdf
+
     https://www.brainproducts.com/products_by_apps.php?aid=2
     https://www.brainproducts.com/files/public/products/brochures_material/flyer/Flyer_EEG-fMRI_Solutions_V007.pdf
 
@@ -49,15 +98,15 @@ EEG Data Restructuring Toolbox (DRT)
 --------------------------------------
 https://www.sciencedirect.com/science/article/pii/S2352711021001709
 
-LSL
------
+Lab Streaming Layer (LSL)
+--------------------------
+
 https://sccn.ucsd.edu/githubwiki/files/EEGLAB2021-LSL%201-Intro-short.pdf
 https://www.brainlatam.com/blog/labstreaminglayer-lsl-eeg-bci--2088 
 
 
-Emotive Lab Streaming Layer interface
-
-https://github.com/Emotiv/labstreaminglayer
+Emotive Lab Streaming Layer interface   
+    https://github.com/Emotiv/labstreaminglayer
 
 MNE-Python
 ------------
