@@ -41,7 +41,7 @@ Budibase
 ----------
 Budibase offers an intuitive web gui for viewing this data store 
 and creating documents and forms from it. Similar to Airtable or 
-the MS Access frontend, only it can be self-hosted on the pre-existing  
+the MS Access frontend, only it can be self-hosted on any pre-existing  
 Kubernetes cluster and is fully customizable. Because they offer 
 their own hosting solution, and already have a revenue model, there 
 is good chance that the self-hosted solution will remain free and 
