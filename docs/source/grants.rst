@@ -86,7 +86,7 @@ Suggested routes:
     -   **CNS Core** program supports research that advances computer and network 
     systems, develops a better understanding of the fundamental properties and 
     tradeoffs involved, as well as the abstractions and tools used in designing, 
-    building, measuring, and using them;
+    building, measuring, and using them; 
     -   **Information Integration and Informatics (III)** program supports research 
     on computational approaches to the full data lifecycle to maximize the 
     utility of information resources;
