@@ -66,15 +66,6 @@ Administrative Safeguards
    A HIPAA compliant risk assessment is not a one-time requirement, but a regular 
    task necessary to ensure continued HIPAA compliance.
 
-.. csv-table:: Administrative Safeguards :rst:dir:`csv-table`
-   :header: "Implementation Specification", "Required or Addressable", "Further Information"
-   :widths: 20, 7, 30
-
-   "Facility access controls must be implemented",          "Addressable",      "Controls who has physical access to the location where ePHI is stored and includes software engineers, cleaners, etc. The procedures must also include safeguards to prevent unauthorized physical access, tampering, and theft."
-   "Policies for the use/positioning of workstations",      "Required",         "Policies must be devised and implemented to restrict the use of workstations that have access to ePHI, to specify the protective surrounding of a workstation and govern how functions are to be performed on the workstations."
-   "Policies and procedures for mobile devices	",          "Required",         "If users are allowed to access ePHI from their mobile devices, policies must be devised and implemented to govern how ePHI is removed from the devices if the user leaves the organization or the device is re-used, sold, etc."
-   "Introduce activity logs and audit controls",            "Addressable",      "An inventory of all hardware must be maintained, together with a record of the movements of each item. A retrievable exact copy of ePHI must be made before any equipment is moved."
-
 .. RST documentation lies a lot.... below does not work
 .. .. image:: ./hipaa-administrative-safeguards.png
 ..    :width: 650
