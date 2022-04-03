@@ -40,6 +40,10 @@ BrainAmp by Brain Products
         used in scanners up to 3 T. Its use is subject to our 
         general 3 T EEG-fMRI safety guidelines.
 
+        .. image:: ./images/eeg-rnet.png
+            :width: 650
+            :alt: Could not load
+
         "The R-Net MR can be equipped with carbon wire loops 
         (CWL) for better correction of motion related artefacts. 
         The CWLs are bipolar channels and the measurement 

@@ -14,6 +14,7 @@ This document will review some possible options to suit these needs.
 Choosing the right Data Model
 ------------------------------
 Assessing needs
+    Document vs. SQL, vs. Graph 
 
 Multimodal data 
     -   EEG 
@@ -22,8 +23,6 @@ Multimodal data
     -   fMRI 
         -   Interacts with: (?)
         -   Average file size: (?)
-    -   Phenotypic 
-    -   Genotypic?
 
 How many datapoints per subject?
 
@@ -31,7 +30,7 @@ How many relations?
 
 Is the goal to discover relationships, or to simply quantify the 
 extent of previously known relationships?
-    
+
     Graph database models can aid in the discovery of relationships 
     in a dataset.
 
