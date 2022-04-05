@@ -26,13 +26,15 @@ Contents
    requirements
    storage
    database
+   data_management
    forms
    orchestration
    lifecycle
    computation
    analysis
+   data_structures
    tools
-   pipelines 
+   pipelines
    security
    hardware
    knowledge
