@@ -82,8 +82,7 @@ Cons
     -   Not as conducive for complicated, automatically triggered 
         pipelines where integration of modern technology is desired 
 
-Possible Solutions:
-   
+Possible Solutions 
     -   Investigate possibility of managing multiple clusters under a  
         secondary load balancing service. 
     -   Investigate what is required to route SLURM resources to a custom endpoint 
