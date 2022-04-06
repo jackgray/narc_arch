@@ -145,7 +145,7 @@ Cloudera CDP Private Cloud
             -   Fewer points of failure
             -   Frees up resources 
         -   Explore multiple configurations of products without having 
-        to learn all of them
+            to learn all of them
 
     Disadvantages 
         Reliant on paid service. Analysis should be performed to 
