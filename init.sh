@@ -23,5 +23,5 @@ mkdir -p ~/narc-cluster && cd narc-cluster
 pulumi new kubernetes-typescript 
 # ^ you may need to log into app.pulumi.com and generate an access token for project init sud
 
-# ensure dependencies were added
-npm install @pulumi/kubernetes 
+#  download node modules
+npm install 
