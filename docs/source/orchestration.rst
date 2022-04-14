@@ -5,17 +5,17 @@ Pipeline Orchestration
 Kubernetes
 -------------
 
-.. image:: ./images/budibase-forms.png
+.. image:: ./images/kube-arch.png
    :width: 650
    :alt: Could not load
 
 The brain of the cluster. All service installations should be done through Kubernetes 
 and utilize its ingress controller for cohesive load balancing of services and efficient 
 distribution of computational resources.
--   Manages Cluster
--   Provides DNS routing for all services
--   Load Balancing 
--   Environment for running containers (i.e. Docker)
+    -   Manages Cluster
+    -   Provides DNS routing for all services
+    -   Load Balancing 
+    -   Environment for running containers (i.e. Docker)
 
 .. image:: ./images/kube-pods.png
    :width: 650
@@ -43,9 +43,11 @@ References
     https://medium.com/concourse-ci/concourse-pipeline-ui-explained-87dfeea83553
 
 Load Balancing
-    Load balancing is the active monitoring of 
+    Load balancing is the active monitoring of resources on 
+    all nodes connected to the cluster, and assigning processes 
+    to whichever ones have the most available.
 
-DNS Autoscaling
+.. DNS Autoscaling
 
 AirFlow
 --------
@@ -75,14 +77,12 @@ Pros
 Cons 
     -   Additional point of failure with containerization conversion for using 
         Docker containers.
-    -   Docker is the standard; offers more plug-and-play pipelines.
     -   No Kubernetes integration - could create complications with resource 
         management (having multiple independent clusters with isolated load balancing )
     -   Not as conducive for complicated, automatically triggered 
         pipelines where integration of modern technology is desired 
 
-Possible Solutions:
-   
+Possible Solutions 
     -   Investigate possibility of managing multiple clusters under a  
         secondary load balancing service. 
     -   Investigate what is required to route SLURM resources to a custom endpoint 
@@ -145,7 +145,7 @@ Cloudera CDP Private Cloud
             -   Fewer points of failure
             -   Frees up resources 
         -   Explore multiple configurations of products without having 
-        to learn all of them
+            to learn all of them
 
     Disadvantages 
         Reliant on paid service. Analysis should be performed to 
