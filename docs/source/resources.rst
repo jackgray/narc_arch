@@ -286,3 +286,48 @@ Features
 Deidentification Tools 
 -----------------------
 https://labs.icahn.mssm.edu/msdw/de-identified-data-service/
+
+EC2 Spot Instances 
+-------------------
+https://aws.amazon.com/ec2/spot/
+
+"Amazon EC2 Spot Instances let you take advantage of unused EC2 capacity in the AWS cloud. 
+Spot Instances are available at up to a 90% discount compared to On-Demand prices. You 
+can use Spot Instances for various stateless, fault-tolerant, or flexible applications 
+such as big data, containerized workloads, CI/CD, web servers, high-performance computing 
+(HPC), and test & development workloads. Because Spot Instances are tightly integrated 
+with AWS services such as Auto Scaling, EMR, ECS, CloudFormation, Data Pipeline and AWS 
+Batch, you can choose how to launch and maintain your applications running on Spot 
+Instances."
+
+Azure Spot VMs
+---------------
+https://docs.microsoft.com/en-us/azure/virtual-machines/spot-vms
+
+"Using Azure Spot Virtual Machines allows you to take advantage of our unused capacity at 
+a significant cost savings. At any point in time when Azure needs the capacity back, the 
+Azure infrastructure will evict Azure Spot Virtual Machines. Therefore, Azure Spot Virtual 
+Machines are great for workloads that can handle interruptions like batch processing jobs, 
+dev/test environments, large compute workloads, and more.
+
+The amount of available capacity can vary based on size, region, time of day, and more. 
+When deploying Azure Spot Virtual Machines, Azure will allocate the VMs if there is 
+capacity available, but there is no SLA for these VMs. An Azure Spot Virtual Machine 
+offers no high availability guarantees. At any point in time when Azure needs the capacity 
+back, the Azure infrastructure will evict Azure Spot Virtual Machines with 30 seconds notice."
+
+Google Cloud Spot VMs
+-----------------------
+Spot VMs are available at much lower price—a 60-91% discount—compared to the price of 
+standard VMs. However, Compute Engine might preempt Spot VMs if it needs to reclaim those 
+resources for other tasks. At this uncertain preemption time, Compute Engine either stops 
+(default) or deletes your Spot VMs depending on your specified termination action for each 
+VM. Spot VMs are excess Compute Engine capacity, so their availability varies with usage. 
+Spot VMs do not have a minimum or maximum runtime.
+
+If your workloads are fault-tolerant and can withstand possible VM preemption, Spot VMs 
+can reduce your Compute Engine costs significantly. For example, batch processing jobs 
+can run on Spot VMs. If some of those VMs stop during processing, the job slows but does 
+not completely stop. Spot VMs complete your batch processing tasks without placing 
+additional load on your existing VMs and without requiring you to pay full price for 
+additional standard VMs.
