@@ -40,7 +40,7 @@ subj_collection.truncate()
 URL = config['api_url']
 TOKEN = config['api_token']
 proj = Project(URL, TOKEN)
-
+print(proj)
 reports = dict(
     enrollment = '21141'
 )
