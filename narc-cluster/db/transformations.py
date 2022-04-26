@@ -9,25 +9,21 @@ from config import config
 
 #############  ArangoDB Setup  #############
 
-db_name = 'MORE'
-db_username = 'jack'
-collection_name = 'subjects'
-
-client = ArangoClient(hosts='https://10.5.48.120:8529')  # Replace this with env variable
+client = ArangoClient(hosts=config['arango_endpoint'])  # Replace this with env variable
 print("Setting up client object for ", client)
 # Connect to system as root - returns api wrapper for "_system" database
-sys_db = client.db('_system', username=db_username, password=config['arango_pass'])
+sys_db = client.db('_system', verify=False, username=config['sys_dbName'], password=config['arango_root_pass'])
 print("Connected to system db: ", sys_db)
 # Connect to db as root user - returns api wrapper for this database 
-db = client.db(db_name, username=db_username, password=config['arango_pass'])
+db = client.db(config['db_name'], verify=False, username=config['sys_dbName'], password=config['arango_root_pass'])
 print("Connected to db: ", db)
 # Create collection if not exist - return api for collection 
-if db.has_collection(collection_name):
-    print("Found collection: ", collection_name)
-    subj_collection = db.collection('subjects')
+if db.has_collection(config['collection_name']):
+    print("Found collection: ", config['collection_name'])
+    subj_collection = db.collection(config['collection_name'])
 else:
-    print("Collection '", collection_name, "' doesn't exist. Creating it now.")
-    subj_collection = db.create_collection('subjects')
+    print("Collection '", config['collection_name'], "' doesn't exist. Creating it now.")
+    subj_collection = db.create_collection(config['collection_name'])
 
 # create hash index for collection 
 print("Creating hash index.")
