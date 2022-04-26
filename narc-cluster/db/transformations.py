@@ -45,8 +45,8 @@ reports = dict(
     enrollment = '21141'
 )
 
-enrollment_rpt = proj.export_report(report_id=reports['enrollment'], format='json')
-    
+enrollment_rpt = proj.export_report(report_id=reports['enrollment'], format='csv')
+print(enrollment_rpt)
 ##########  ARANGO DB INSERTION #####################
 
     # db.collection('subjects').insert({'narc_id': enrollment['narc_id']})
