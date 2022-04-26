@@ -50,6 +50,32 @@ being proposed. It will change and evolve as more design choices are cemented.
 Create Cluster 
     Install Kubernetes 
 
+    install kubeadm on all nodes (https://kubernetes.io/docs/setup/production$
+
+    ensure swap is disabled and that each node has unique mac addresses and u$
+
+    ensure port 127.0.0.1 6443 is open
+    $ netstat -lntu
+    to list all open ports
+    or $ telnet 127.0.0.1 6443
+    to ping
+
+    ports requiring access can be found at https://kubernetes.io/docs/referen$
+
+    $ sudo iptables -A INPUT -p tcp -m multiport --dports 6443,2379,2380,1025$
+
+    After kubeadm is installed on all nodes, set up a control node on the mac$
+    least computational power (we want those to be worker nodes)
+
+    Use Pulumi to configure cluster as IaC 
+
+    Install pulumi on all nodes 
+
+    refer to code for setup 
+
+
+
+
 Database Conversion
     Convert MS Access to document or SQL database
 

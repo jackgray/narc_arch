@@ -7,6 +7,14 @@ sudo apt autoremove
 npm install npm@latest -g
 npm update
 
+# install kubeadm on all computers 
+
+# install pulumi 
+sudo apt install pulumi
+
+# install helm (kubernetes package manager)
+
+
 # Configure private settings 
 # create password for Pulumi 
 # export PULUMI_CONFIG_PASSPHRASE='enterpassphrasehere'
@@ -25,3 +33,9 @@ pulumi new kubernetes-typescript
 
 #  download node modules
 npm install 
+
+# pulumi stack should be ready to deploy 
+pulumi up 
+
+# ^ ERROR: configured kubernetes cluster is unreachable: unable to load kubernetes client configuration from kubeconfig file: try setting KUBERNETES_MASTER env var 
+
