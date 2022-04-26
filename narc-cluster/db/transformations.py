@@ -40,12 +40,12 @@ subj_collection.truncate()
 URL = config['api_url']
 TOKEN = config['api_token']
 proj = Project(URL, TOKEN)
-print(proj)
+print(proj.field_names, proj.is_longitudinal, proj.def_field)
 reports = dict(
     enrollment = '21141'
 )
 
-enrollment_rpt = proj.export_report(report_id=reports['enrollment'])
+enrollment_rpt = proj.export_report(report_id=reports['enrollment'], format='json')
     
 ##########  ARANGO DB INSERTION #####################
 
