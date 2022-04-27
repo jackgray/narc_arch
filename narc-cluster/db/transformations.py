@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from arango import ArangoClient
+from arango import ArangoClient, AQLQueryExecuteError
 import requests  
 
 
@@ -17,19 +17,6 @@ print("Connected to system db: ", sys_db)
 # Connect to db as root user - returns api wrapper for this database 
 db = client.db(config['db_name'], verify=False, username=config['sys_dbName'], password=config['arango_root_pass'])
 print("Connected to db: ", db)
-# Create collection if not exist - return api for collection 
-if db.has_collection(config['collection_name']):
-    print("Found collection: ", config['collection_name'])
-    subj_collection = db.collection(config['collection_name'])
-else:
-    print("Collection '", config['collection_name'], "' doesn't exist. Creating it now.")
-    subj_collection = db.create_collection(config['collection_name'])
-
-# create hash index for collection 
-print("Creating hash index.")
-subj_collection.add_hash_index(fields=['narc_id'], unique=True)
-
-subj_collection.truncate() 
 
 
 
@@ -40,90 +27,120 @@ subj_collection.truncate()
 URL = config['api_url']
 TOKEN = config['api_token']
 proj = Project(URL, TOKEN)
-print(proj.field_names, proj.is_longitudinal, proj.def_field)
+# print(proj.field_names, proj.is_longitudinal, proj.def_field)
 reports = dict(
     enrollment = '21141'
 )
 
-enrollment_rpt = proj.export_report(report_id=reports['enrollment'], format='csv')
-print(enrollment_rpt)
-##########  ARANGO DB INSERTION #####################
+node_collections = dict(
+    group = 'ie_enrollment_group',
+    caars_score = 'idk'
+)
 
-    # db.collection('subjects').insert({'narc_id': enrollment['narc_id']})
-
-# Begin batch execution via context manager. This returns an instance of
-# BatchDatabase, a database-level API wrapper tailored specifically for
-# batch execution. The batch is automatically committed when exiting the
-# context. The BatchDatabase wrapper cannot be reused after commit.
-with db.begin_batch_execution(return_result=True) as batch_db:
-
-    # Child wrappers are also tailored for batch execution.
-    batch_aql = batch_db.aql
-    batch_col = batch_db.collection(subj_collection)
-
-    # API execution context is always set to "batch".
-    assert batch_db.context == 'batch'
-    assert batch_aql.context == 'batch'
-    assert batch_col.context == 'batch'
-
-    for subject in enrollment_rpt:
+edge_collections = dict(
+    subject = 'narc_id'
     
-        print("\nNarc ID: ", subject['narc_id'], "\nRecord ID: ", subject['record_id'], "\nName: ", subject['lname'])
+)
 
-        # db.collection('subjects').insert({'narc_id': enrollment['narc_id']})
+############# FIND || CREATE COLLECTION ####################
+# Create collection if not exist - return api for collection 
+def createCollection(collection_name):
+    if db.has_collection(collection_name):
+        print("Found collection: ", collection_name)
+        collection = db.collection(collection_name)
+    else:
+        print("Collection '", collection_name, "' doesn't exist. Creating it now.")
+        collection = db.create_collection(collection_name)
 
-        # BatchJob objects are returned instead of results.
-        job_narcId = batch_col.insert({'narc_id': subject['narc_id']})
-        job_recordId = batch_col.insert({'record_id': subject['record_id']})
-        job_name = batch_col.insert({ 'name': [
-            {'first_name': subject['fname']}, 
-            {'last_name': subject['lname']}
-            ]})
-        job_phone = batch_col.insert({'phone': subject['phonenum']})
-        job_recrtDate = batch_col.insert({'recruitment_date': subject['recruitment_date']})
-        job_enrlGroup = batch_col.insert({'enrollment_group': subject['ie_enrollment_group']})
-        job_meetsCriteria = batch_col.insert({'meets_criteria': subject['ie_enrollment']})
+        # create hash index for collection 
+        print("Creating hash index.")
+        collection.add_hash_index(fields=['_key'], unique=True)
 
+        collection.truncate() 
+    return collection
+
+############ REDCAP ENROLLMENTS COLLECTION
+
+subjects_collection = createCollection('subjects')
+
+enrollment_rpt = proj.export_report(report_id=reports['enrollment'], format_type='json')
+
+# for subject in enrollment_rpt:
+    
+#     narc_id = str(subject['narc_id']).strip()
+#     record_id = str(subject['record_id']).strip()
+#     lname = str(subject['lname'])
+#     fname = str(subject['fname'])
+#     enrollmentGroup = str(subject['ie_enrollment_group'])
+#     if narc_id.startswith('S'):
+#         narc_id = narc_id.replace('S', '')
+#         # print("Dropped 'S' from narc ID: ", narc_id)
         
-        job_narcId = batch_aql.execute('RETURN 100000')
-        job_recordId = batch_aql.execute('INVALID QUERY')  # Fails due to syntax error.
+#     print("Narc ID: ", narc_id, "\nRecord ID: ", record_id, "\nName: ", lname, "\nUD Group :", enrollmentGroup, "\n")
+    
+# ##########  ARANGO DB INSERTION #####################
+#     print("\nInserting data for subject ", narc_id)
+#     subjects_collection.insert({
+#         '_key': narc_id, 
+#         'record_id': record_id, 
+#         'enrollment_group': enrollmentGroup, 
+#         'name': {
+#             'first': fname,
+#             'last': lname
+#             },
+#         'sessions': {
+#             '_key': 'idk'
+#         }
+#         })
 
-# Upon exiting context, batch is automatically committed.
-# assert 'Kris' in students
-# assert 'Rita' in students
 
-# Retrieve the status of each batch job.
-for job in batch_db.queued_jobs():
-    # Status is set to either "pending" (transaction is not committed yet
-    # and result is not available) or "done" (transaction is committed and
-    # result is available).
-    assert job.status() in {'pending', 'done'}
+############ REDCAP EVENTS COLLECTION #########################
 
-# Retrieve the results of successful jobs.
-# metadata = job_narcId.result()
-# assert metadata['_id'] == 'students/Kris'
+redcap_events_collection = createCollection('redcap_events')
 
-# metadata = job2.result()
-# assert metadata['_id'] == 'students/Rita'
+all_records = proj.export_records(format_type='json')
+all_instruments = proj.export_instrument_event_mappings(format_type='json')
+# print(all_records)
 
-# cursor = job3.result()
-# assert cursor.next() == 100000
-
-# If a job fails, the exception is propagated up during result retrieval.
-try:
-    result = job4.result()
-except AQLQueryExecuteError as err:
-    assert err.http_code == 400
-    assert err.error_code == 1501
-    assert 'syntax error' in err.message
-
-# Batch execution can be initiated without using a context manager.
-# If return_result parameter is set to False, no jobs are returned.
-batch_db = db.begin_batch_execution(return_result=False)
-batch_db.collection('students').insert({'_key': 'Jake'})
-batch_db.collection('students').insert({'_key': 'Jill'})
-
-# The commit must be called explicitly.
-batch_db.commit()
-assert 'Jake' in students
-assert 'Jill' in students
+for subject in all_records:
+    narc_id = str(subject['narc_id']).strip()
+    lname = str(subject['lname'])
+    fname = str(subject['fname'])
+    redcap_event_name = str(subject['redcap_event_name'])
+    
+    redcap_repeat_instrument = str(subject['redcap_repeat_instrument'])
+    
+    redcap_repeat_instance = subject['redcap_repeat_instance']
+    
+    record_key = str(redcap_repeat_instrument + "-" + redcap_repeat_instance)
+    record_id = str(subject['record_id'])
+    # enrollmentGroup = str(subject['ie_enrollment_group'])
+    if narc_id.startswith('S'):
+        narc_id = narc_id.replace('S', '')
+        print("Dropped 'S' from narc ID: ", narc_id)
+    
+    # print("\n\n\n", subject)
+    # print("\nNarc ID: ", narc_id, "\nRecord ID: ", record_id, "\nName: ", lname, "\n")
+    
+    for k,v in subject.items():
+        print("\n\n", k, ": ", v)
+    
+    redcap_events_collection.insert({
+        '_key': record_key,
+        'record_id': record_id,
+        'redcap_event_name': redcap_event_name
+    })
+    
+    print("updating form responses for redcap record ID ", record_id)
+    subjects_collection.update_match(
+        {'record_id': record_id},
+        {
+            'redcap_events': {
+                'redcap_event_name': redcap_event_name,
+                'instrument': {
+                    'redcap_repeat_instruments': redcap_repeat_instrument,
+                   
+                }
+            }
+        }
+    )
