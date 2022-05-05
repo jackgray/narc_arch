@@ -1,8 +1,10 @@
 from arango import ArangoClient
 from config import config
+
 #############  ArangoDB Setup  #############
 
 client = ArangoClient(hosts=config['arango_endpoint'])  # Replace this with env variable
+
 print("Setting up client object for ", client)
 # Connect to system as root - returns api wrapper for "_system" database
 sys_db = client.db('_system', verify=False, username=config['sys_dbName'], password=config['arango_root_pass'])
@@ -15,8 +17,8 @@ print("Connected to db: ", db)
 db.analyzers()
 db.create_analyzer(
     name='general_analyzer',
-    analyzer_type='identity',
-    properties={},
+    analyzer_type='stem',
+    properties={'locale': "en.utf-8"},
     features=[]
 )
 
@@ -24,13 +26,17 @@ db.create_analyzer(
 db.create_arangosearch_view(
     name='all_fields',
 )
-link = {
-    "inclueAllFields": True,
-    "fields": { "description": { "analyzers" : [ "text_en" ] } }
-    
-}
+# link = {
+#     "inclueAllFields": True,
+#     "fields": { "analyzers" : [ "text_en" ] }  
+# }
 
-db.update_arangosearch_view(
-    name='all_fields',
-    properties={'links': { 'subjects': link}}
+# db.update_arangosearch_view(
+#     name='all_fields',
+#     properties={'links': { 'subjects': link}}
+# )
+
+db.aql.execute(
+    'FOR s in subjects2 RETURN TOKENS(s, "general_analyzer")'
 )
+    

@@ -6,9 +6,9 @@ config = dict(
     arango_pass = 'gaspar12',
     # arango_root_pass = 'rita_nelly',
     arango_root_pass = 'openSesame',
-    # arango_endpoint = 'http://10.5.48.120:8529',
-    arango_endpoint = 'http://0.0.0.0:8529',
+    arango_endpoint = 'http://10.6.144.179:8529',
+    # arango_endpoint = 'http://0.0.0.0:8529',
     sys_dbName = 'root',
     db_name = 'MORE',
-    collection_name = 'subjects_raw_labels'
+    collection_name = 'subjects3'
 )

@@ -109,29 +109,35 @@ for subject in all_records:
 ####### ARANGO UPDATE #########
     print("\nUpdating form responses for redcap record ID ", record_id) 
     count = 1
-    for k,v in subject.items():
+    for key,value in subject.items():
         count=+1
-        if len(str(v)) > 0:   
-            print(k, ": ", v) 
+        if len(str(value)) > 0:   
+            print(key, ": ", value) 
             treeDepth = []
-            for kelement in k.split('_'):
-                treeDepth =+ 1  # Each element is a subcategory
-                # Each item in "all_records" is a different form
-                # output in order of subject, a batch of forms is output for every subject
-                # Some of the forms share the same key:value pairs, and will be overwritten if 
-                # not separated into their own event subcategories
-                res=subjects_collection.update_match(
-                    {'record_id': record_id},
-                    {
-                    subject['redcap_repeat_instrument']: {
-                        subject['redcap_repeat_instance']: {
-                            k: v
+            kelements= key.split('_')
+            treeDepth =+ 1  # Each element is a subcategory
+            # Each item in "all_records" is a different form.
+            # Output in order of subject, a batch of forms is output for every subject
+            # Some of the forms share the same key:value pairs, and will be overwritten if 
+            # not separated into their own event subcategories
+            res=subjects_collection.update_match(
+                {'record_id': record_id},
+                {
+                subject['redcap_repeat_instrument']: {
+                    subject['redcap_repeat_instance']: {
+                        kelements[1]: {
+                            kelements[2]: {
+                                kelements[3]: {
+                                    value
+                                }
+                            }
                         }
                         }
                     }
-                )
-                print("res: ", res)
-            
+                }
+            )
+            print("res: ", res)
+        
     
     # redcap_events_collection.insert({
     #     '_key': record_key,
