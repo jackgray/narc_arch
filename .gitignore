@@ -11,3 +11,8 @@ node_modules
 *.csv
 narc-cluster/db/redcap/*json
 *secret*
+*accdb*
+*.xlsx*
+*.env*
+*.jar*
+*.log*
