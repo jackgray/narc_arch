@@ -1,6 +1,5 @@
 *config*
 node_modules
-*docker-compose*
 *records*.json
 *records*.csv
 *json*
