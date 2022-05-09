@@ -1,0 +1,227 @@
+Option Compare Database
+
+Public Function funcCalcWRAT3WordReading(totalWRAT As Integer, versionWRAT As String, age As Integer, subjectID As String, output As Integer) As String
+
+'-----------------------------------------------------------
+' Input: WRAT total, WRAT version, and Age
+' Outputs: WRAT_S, WRAT_GE, txtGE
+' Created By: Pias Malaker 07/16/2018
+' Last Revised: Pias Malaker 07/16/2018
+'-----------------------------------------------------------
+
+' The code is mapped based on the input and output fields in
+' tblWRAT.  Change any and all outputs by changing the
+' field in the actual table.
+
+' Set up the working variables
+    Dim myOutput() As String
+    ReDim myOutput(1 To 3)
+    Dim wrat_SScore As String
+    Dim wrat_ge As String
+    Dim txtGE As String
+    
+    Debug.Print "subjectID: " & subjectID & "totalWRAT: " & totalWRAT & " versionWRAT: " & (versionWRAT) & " age: " & (age)
+
+    If Not IsNull(totalWRAT) = True Or IsNull(versionWRAT) = True Or IsNull(age) = True Then
+
+        If versionWRAT = "Blue" Then
+            If Not IsNull(age) And Val(totalWRAT) >= 0 And Val(totalWRAT) <= 57 Then
+            
+                age2024 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 45 47 49 52 54 56 58 60 62 64 67 69 71 73 75 77 79 82 84 86 88 90 92 94 97 99 101 103 105 107 109 112 114 116 118 120 122")
+                age2534 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 45 47 49 52 54 56 58 60 62 64 67 69 71 73 75 77 79 82 84 86 88 90 92 94 97 99 101 103 105 107 109 112 114 116 118 120")
+                age3544 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 45 47 49 51 53 55 57 60 62 64 66 68 70 72 75 77 79 81 83 85 87 90 92 94 96 98 100 102 105 107 109 111 113 115 117")
+                age4554 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 45 47 49 51 53 55 58 60 62 64 66 68 70 73 75 77 79 81 83 85 88 90 92 94 96 98 100 103 105 107 109 111 113 115 118")
+                age5564 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 46 48 49 51 53 55 57 59 61 63 65 67 69 71 73 74 76 78 80 82 84 86 88 90 92 94 96 98 99 101 103 105 107 109 111 113 115 117 119")
+                gradeEquiv = Split("preschool preschool preschool preschool preschool preschool preschool preschool preschool preschool preschool preschool preschool k k k k k k 1 1 1 1 1 2 2 2 2 2 3 3 3 4 4 4 5 5 6 6 7 8 8 HS HS HS HS HS HS post-HS post-HS post-HS post-HS post-HS post-HS post-HS post-HS post-HS post-HS")
+                
+                Select Case Int(age)
+                    Case Is < 20
+                        wrat_SScore = -999
+                    Case 20 To 24
+                        wrat_SScore = age2024(totalWRAT)
+                    Case 25 To 34
+                        wrat_SScore = age2534(totalWRAT)
+                    Case 35 To 44
+                        wrat_SScore = age3544(totalWRAT)
+                    Case 45 To 54
+                        wrat_SScore = age4554(totalWRAT)
+                    Case 55 To 64
+                        wrat_SScore = age5564(totalWRAT)
+                End Select
+                
+                Select Case gradeEquiv(totalWRAT)  ' NOTE this is correct- GE has a single absolute raw-score tabulation!
+                    Case "preschool", "k"
+                        wrat_ge = 0
+                    Case "HS"
+                        wrat_ge = 12
+                    Case "post-HS"
+                        wrat_ge = 13
+                    Case Else
+                        wrat_ge = Val(gradeEquiv(totalWRAT))
+                End Select
+                    txtGE = "(" & gradeEquiv(totalWRAT) & ")"
+            Else
+                wrat_SScore = -999
+                wrat_ge = -999
+                txtGE = "(?)"
+            End If
+        ElseIf versionWRAT = "Tan" Then
+            If Not IsNull(age) And Val(totalWRAT) >= 0 And Val(totalWRAT) <= 57 Then
+            
+                age1719 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 45 47 49 52 54 56 59 61 63 66 68 70 73 75 77 79 82 84 86 89 91 93 96 98 100 103 105 107 109 112 114 116 119 121 123 126 128")
+                age2024 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 46 48 51 53 55 58 60 62 64 67 69 71 74 76 78 81 83 85 88 90 92 94 97 99 101 104 106 108 111 113 115 118 120 122 124")
+                age2534 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 45 47 49 52 54 56 59 61 63 66 68 70 73 75 77 79 82 84 86 89 91 93 96 98 100 103 105 107 109 112 114 116 119 121 123")
+                age3544 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 46 49 51 53 56 58 60 63 65 67 70 72 74 76 79 81 83 86 88 90 93 95 97 100 102 104 106 109 111 113 116 118 120")
+                age4554 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 45 47 49 52 54 56 58 61 63 65 68 70 72 75 77 79 82 84 86 88 91 93 95 98 100 102 105 107 109 112 114 116 118 121")
+                age5564 = Split("below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 below_45 45 47 49 51 53 55 57 60 62 64 66 68 70 72 74 76 78 80 82 84 86 88 90 92 94 97 99 101 103 105 107 109 111 113 115 117 119 121")
+                gradeEquiv = Split("preschool preschool preschool preschool preschool preschool preschool preschool preschool preschool preschool preschool preschool k k k k k k 1 1 1 1 1 2 2 2 2 3 3 3 3 3 4 4 4 5 6 7 7 8 HS HS HS HS HS HS post-HS post-HS post-HS post-HS post-HS post-HS post-HS post-HS post-HS post-HS post-HS")
+                    
+                Select Case Int(age)
+                    Case Is < 17
+                        wrat_SScore = -999
+                    Case 17 To 19
+                        wrat_SScore = age1719(totalWRAT)
+                    Case 20 To 24
+                        wrat_SScore = age2024(totalWRAT)
+                    Case 25 To 34
+                        wrat_SScore = age2534(totalWRAT)
+                    Case 35 To 44
+                        wrat_SScore = age3544(totalWRAT)
+                    Case 45 To 54
+                        wrat_SScore = age4554(totalWRAT)
+                    Case 55 To 64
+                        wrat_SScore = age5564(totalWRAT)
+                End Select
+                    
+                Select Case gradeEquiv(totalWRAT)  ' NOTE this is correct- GE has a single absolute raw-score tabulation!
+                    Case "preschool", "k"
+                        wrat_ge = 0
+                    Case "HS"
+                        wrat_ge = 12
+                    Case "post-HS"
+                        wrat_ge = 13
+                    Case Else
+                        wrat_ge = Val(gradeEquiv(totalWRAT))
+                End Select
+                    txtGE = "(" & gradeEquiv(totalWRAT) & ")"
+                Else
+                    wrat_SScore = -999
+                    wrat_ge = -999
+                    txtGE = "(?)"
+                End If
+        End If
+    
+    Else
+    
+        wrat_SScore = -999
+        wrat_ge = -999
+        txtGE = "(?)"
+    
+    End If
+    
+    
+    If output = 1 Then
+        funcCalcWRAT3WordReading = wrat_SScore
+    ElseIf output = 2 Then
+        funcCalcWRAT3WordReading = wrat_ge
+    ElseIf output = 3 Then
+        funcCalcWRAT3WordReading = txtGE
+    End If
+
+'Debug.Print wrat_SScore
+'Debug.Print wrat_ge
+'Debug.Print txtGE
+'
+'Debug.Print myOutput(1)
+'Debug.Print myOutput(2)
+'Debug.Print myOutput(3)
+
+End Function
+
+Public Function funcCalcWASI(totalWASI As Integer, age As Integer, subjectID As String, output As Integer) As String
+
+'-----------------------------------------------------------
+' Input: totalWASI, and Age
+' Outputs: WASITScore, WASIScaleScore
+' Created By: Pias Malaker 07/17/2018
+' Last Revised: Pias Malaker 08/21/2019
+'-----------------------------------------------------------
+
+' The code is mapped based on the input and output fields in
+' tblWRAT.  Change any and all outputs by changing the
+' field in the actual table.
+' Modified to included ages 65-69 for tDCS craving study.
+
+' Set up the working variables
+    Dim myOutput() As String
+    ReDim myOutput(1 To 3)
+    Dim wasiTScore As String
+    Dim wasiScaleScore As String
+    
+    Debug.Print "matrix_r_beforeupdate: ", subjectID, totalWASI, age
+
+    If Not IsNull(totalWASI) = True Or IsNull(age) = True Then
+    
+        If Not IsNull(age) And Val(totalWASI) >= 0 Then
+            ssequiv = Split("1,1,2,2,2,3,3,3,3,4,4,4,5,5,5,6,6,6,6,7,7,7,8,8,8,9,9,9,9,10,10,10,11,11,11,12,12,12,12,13,13,13,14,14,14,15,15,15,15,16,16,16,17,17,17,18,18,18,18,19,19", ",")
+            Select Case age ' force it to act like a numeric even if it's text!
+                Case 17 To 19
+                    Tscore = Choose(totalWASI, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67)
+                Case 20 To 24
+                    Tscore = Choose(totalWASI, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69)
+                Case 25 To 29
+                    Tscore = Choose(totalWASI, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70)
+                Case 30 To 34
+                    Tscore = Choose(totalWASI, 20, 20, 20, 20, 20, 20, 20, 22, 24, 25, 27, 29, 30, 32, 34, 36, 37, 39, 41, 43, 45, 47, 49, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72)
+                Case 35 To 44
+                    Tscore = Choose(totalWASI, 20, 20, 20, 20, 21, 22, 24, 25, 27, 29, 30, 32, 34, 36, 37, 39, 40, 42, 44, 46, 47, 48, 49, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72)
+                Case 45 To 54
+                    Tscore = Choose(totalWASI, 20, 21, 23, 24, 25, 27, 28, 30, 31, 33, 34, 36, 38, 39, 41, 42, 44, 45, 47, 49, 50, 52, 53, 54, 56, 58, 59, 61, 63, 65, 67, 69)
+                Case 55 To 64
+                    Tscore = Choose(totalWASI, 23, 24, 26, 27, 28, 30, 31, 33, 34, 36, 37, 39, 41, 42, 44, 45, 47, 49, 50, 52, 53, 55, 57, 58, 59, 61, 62, 64, 66, 68, 70, 72)
+                Case 65 To 69
+                    Tscore = Choose(totalWASI, 25, 26, 28, 29, 30, 32, 34, 35, 37, 38, 40, 41, 43, 44, 46, 48, 49, 51, 52, 54, 55, 57, 59, 60, 62, 63, 65, 67, 69, 71, 73, 75)
+            End Select
+            
+            If totalWASI = 0 Then
+                Tscore = 20
+                If age > 54 Then
+                    Tscore = 22
+                End If
+            End If
+            
+            ScaledScore = ssequiv(Tscore - 20)
+            Debug.Print "matrix_r_afterupdate: ", LBound(ssequiv), Tscore, ScaledScore
+            wasiTScore = Tscore
+            wasiScaleScore = ScaledScore
+        
+        Else
+        
+            wasiTScore = -999
+            wasiScaleScore = -999
+        
+        End If
+    
+    Else
+    
+        wasiTScore = -999
+        wasiScaleScore = -999
+        
+    End If
+    
+    If output = 1 Then
+        funcCalcWASI = wasiTScore
+    ElseIf output = 2 Then
+        funcCalcWASI = wasiScaleScore
+    End If
+
+'Debug.Print wrat_SScore
+'Debug.Print wrat_ge
+'Debug.Print txtGE
+'
+'Debug.Print myOutput(1)
+'Debug.Print myOutput(2)
+'Debug.Print myOutput(3)
+
+End Function
+
