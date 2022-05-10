@@ -1,6 +1,6 @@
-def updateArango(collection, record_id, update_data):
+def updateArango(collection, narc_id, update_data):
     collection.update_match(
-        {'record_id': record_id},
+        {'_key': narc_id},
         update_data
     )
     

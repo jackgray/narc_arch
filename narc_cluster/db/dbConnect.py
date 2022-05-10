@@ -1,7 +1,5 @@
 from arango import ArangoClient
-
 from narc_cluster.db.configs.arango import config 
-# print(config)
     
 def dbConnect():   
     #############  ArangoDB Setup  #############
@@ -29,4 +27,4 @@ def dbConnect():
             collection.truncate() 
         return collection
     collection = createCollection(config['collection_name'])
-    return collection
+    return db, collection
