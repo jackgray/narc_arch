@@ -1,18 +1,23 @@
 from arango import ArangoClient
 from narc_cluster.db.configs.arango import config 
     
-def dbConnect():   
+def getCollection(db_name, collection_name):   
     #############  ArangoDB Setup  #############
     client = ArangoClient(hosts=config['arango_endpoint'])  # Replace this with env variable
     print("Setting up client object for ", client)
     # Connect to system as root - returns api wrapper for "_system" database
     sys_db = client.db('_system', verify=False, username=config['sys_dbName'], password=config['root_passwd'])
     print("Connected to system db: ", sys_db)
-    # Connect to db as root user - returns api wrapper for this database 
-    db = client.db(config['db_name'], verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+    # Connect to db as root user - returns api wrapper for this database
+    if not db_name: 
+        db = client.db(config['db_name'], verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+    else:
+        db = client.db(db_name, verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+
     print("Connected to db: ", db)
     
     def createCollection(collection_name):
+        
         if db.has_collection(collection_name):
             print("Found collection: ", collection_name)
             collection = db.collection(collection_name)
@@ -26,5 +31,76 @@ def dbConnect():
 
             collection.truncate() 
         return collection
-    collection = createCollection(config['collection_name'])
+    if not collection_name:
+        collection = createCollection(config['collection_name'])
+    else:
+        collection = createCollection(collection_name)
     return db, collection
+    
+def getGraph(db_name, graph_name):   
+    #############  ArangoDB Setup  #############
+    client = ArangoClient(hosts=config['arango_endpoint'])  # Replace this with env variable
+    print("Setting up client object for ", client)
+    # Connect to system as root - returns api wrapper for "_system" database
+    sys_db = client.db('_system', verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+    print("Connected to system db: ", sys_db)
+    # Connect to db as root user - returns api wrapper for this database
+    if not db_name: 
+        db = client.db(config['db_name'], verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+    else:
+        db = client.db(db_name, verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+
+    print("Connected to db: ", db)
+    
+    def createGraph(graph_name):
+        
+        if db.has_graph(graph_name):
+            print("Found graph: ", graph_name)
+            graph = db.graph(graph_name)
+        else:
+            print("Graph '", graph_name, "' doesn't exist. Creating it now.")
+            graph = db.create_graph(graph_name)
+
+            # create hash index for collection 
+            # print("Creating hash index.")
+            # graph.add_hash_index(fields=['record_id'], unique=True)
+            # graph.truncate() 
+        return graph
+    if not graph_name:
+        graph = createGraph(config['collection_name'])
+    else:
+        graph = createGraph(graph_name)
+
+    return db, graph
+
+def getEdgeDef(graph, edge_name, from_vertex, to_vertex):
+    print('\nCreating edge definition for ', edge_name)
+    if not graph.has_edge_definition(edge_name):
+        edge_definition = graph.create_edge_definition(
+            edge_collection=edge_name,
+            from_vertex_collections=[from_vertex],
+            to_vertex_collections=[to_vertex]
+        )
+    else:
+        print("\nEdge definition already exists for ", edge_name)
+    return edge_definition
+
+def getVertexCollection(graph, vertex_name):
+    print('Getting vertex collection for ', vertex_name)
+    if graph.has_vertex_collections(vertex_name):
+        vertex_collection = graph.vertex_collection(vertex_name)
+    else:
+        vertex_collection = graph.create_vertex_collection(vertex_name)
+    return vertex_collection
+
+def getEdgeCollection(graph, edge_name, from_vertex, to_vertex):
+    print('\nGetting edge collection: ', edge_name)
+    if graph.has_edge_definition(edge_name):
+        edge_collection = graph.edge_collection(edge_name)
+    else:
+        edge_collection = graph.create_edge_definition(
+            edge_collection=edge_name,
+            from_vertex_collections=[from_vertex],
+            to_vertex_collections=[to_vertex]
+        )
+    return edge_collection
