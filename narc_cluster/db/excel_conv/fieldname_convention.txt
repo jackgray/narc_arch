@@ -1,0 +1,9 @@
+naming variables:
+    think of words in the names as potential sub-categories 
+    As a general rule, if a word used to describe a variable is used in other variable names 
+    more than twice, it makes sense for it to be a subcategory 
+
+
+as a order most shared words from left to right, separated by underscores.
+
+use your best judgement 

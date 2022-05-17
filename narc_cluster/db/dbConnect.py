@@ -87,7 +87,7 @@ def getEdgeDef(graph, edge_name, from_vertex, to_vertex):
 
 def getVertexCollection(graph, vertex_name):
     print('Getting vertex collection for ', vertex_name)
-    if graph.has_vertex_collections(vertex_name):
+    if graph.has_vertex_collection(vertex_name):
         vertex_collection = graph.vertex_collection(vertex_name)
     else:
         vertex_collection = graph.create_vertex_collection(vertex_name)
@@ -104,3 +104,11 @@ def getEdgeCollection(graph, edge_name, from_vertex, to_vertex):
             to_vertex_collections=[to_vertex]
         )
     return edge_collection
+
+def addEdge(edge_collection, from_vertex, to_vertex):
+    edge_key = from_vertex.split('/')[1] + '-' + to_vertex.split('/')[1]
+    edge_collection.insert({
+        '_key': edge_key,
+        '_from': from_vertex,
+        '_to': to_vertex
+    })

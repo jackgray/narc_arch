@@ -1,0 +1,30 @@
+Host sdc
+  HostName 156.111.80.32
+  User sdc
+
+Host console
+  HostName 156.111.80.20
+  User sdc
+
+Host doctor
+  HostName 10.20.193.112
+  User grayjoh
+
+Host mba
+  HostName 10.20.196.46
+  user anonymous
+
+Host narc1
+  HostName 10.6.144.107
+  user jgray
+
+Host narc2
+  HostName 10.6.144.179
+  user jgray 
+
+Host narcServer
+  HostName 10.6.144.107
+  user jgray 
+
+Host grayjoh@10.20.193.112
+IdentityFile ~/.ssh/doctor_rsa
