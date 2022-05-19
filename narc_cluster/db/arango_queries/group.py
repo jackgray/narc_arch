@@ -1,7 +1,7 @@
 from narc_cluster.db.dbConnect import getCollection
 from narc_cluster.db.dbUpdate import updateArango
 
-def enrollmentGroup():
+def groupQuery():
     db, collection = getCollection('MORE', 'subjects3')
 
     cursor = db.aql.execute(

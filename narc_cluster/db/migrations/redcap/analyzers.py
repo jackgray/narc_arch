@@ -1,18 +1,10 @@
 from arango import ArangoClient
-from config import config
+from narc_cluster.db.configs.arango import config as arango
 
-#############  ArangoDB Setup  #############
+from narc_cluster.db.dbConnect import getCollection
 
-client = ArangoClient(hosts=config['arango_endpoint'])  # Replace this with env variable
 
-print("Setting up client object for ", client)
-# Connect to system as root - returns api wrapper for "_system" database
-sys_db = client.db('_system', verify=False, username=config['sys_dbName'], password=config['arango_root_pass'])
-print("Connected to system db: ", sys_db)
-# Connect to db as root user - returns api wrapper for this database 
-db = client.db(config['db_name'], verify=False, username=config['sys_dbName'], password=config['arango_root_pass'])
-print("Connected to db: ", db)
-
+db, collection = getCollection(arango.config['dbName'], arango.config['collection'])
 
 db.analyzers()
 db.create_analyzer(

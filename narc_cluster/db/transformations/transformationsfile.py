@@ -7,48 +7,12 @@ import requests
 from redcap import Project
 from config import config 
 from reports import reports
+from narc_cluster.db.dbConnect import getCollection
+from narc_cluster.db.redcapConnect import redcapConnect
+from narc_cluster.db.configs import arango, redcap
 
-#############  ArangoDB Setup  #############
-
-client = ArangoClient(hosts=config['arango_endpoint'])  # Replace this with env variable
-print("Setting up client object for ", client)
-# Connect to system as root - returns api wrapper for "_system" database
-sys_db = client.db('_system', verify=False, username=config['sys_dbName'], password=config['arango_root_pass'])
-print("Connected to system db: ", sys_db)
-# Connect to db as root user - returns api wrapper for this database 
-db = client.db(config['db_name'], verify=False, username=config['sys_dbName'], password=config['arango_root_pass'])
-print("Connected to db: ", db)
-
-
-
-#################  RedCap API setup   ###################
-
-
-############ using PyCap ####################
-URL = config['api_url']
-TOKEN = config['api_token']
-proj = Project(URL, TOKEN)
-# print(proj.field_names, proj.is_longitudinal, proj.def_field)
-
-############# FIND || CREATE COLLECTION ####################
-# Create collection if not exist - return api for collection 
-def createCollection(collection_name):
-    if db.has_collection(collection_name):
-        print("Found collection: ", collection_name)
-        collection = db.collection(collection_name)
-    else:
-        print("Collection '", collection_name, "' doesn't exist. Creating it now.")
-        collection = db.create_collection(collection_name)
-
-        # create hash index for collection 
-        print("Creating hash index.")
-        collection.add_hash_index(fields=['record_id'], unique=True)
-
-        collection.truncate() 
-    return collection
-
-############ REDCAP ENROLLMENTS COLLECTION
-
+db, collection = getCollection(arango.config['db_name'], arango.config['collection_name'])
+proj = redcapConnect()
 subjects_collection = createCollection('subjects')
 
 enrollment_rpt = proj.export_report(report_id=reports['enrollment'], format_type='json')
@@ -81,7 +45,7 @@ for subject in enrollment_rpt:
 
 ############ REDCAP ALL RECORDS COLLECTION #########################
 
-redcap_events_collection = createCollection('redcap_events')
+redcap_events_collection = getCollection(arango.config['db_name'], 'redcap_events')
 
 all_records = proj.export_records(format_type='json')
 all_instruments = proj.export_instrument_event_mappings(format_type='json')
