@@ -1,4 +1,4 @@
-from narc_cluster.db.dbConnect import getGraph, getEdgeDef, getVertexCollection, getEdgeCollection
+from narc_cluster.db.utils.dbConnect import getGraph, getEdgeDef, getVertexCollection, getEdgeCollection
 
 def test():
     db, graph = getGraph('MORE', 'more_graph')

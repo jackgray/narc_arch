@@ -3,9 +3,9 @@ from pandas import pandas as pd
 import re
 import json
 
-from narc_cluster.db.calculated_fields.wasi import wasiCalc
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.dbUpdate import updateArango
+from db.calculated_fields.wasi import wasiCalc
+from db.utils.dbConnect import getCollection
+from db.utils.dbUpdate import updateArango
 
 
 def emaQuery():

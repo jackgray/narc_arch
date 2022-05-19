@@ -1,7 +1,7 @@
 from arango import ArangoClient
 from narc_cluster.db.configs.arango import config as arango
 
-from narc_cluster.db.dbConnect import getCollection
+from narc_cluster.db.utils.dbConnect import getCollection
 
 
 db, collection = getCollection(arango.config['dbName'], arango.config['collection'])

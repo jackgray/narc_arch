@@ -1,7 +1,7 @@
 from redcap import Project 
 from narc_cluster.db.configs import redcap
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db import redcapConnect
+from narc_cluster.db.utils.dbConnect import getCollection
+from narc_cluster.db.utils import redcapConnect
 
 def redcapSurveys():
     proj = redcapConnect()

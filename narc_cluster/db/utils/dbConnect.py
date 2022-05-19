@@ -1,5 +1,5 @@
 from arango import ArangoClient
-from narc_cluster.db.configs.arango import config 
+from db.configs.arango import config 
     
 def getCollection(db_name, collection_name):   
     #############  ArangoDB Setup  #############

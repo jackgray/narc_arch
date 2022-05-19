@@ -1,5 +1,5 @@
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.dbUpdate import updateArango
+from db.utils.dbConnect import getCollection
+from db.utils.dbUpdate import updateArango
 
 def mriData(select_task):
     db, collection = getCollection('MORE', 'subjects3')
@@ -18,7 +18,7 @@ def mriData(select_task):
         for task, data in subject['tasks'].items():
             for ses in subject['tasks'][task]:
                 if ses.startswith('ses_'):
-                    # Get all task imaging data
+                    # Get all imaging data for task
                     mri_data =subject['tasks'][task][ses]['mri_data']
                     for filename, path in mri_data.items():  
                         # print(filename, path)
@@ -27,9 +27,7 @@ def mriData(select_task):
                     
                     sst_data = subject['tasks']['sst'][ses]
                     scores_data = subject['tasks']['sst'][ses]['scores']
-                    # print(text_data)
-                    # if 'nii' in data.items() and 'run-1' in data.items() and 'stopsignal' in data.items():
-                    # print('\n\n\n\n', data, '\n\n\n\n')
+               
                     mri_data.append(data)                        
         
     return mri_data

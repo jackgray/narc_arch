@@ -2,10 +2,10 @@
 
 from datetime import date
 
-from narc_cluster.db.migrations.redcap.reports import reports
-from narc_cluster.db.redcapConnect import redcapConnect
-from narc_cluster.db.dbConnect import dbConnect
-from narc_cluster.db.dbUpdate import updateArango
+from narc_cluster.db.configs.reports import reports
+from narc_cluster.db.utils.redcapConnect import redcapConnect
+from narc_cluster.db.utils.dbConnect import dbConnect
+from narc_cluster.db.utils.dbUpdate import updateArango
 
 def phiReport():
     db, collection = dbConnect()    # Get arango db and collection objects

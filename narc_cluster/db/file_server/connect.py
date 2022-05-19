@@ -1,6 +1,6 @@
 import paramiko
 from ssh_utilities import Connection
-from narc_cluster.db.configs import fileServer
+from db.configs import fileServer
 
 
 def sshConnect():

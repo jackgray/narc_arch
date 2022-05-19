@@ -1,5 +1,5 @@
 from redcap import Project
-from narc_cluster.db.configs import redcap
+from db.configs import redcap
 
 ############  PyCap Setup ####################
 def redcapConnect():  

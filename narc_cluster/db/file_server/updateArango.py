@@ -1,5 +1,5 @@
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.file_server.crawl_dirs import crawlDirs
+from db.utils.dbConnect import getCollection
+from db.file_server.crawl_dirs import crawlDirs
 
 def update():
     db, collection = getCollection('MORE', 'MRI_DATA')

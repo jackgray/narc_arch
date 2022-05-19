@@ -1,4 +1,3 @@
-from arango import ArangoClient
     
 def wasiCalc(raw_score, age):   
     

@@ -1,4 +1,3 @@
-from arango import ArangoClient
     
 def wratCalc(raw_score, version, age):   
     # print('RAWSCORE: ', raw_score)

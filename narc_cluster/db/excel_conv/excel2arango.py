@@ -1,9 +1,9 @@
 import json
 import pandas as pd
 
-from narc_cluster.db.excel_conv.config import files, sheets
-from narc_cluster.db.dbConnect import dbConnect
-from narc_cluster.db.dbUpdate import updateArango
+from db.excel_conv.config import files, sheets
+from db.utils.dbConnect import dbConnect
+from db.utils.dbUpdate import updateArango
 
 def csv2db():
     db, collection = dbConnect()
@@ -32,7 +32,7 @@ def csv2db():
                 print(narc_id)
                 
                 task_name = sheet_v.split('_')[0]
-                session = 't' + str(i['session'])
+                session = 'ses-' + str(i['session'])
                 
                 for j, k in i.items():
                     if k != 'None':

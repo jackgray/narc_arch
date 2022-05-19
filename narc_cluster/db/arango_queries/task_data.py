@@ -1,5 +1,5 @@
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.dbUpdate import updateArango
+from db.utils.dbConnect import getCollection
+from db.utils.dbUpdate import updateArango
 
 def taskData(task):
     db, collection = getCollection('MORE', 'subjects3')
@@ -19,10 +19,8 @@ def taskData(task):
             for ses in subject['tasks'][task]:
                 if ses.startswith('ses_'):
                     # Get all imaging data for task
-                    task_data =subject['tasks'][task][ses]
-                    
+                    task_data =subject['tasks'][task][ses] 
                     scores_data = subject['tasks']['sst'][ses]['scores']
-                
                     returnable.append(task_data['scores'])                        
         except: pass
     return returnable

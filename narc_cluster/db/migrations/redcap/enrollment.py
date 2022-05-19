@@ -1,14 +1,12 @@
 from arango import ArangoClient
 from redcap import Project
-from config import config
-from narc_cluster.db.configs.reports import reports
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.configs import arango, redcap
+from db.configs.reports import reports
+from db.utils.dbConnect import getCollection
+from db.utils.redcapConnect import redcapConnect
+from db.configs import arango, redcap
 
 db, collection = getCollection(arango.config['db_name'], arango.config['collection_name'])
-URL = redcap.config['api_url']
-TOKEN = redcap.config['api_token']
-proj = Project(URL, TOKEN)
+proj = redcapConnect()
 
 # Contains all responses from enrollment report by report_id
 enrollment_rpt = proj.export_report(report_id=reports['enrollment'], format_type='json')

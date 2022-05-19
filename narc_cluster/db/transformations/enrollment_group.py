@@ -1,6 +1,6 @@
-from narc_cluster.db.arango_queries.enrollment_group import groupQuery
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.dbUpdate import updateArango
+from narc_cluster.db.arango_queries.group import groupQuery
+from narc_cluster.db.utils.dbConnect import getCollection
+from narc_cluster.db.utils.dbUpdate import updateArango
 
 enrollment_groups = groupQuery()   # returns dict of db query of narc_ids and enrollment_groups
 db, collection = getCollection('MORE', 'subjects3')

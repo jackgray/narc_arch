@@ -1,5 +1,5 @@
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.dbUpdate import updateArango
+from db.utils.dbConnect import getCollection
+from db.utils.dbUpdate import updateArango
 
 def groupQuery():
     db, collection = getCollection('MORE', 'subjects3')

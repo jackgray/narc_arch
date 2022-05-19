@@ -9,10 +9,10 @@ import re
 
 from redcap import Project
 
-from narc_cluster.db.configs import redcap
-from narc_cluster.db.configs import arango 
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.dbUpdate import updateArango
+from db.configs import redcap
+from db.configs import arango 
+from db.utils.dbConnect import getCollection
+from db.utils.dbUpdate import updateArango
 # from reports import reports
 
 def allRecords():

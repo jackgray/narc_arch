@@ -1,14 +1,13 @@
 import json
 import pandas as pd
 
-from narc_cluster.db.excel_conv.config import files, sheets
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.dbUpdate import updateArango
+from db.excel_conv.config import files, sheets
+from db.utils.dbConnect import getCollection
+from db.utils.dbUpdate import updateArango
 
 def mriData():
     db, collection = getCollection('MORE', 'subjects3')
 
-    # forPrediction = excel2json.convert_from_file('forPrediction.xlsx', engine='openpyxl')
     for file_k, file_v in files.items():
         for sheet_k, sheet_v in sheets.items():
             print('\n\nSHEET: ', sheet_k)
@@ -123,7 +122,7 @@ def mriData():
 
                         # try:
                         #     print(json.dumps(update_data, indent=2))
-                        #     updateArango(collection, narc_id, update_data)
+                            updateArango(collection, narc_id, update_data)
                         # except:
                         #     print("No data to update yet")
                         #     continue

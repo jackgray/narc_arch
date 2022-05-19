@@ -1,6 +1,6 @@
-from narc_cluster.db.calculated_fields.wasi import wasiCalc
-from narc_cluster.db.dbConnect import dbConnect
-from narc_cluster.db.dbUpdate import updateArango
+from db.calculated_fields.wasi import wasiCalc
+from db.utils.dbConnect import dbConnect
+from db.utils.dbUpdate import updateArango
 
 def wasiUpdate():
     db, collection = dbConnect()

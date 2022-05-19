@@ -1,9 +1,9 @@
 import json
 import pandas as pd
 
-from narc_cluster.db.excel_conv.config import files, sheets
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.dbUpdate import updateArango
+from db.excel_conv.config import files, sheets
+from db.utils.dbConnect import getCollection
+from db.utils.dbUpdate import updateArango
 
 def forPrediction():
     db, collection = getCollection('MORE', 'subjects3')

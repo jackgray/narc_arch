@@ -3,9 +3,9 @@ import pickle
 import pprint
 from copy import deepcopy
 # from turtle import update
-from narc_cluster.db.file_server.connect import sshConnect
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.dbUpdate import updateArango
+from db.file_server.connect import sshConnect
+from db.utils.dbConnect import getCollection
+from db.utils.dbUpdate import updateArango
 
 # from ssh_utilities import Connection, SSHPath
 

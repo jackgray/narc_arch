@@ -3,49 +3,16 @@
 from arango import ArangoClient, AQLQueryExecuteError
 import requests  
 
-
-from redcap import Project
-from config import config 
-from reports import reports
-from narc_cluster.db.dbConnect import getCollection
-from narc_cluster.db.redcapConnect import redcapConnect
-from narc_cluster.db.configs import arango, redcap
+from narc_cluster.db.utils.dbConnect import getCollection
+from narc_cluster.db.utils.redcapConnect import redcapConnect
+from narc_cluster.db.configs import arango, redcap, reports
 
 db, collection = getCollection(arango.config['db_name'], arango.config['collection_name'])
 proj = redcapConnect()
-subjects_collection = createCollection('subjects')
-
-enrollment_rpt = proj.export_report(report_id=reports['enrollment'], format_type='json')
-
-for subject in enrollment_rpt:
-    
-    narc_id = str(subject['narc_id']).strip()
-    record_id = str(subject['record_id']).strip()
-    lname = str(subject['lname'])
-    fname = str(subject['fname'])
-    enrollmentGroup = str(subject['ie_enrollment_group'])
-    if narc_id.startswith('S'):
-        narc_id = narc_id.replace('S', '')
-        # print("Dropped 'S' from narc ID: ", narc_id)
-        
-    print("Narc ID: ", narc_id, "\nRecord ID: ", record_id, "\nName: ", lname, "\nUD Group :", enrollmentGroup, "\n")
-    
-##########  ARANGO DB INSERTION #####################
-    print("\nInserting data for subject ", narc_id)
-    subjects_collection.insert({
-        '_key': narc_id, 
-        'record_id': record_id, 
-        'enrollment_group': enrollmentGroup, 
-        'name': {
-            'first': fname,
-            'last': lname
-            },
-        })
-
 
 ############ REDCAP ALL RECORDS COLLECTION #########################
 
-redcap_events_collection = getCollection(arango.config['db_name'], 'redcap_events')
+db, redcap_events_collection = getCollection(arango.config['db_name'], 'redcap_events')
 
 all_records = proj.export_records(format_type='json')
 all_instruments = proj.export_instrument_event_mappings(format_type='json')
@@ -84,7 +51,7 @@ for subject in all_records:
             # Output in order of subject, a batch of forms is output for every subject
             # Some of the forms share the same key:value pairs, and will be overwritten if 
             # not separated into their own event subcategories
-            res=subjects_collection.update_match(
+            res=redcap_events_collection.update_match(
                 {'record_id': record_id},
                 {
                 subject['redcap_repeat_instrument']: {
@@ -103,11 +70,7 @@ for subject in all_records:
             print("res: ", res)
         
     
-    # redcap_events_collection.insert({
-    #     '_key': record_key,
-    #     'record_id': record_id,
-    #     'redcap_event_name': redcap_event_name
-    # })
+
     
 
 ################# ANALYZERS / TRANSFORMATIONS ###################
