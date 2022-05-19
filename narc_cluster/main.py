@@ -17,19 +17,21 @@ from db.file_server.crawl_dirs import crawlDirs
 from db.utils.dbConnect import getCollection
 from db.utils.narc_from_record import narcFromRecord
 
+db, collection = getCollection(config['db_name'], config['collection_name'])
+
 
 # csv2db('./narc_cluster/db/excel_conv/MORE_dMRI_database_Time2_V2.xlsx')
 # crawlDirs()
 # forPrediction()
 # print(json.dumps(mriData(), indent=2))
 # print(json.dumps(taskData('choice'), indent=2))
-db, collection = getCollection(config['db_name'], config['collection_name'])
-narc_id = narcFromRecord(db, collection, '3')
-print(narc_id)
+
 # Example query data for all subjects by task
 # task_data = taskData('choice')
 # for i in task_data:
 #     if i['group'] == 'OUD' or i['group'] == 'HUD':
 #         print(i['subj'])
 
-# emaQuery()
+res = emaQuery()
+for i in res:
+    print('\n\n\n', i, '\nasdfasdf')
