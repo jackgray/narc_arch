@@ -22,9 +22,13 @@ accross all treatment days), but for now it must be explicit
 pull all days and iterate through the json and use logical operators 
 for filtering. (i.e.: for key,value in subjects['custom_label'].items(): for key2 in value.items(): etc.)
 
-The query response is an iterable cursor object are many ways of interacting with the json response.
+The query response is an iterable cursor object that must be looped through to pull json 
+objects for each subject. There are many ways of interacting with the json response.
+Two common ways are to (1) read the json object into a pandas dataframe, which 
+can be appended into a dataframe of dataframes, or (2) iterating through the json tree 
+structure with simple for loops, as expressed below.
 
-Each level is a {key: value} pair. Except for the end result aka the last item in the tree, 
+In JSON, each level is a {key: value} pair. Except for the end result aka the last item in the tree, 
 the value in these key:value pairs is itself a key:value pair. Below is an example of 
 an n-depth tree structure where n=4
 
