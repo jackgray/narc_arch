@@ -68,15 +68,24 @@ def emaQuery():
             RETURN { narc_id: s._key, ema: s.assessments.ema, asi_drug: s.assessments.asi.drug }',
         batch_size=1
     )
-    dfs = []
+    '''
+    Access the data returned above by iterating through the response object and
+    calling i['query_defined_label'] aka i['narc_id'] or i['ema'] gives that data for 
+    subject i
+    '''
+    
+    subj_dfs = []    # You can store dataframes for each subject as into an array as they are collected
     for subject in query_result:
         ema_days = subject['ema']
+        
+        # Use json.dumps() to ensure proper json format
         all_subjs_ema_days_df = pd.read_json(json.dumps(ema_days), orient='record')
         
-        try: dfs.append(all_subjs_ema_days_df)
+        try: subj_dfs.append(all_subjs_ema_days_df)
         except: pass
         # print(json.dumps(ema_days, indent=2))
         for day, questions in ema_days.items():
+            
             # bandaid for bug in db
             if 'day_' in day:
                 day_int = int(day.split('day_')[-1])
@@ -113,7 +122,7 @@ def emaQuery():
                                 try: print(drug, drug_qs['ao'])
                                 except: pass
                         # print(json.dumps(new_data, indent=2))     
-    return dfs
+    return subj_dfs
     
             
     
