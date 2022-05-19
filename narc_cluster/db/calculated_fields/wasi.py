@@ -45,4 +45,4 @@ def wasiCalc(raw_score, age):
         tscore = -999
         scaled_score = -999
     
-    return { 'battery': { 'wasi': { 't_score': tscore, 'scaled_score': scaled_score }}}
+    return { 'assessment': { 'wasi': { 't_score': tscore, 'scaled_score': scaled_score }}}

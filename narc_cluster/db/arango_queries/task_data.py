@@ -1,8 +1,9 @@
 from db.utils.dbConnect import getCollection
 from db.utils.dbUpdate import updateArango
+from db.configs.arango import config
 
 def taskData(task):
-    db, collection = getCollection('MORE', 'subjects3')
+    db, collection = getCollection(config['db_name'], config['collection_name'])
 
     cursor = db.aql.execute(
         'FOR subject IN subjects3 \
@@ -17,7 +18,7 @@ def taskData(task):
     for subject in cursor:
         try:
             for ses in subject['tasks'][task]:
-                if ses.startswith('ses_'):
+                if ses.startswith('ses_'):  # bandaid for dev purposes
                     # Get all imaging data for task
                     task_data =subject['tasks'][task][ses] 
                     scores_data = subject['tasks']['sst'][ses]['scores']

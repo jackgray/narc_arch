@@ -107,22 +107,22 @@ def allRecords():
                 
                 if 'asi' in key and not 'wasi' in key:
                     if any (x in kelements[1] for x in drugs):
-                        update_data = {'assessments': {'asi': {'drug': { kelements[1]: { '_'.join(kelements[2:]): value } } } } } 
+                        update_data = {'assessment': {'asi': {'drug': { kelements[1]: { '_'.join(kelements[2:]): value } } } } } 
                         # print(update)
                     else:
-                        update_data = {'assessments': {'asi': { '_'.join(kelements[1:]): value } } }
+                        update_data = {'assessment': {'asi': { '_'.join(kelements[1:]): value } } }
                         # updateArango(update, record_id)
                 
                 if 'wasi' in key:
-                    update_data = {'assessments': {'wasi': { '_'.join(kelements[1:]): value } } }
+                    update_data = {'assessment': {'wasi': { '_'.join(kelements[1:]): value } } }
                     # print(update)
                     # updateArango(update, record_id)
 
                 if 'wrat' in key:
                     if 'tan' or 'blue' in key:  
-                        update_data = {'assessments': {'wrat': {kelements[1]: { '_'.join(kelements[2:]): value } } } }
+                        update_data = {'assessment': {'wrat': {kelements[1]: { '_'.join(kelements[2:]): value } } } }
                     else:
-                        update_data = {'assessments': {'wrat': { '_'.join(kelements[1:]): value } } }
+                        update_data = {'assessment': {'wrat': { '_'.join(kelements[1:]): value } } }
 
                     # print(update)
                     
@@ -158,7 +158,7 @@ def allRecords():
                         key = '_'.join(key.split('_')[1:])
                     if 'complete' in key:
                         key = 'complete'
-                    update_data = { 'assessments': { 'ema': { session: {key: value }}}}
+                    update_data = { 'assessment': { 'ema': { session: {key: value }}}}
                     # print(update_data)
                     
                 if 'panas' in key:
@@ -170,7 +170,7 @@ def allRecords():
                     
                     if key.startswith('panas'):
                         key = '_'.join(key.split('_')[1:])
-                    update_data = { 'assessments': { 'panas': {key: value }}}
+                    update_data = { 'assessment': { 'panas': {key: value }}}
                     # print(update_data)
                 
                 if any (x in assessments for x in kelements):
@@ -182,7 +182,7 @@ def allRecords():
                     else: 
                         key = '_'.join(kelements[1:])
                         assessment = kelements[0]
-                    update_data = { 'assessments': { assessment: { key: value }}}
+                    update_data = { 'assessment': { assessment: { key: value }}}
                     
                 
                 if len(update_data) > 0:

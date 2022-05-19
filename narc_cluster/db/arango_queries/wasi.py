@@ -7,7 +7,7 @@ def wasiUpdate():
 
     cursor = db.aql.execute(
         'FOR subject IN subjects3 \
-            RETURN { narc_id: subject._key, total: subject.battery.wasi.total, age: subject.age }',
+            RETURN { narc_id: subject._key, total: subject.assessment.wasi.total, age: subject.age }',
         batch_size=1
     )
     

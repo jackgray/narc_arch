@@ -57,7 +57,7 @@ def wratCalc(raw_score, version, age):
         std_score = -999
         grade_score = -999
     
-    return { 'battery': { 'wrat': { 'standard_score': std_score, 'grade_score': grade_score, 'version': version }}}
+    return { 'assessment': { 'wrat': { 'standard_score': std_score, 'grade_score': grade_score, 'version': version }}}
  
         
             
