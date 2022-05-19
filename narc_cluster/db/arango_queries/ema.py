@@ -28,15 +28,18 @@ Two common ways are to (1) read the json object into a pandas dataframe, which
 can be appended into a dataframe of dataframes, or (2) iterating through the json tree 
 structure with simple for loops, as expressed below.
 
-In JSON, each level is a {key: value} pair. Except for the end result aka the last item in the tree, 
-the value in these key:value pairs is itself a key:value pair. Below is an example of 
-an n-depth tree structure where n=4
+In JSON, each level is a {key: value} pair. The value in these key:value pairs is 
+itself a key:value pair, except for the final value at the end of the tree, which 
+can be a string, int, tuple, or list, but is not k:v. Below is an example of 
+an n-depth tree structure where n=4. The first level value where n=1 includes all data 
+in the tree under it. As a branch is traversed, its value returned is a smaller and smaller json
+object until the bottom is reached.
 
 example_JSON = [{
-    key1=category=kv1: {
-        value1=key2=sub_category: {
-            value2=key3=sub_sub_category: {
-                value3=key4=final_key: { value4=final_value }
+    key1_aka_category: {
+        value1_aka_key2_aka_sub_category: {
+            value2_aka_key3_aka_sub_sub_category: {
+                value3_aka_key4_aka_final_key: { value4_aka_final_value_aka_no_value_to_this }
                 }
             }
         }
@@ -46,9 +49,9 @@ This is important to keep in mind while iterating through nested query responses
 Each level is iterable by k:v pairs via the .items() attribute. An item() is a k:v pair, 
 where v can also have a k:v pair indexable again by the .items() attribute.
 (i.e.: 
-        for category, sub_categories in example_JSON.items():
-            for sub_category, sub_sub_categories in sub_categories.items():
-                for final_key, final_value  in final_key.items():
+        for category, sub_categories in example_JSON.items():   # 1st level k:v = category:sub_categories
+            for sub_category, sub_sub_categories in sub_categories.items():     # 2nd level k:v = sub_category:sub_sub_categories
+                for final_key, final_value  in final_key.items():       # 3rd level k:v = sub_sub_category:final_value
                     print(final_value)  # final value is not iterable because it is not a k:v pair
             
 )
