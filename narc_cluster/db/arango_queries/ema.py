@@ -36,10 +36,57 @@ in the tree under it. As a branch is traversed, its value returned is a smaller 
 object until the bottom is reached.
 
 example_JSON = [{
-    key1_aka_category: {
-        value1_aka_key2_aka_sub_category: {
-            value2_aka_key3_aka_sub_sub_category: {
-                value3_aka_key4_aka_final_key: { value4_aka_final_value_aka_no_value_to_this }
+    key1_aka_category_1: {
+        value1_aka_key2_aka_sub_category_1: {
+            value2_aka_key3_aka_sub_sub_category_1: {
+                value3_aka_key4_aka_final_key_1: { value4_aka_final_value_aka_no_value_to_this }
+                }
+            }
+        },
+        value1_aka_key2_aka_sub_category_2: {
+            value2_aka_key3_aka_sub_sub_category_1: {
+                value3_aka_key4_aka_final_key_1: { value4_aka_final_value_aka_no_value_to_this }
+                }
+            },
+            value2_aka_key3_aka_sub_sub_category_2: {
+                value3_aka_key4_aka_final_key_1: { value4_aka_final_value_aka_no_value_to_this }
+                }
+            },
+            value2_aka_key3_aka_sub_sub_category_3: {
+                value3_aka_key4_aka_final_key_1: { value4_aka_final_value_aka_no_value_to_this }
+                },
+                value3_aka_key4_aka_final_key_2: { value4_aka_final_value_aka_no_value_to_this }
+                },
+                value3_aka_key4_aka_final_key_3: { [value4_aka_final_value_aka_no_value_to_this_1, value4_aka_final_value_aka_no_value_to_this_2 }
+                },
+                value3_aka_key4_aka_final_key_4: { value4_aka_final_value_aka_no_value_to_this }
+                }
+            }
+        },
+        key1_aka_category_2: {
+        value1_aka_key2_aka_sub_category_1: {
+            value2_aka_key3_aka_sub_sub_category_1: {
+                value3_aka_key4_aka_final_key_1: { value4_aka_final_value_aka_no_value_to_this }
+                }
+            }
+        },
+        value1_aka_key2_aka_sub_category_2: {
+            value2_aka_key3_aka_sub_sub_category_1: {
+                value3_aka_key4_aka_final_key_1: { value4_aka_final_value_aka_no_value_to_this }
+                }
+            },
+            value2_aka_key3_aka_sub_sub_category_2: {
+                value3_aka_key4_aka_final_key_1: { value4_aka_final_value_aka_no_value_to_this }
+                }
+            },
+            value2_aka_key3_aka_sub_sub_category_3: {
+                value3_aka_key4_aka_final_key_1: { value4_aka_final_value_aka_no_value_to_this }
+                },
+                value3_aka_key4_aka_final_key_2: { value4_aka_final_value_aka_no_value_to_this }
+                },
+                value3_aka_key4_aka_final_key_3: {[ value4_aka_final_value_aka_no_value_to_this_1, value4_aka_final_value_aka_no_value_to_this_2 ]}
+                },
+                value3_aka_key4_aka_final_key_4: { value4_aka_final_value_aka_no_value_to_this }
                 }
             }
         }
@@ -56,6 +103,8 @@ where v can also have a k:v pair indexable again by the .items() attribute.
             
 )
 
+Any element of a tree data structure can be explicitly accessed as well.
+example_JSON['key1'][2][]
 
 '''
 
