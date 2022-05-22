@@ -13,14 +13,18 @@ from db.configs.arango import config
 '''
 This query shows how to retrieve specific data based on other data. 
 It first retrieves all ema response data available for each subject
-in json format, separated by treatment day ("day_n").
+in json format, separated by treatment day ("day_n"). The structure
+is subject.tasks.ema.<task_day as int>.<question number as int>
 
-In future versions of the db, * substitutions may be supported 
-(i.e.: subject.assessments.ema.*[3] for responses to question 3 
-accross all treatment days), but for now it must be explicit 
-(i.e.: subject.assessments.ema.day_8[3]), so to abstract, we must 
+## How to abstract when a parent value is unknown or not cared about:
+
+Currently, there is not support for * substitutionse
+(i.e.: subject.tasks.ema.[*][3] for responses to question 3 
+accross all treatment days), so the query string must be explicit 
+(i.e.: subject.tasks.ema.day_8[3]), so to abstract, we must 
 pull all days and iterate through the json and use logical operators 
-for filtering. (i.e.: for key,value in subjects['custom_label'].items(): for key2 in value.items(): etc.)
+for filtering. (i.e.: for key,value in subjects['query attribute label'].items(): for value2, key2 in value.items(): for value2, key3 in..etc.)
+This pattern crawls through the tree directory structure. The the specific path is called a branch, and a collection of branches is a tree.
 
 The query response is an iterable cursor object that must be looped through to pull json 
 objects for each subject. There are many ways of interacting with the json response.
@@ -29,7 +33,7 @@ can be appended into a dataframe of dataframes, or (2) iterating through the jso
 structure with simple for loops, as expressed below.
 
 In JSON, each level is a {key: value} pair. The value in these key:value pairs is 
-itself a key:value pair, except for the final value at the end of the tree, which 
+itself a key:value pair, except for the final value at the end of the branch, which 
 can be a string, int, tuple, or list, but is not k:v. Below is an example of 
 an n-depth tree structure where n=4. The first level value where n=1 includes all data 
 in the tree under it. As a branch is traversed, its value returned is a smaller and smaller json
@@ -84,7 +88,7 @@ example_JSON = [{
                 },
                 value3_aka_key4_aka_final_key_2: { value4_aka_final_value_aka_no_value_to_this }
                 },
-                value3_aka_key4_aka_final_key_3: {[ value4_aka_final_value_aka_no_value_to_this_1, value4_aka_final_value_aka_no_value_to_this_2 ]}
+                value3_aka_key4_aka_final_key_3: {[ value4_aka_final_value_aka_no_value_to_this_1, value4_aka_final_value_aka_no_value_to_this_2 ]} <--- final value as array
                 },
                 value3_aka_key4_aka_final_key_4: { value4_aka_final_value_aka_no_value_to_this }
                 }
@@ -92,29 +96,31 @@ example_JSON = [{
         }
     }]
 
-This is important to keep in mind while iterating through nested query responses.
 Each level is iterable by k:v pairs via the .items() attribute. An item() is a k:v pair, 
 where v can also have a k:v pair indexable again by the .items() attribute.
 (i.e.: 
-        for category, sub_categories in example_JSON.items():   # 1st level k:v = category:sub_categories
+     >> for category, sub_categories in example_JSON.items():   # 1st level k:v = category:sub_categories
             for sub_category, sub_sub_categories in sub_categories.items():     # 2nd level k:v = sub_category:sub_sub_categories
                 for final_key, final_value  in final_key.items():       # 3rd level k:v = sub_sub_category:final_value
-                    print(final_value)  # final value is not iterable because it is not a k:v pair
+                    print(final_value)  # final value is not iterable because it is not a k:v pair, it is just v
             
 )
 
 Any element of a tree data structure can be explicitly accessed as well.
-example_JSON['key1'][2][]
+if example_JSON['key1']['key2']['key3'] == 'final_value comparison':
+    do stuff
 
 '''
 
 def emaQuery():
+    # Connect to the database (function at db/utils/dbConnect.py, config vars at db/configs/arango.py)
     db, collection = getCollection(config['db_name'], config['collection_name'])
 
+    # arango api function to call on the db server
     query_result = db.aql.execute(
-        'FOR s IN subjects3 \
-            FILTER s.assessments.ema != null \
-            RETURN { narc_id: s._key, ema: s.assessments.ema, asi_drug: s.assessments.asi.drug }',
+        'FOR s IN subjects \
+            FILTER s.tasks.ema != null \
+            RETURN { narc_id: s._key, ema: s.tasks.ema, asi_drug: s.tasks.asi.drug }',
         batch_size=1
     )
     '''
@@ -124,6 +130,7 @@ def emaQuery():
     '''
     
     subj_dfs = []    # You can store dataframes for each subject as into an array as they are collected
+    # query_result is an arango Cursor object that must be iterated through to be extracted
     for subject in query_result:
         ema_days = subject['ema']
         
@@ -153,9 +160,7 @@ def emaQuery():
                 for question, resp in questions.items():
                     # 3. "How badly do you want to use drugs? 0-10"
                     if question == '3' and day_int > 15 and int(resp) > 7:
-                        # print('\n\nMethod 2\n')
-                        # print(day, subject['narc_id'])
-                        
+               
                         # Query more data by adding condition to the AQL RETURN statement,
                         # or by sending a second query only when warranted (below)
                         for drug, drug_responses in subject['asi_drug'].items():

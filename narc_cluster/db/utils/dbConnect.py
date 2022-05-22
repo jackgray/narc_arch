@@ -1,18 +1,24 @@
 from arango import ArangoClient
-from db.configs.arango import config 
+from db.configs import arango, mongo
+
+from pymongo import MongoClient
+
+def getMongoCollection():
+    client = MongoClient(mongo.config['endpoint'])
+    db = client.more
     
 def getCollection(db_name, collection_name):   
     #############  ArangoDB Setup  #############
-    client = ArangoClient(hosts=config['arango_endpoint'])  # Replace this with env variable
+    client = ArangoClient(hosts=arango.config['arango_endpoint'])  # Replace this with env variable
     print("Setting up client object for ", client)
     # Connect to system as root - returns api wrapper for "_system" database
-    sys_db = client.db('_system', verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+    sys_db = client.db('_system', verify=False, username=arango.config['sys_dbName'], password=arango.config['root_passwd'])
     print("Connected to system db: ", sys_db)
     # Connect to db as root user - returns api wrapper for this database
     if not db_name: 
-        db = client.db(config['db_name'], verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+        db = client.db(arango.config['db_name'], verify=False, username=arango.config['sys_dbName'], password=arango.config['root_passwd'])
     else:
-        db = client.db(db_name, verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+        db = client.db(db_name, verify=False, username=arango.config['sys_dbName'], password=arango.config['root_passwd'])
 
     print("Connected to db: ", db)
     

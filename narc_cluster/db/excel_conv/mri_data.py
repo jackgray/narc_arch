@@ -4,9 +4,10 @@ import pandas as pd
 from db.excel_conv.config import files, sheets
 from db.utils.dbConnect import getCollection
 from db.utils.dbUpdate import updateArango
+from db.configs import arango
 
 def mriData():
-    db, collection = getCollection('MORE', 'subjects3')
+    db, collection = getCollection(arango.config['db_name'], arango.config['collection_name'])
 
     for file_k, file_v in files.items():
         for sheet_k, sheet_v in sheets.items():
@@ -43,60 +44,57 @@ def mriData():
                             else:
                                 version = 'implicit'
                             taskname = 'choice'
+                            session = str(k.split('_')[1])
                             
-                            session = "ses_" + str(k.split('_')[1])
-                            update_data = { 'tasks': { taskname: 
-                                           { session:
-                                               { 'scores': 
-                                                   { version: 
-                                                       { k.split('_')[-1]: v }
+                            update_data = { 'tasks': { taskname: { 
+                                                'sessions': { session: { 
+                                                    'responses': { 
+                                                        { version: 
+                                                            { k.split('_')[-1]: v }
+                                                        }
                                                     }
-                                                }
-                                            }
-                                        }}
+                                                }}
+                                            }}}
                         
-                        if 'movie_' in k:
+                        elif 'movie_' in k:
                             taskname = 'movie'
                             if '69' in k:
-                                session = "ses_1"
+                                session = "1"
                             if '35' in k:
-                                session = "ses_2"
+                                session = "2"
                                 
                             k = "_".join(k.split('_')[-2:])
                             if 'mean' in k:
                                 k = k.split('_')[-1]
                             
-                                
-                            update_data = { 'tasks': { taskname: 
-                                { session: 
-                                    { 'mri': 
-                                        { 'LNAc': 
-                                            { k: v }
-                                            }
-                                        }
-                                    }
-                                }}
+                            update_data = { 'tasks': { taskname: {
+                                                'sessions': { session: {
+                                                    'responses': { '' },
+                                                    'raw_data': {''},
+                                                    'analysis': { 
+                                                        'LNAc': { k: v }
+                                                        }
+                                                    }}
+                                                }}}
+                                            
                         # print(k)
-                        if k.startswith('fa') or k.startswith('md') or k.startswith('rd'):
-                            # print(k)
+                        elif k.startswith('fa') or k.startswith('md') or k.startswith('rd'):
                             if not len(k.split('_')) > 3:
-
-                                session = 'ses_' + k.split('_')[1].split('time')[1]
+                                session = k.split('_')[1].split('time')[1]
                                 scalar = k.split('_')[0].upper()
                                 subregion = k.split('_')[-1]
                                 region = 'clusters'
-                            
-                                update_data = { 'diffusion': 
-                                    { region: 
-                                        { subregion: 
-                                            { session:
-                                                { scalar: v }
-                                            }
-                                        } 
-                                    }  
-                                }
-                                
-                                # print(json.dumps(update_data, indent=2))
+                                update_data = { 'tasks': { 'diffusion': {
+                                                'sessions': { session: {
+                                                    'analysis': { 
+                                                        'regions': { region: {
+                                                                subregion: { scalar: v }
+                                                                }}
+                                                            },
+                                                    'raw_data': { '' }
+                                                    }}
+                                                }}}
+                                                                                                
                         elif '_hb' in k:
                             split = k.split('_')
                             scalar = split[3].upper()
@@ -104,25 +102,27 @@ def mriData():
                             region2 = split[2]
                             subregion = split[0]
                             region = region1 + "_" + region2
-                            update_data = { 'diffusion': 
-                                { region: 
-                                    { subregion: 
-                                        { session: 
-                                            { scalar: v }
-                                        }
-                                    }
-                                }
-                            }
-                            
+                            update_data = { 'tasks': { 'diffusion': {
+                                            'sessions': { session: {
+                                                'analysis': { 
+                                                    'regions': { region: {
+                                                            subregion: { scalar: v }
+                                                            }}
+                                                        },
+                                                'raw_data': { '' }
+                                                }}
+                                            }}}
+                                
                         # elif k.startswith('mri'):
                         #     print(k)
                         #     split = k.split('_')
                         #     session = 'ses_' + split[1]
                         #     if 
 
-                        # try:
-                        #     print(json.dumps(update_data, indent=2))
-                            updateArango(collection, narc_id, update_data)
-                        # except:
-                        #     print("No data to update yet")
-                        #     continue
+                        try:
+                            print(update_data)
+                            # print(json.dumps(update_data, indent=2))
+                            # updateArango(collection, narc_id, update_data)
+                        except:
+                            print("No data to update yet")
+                            continue

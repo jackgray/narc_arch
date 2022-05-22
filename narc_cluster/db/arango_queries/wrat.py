@@ -8,7 +8,7 @@ def wratUpdate():
 
     cursor = db.aql.execute(
         'FOR subject IN subjects3 \
-            RETURN { narc_id: subject._key, total: subject.battery.wrat.total.reading, age: subject.age, blue: subject.battery.wrat.blue, tan: subject.battery.wrat.tan }',
+            RETURN { narc_id: subject._key, total: subject.assessment.wrat.total.reading, age: subject.age, blue: subject.assessment.wrat.blue, tan: subject.assessment.wrat.tan }',
         batch_size=1
     )
     
