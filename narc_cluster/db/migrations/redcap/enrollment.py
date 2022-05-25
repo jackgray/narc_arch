@@ -1,10 +1,10 @@
 import json
 from arango import ArangoClient
 from redcap import Project
-from db.configs.reports import reports
-from db.utils.dbConnect import getCollection
-from db.utils.redcapConnect import redcapConnect
-from db.configs import arango, redcap, mongo
+from utils.dbConnect import getCollection
+from utils.redcapConnect import redcapConnect
+from configs import arango, redcap, mongo
+from configs.reports import reports
 
 from pymongo import MongoClient
 
@@ -28,10 +28,8 @@ def addEnrollments():
         if narc_id.startswith('S'):
             narc_id = narc_id.replace('S', '')
             # print("Dropped 'S' from narc ID: ", narc_id)
-        
             
         # print("Narc ID: ", narc_id, "\nRecord ID: ", record_id, "\nName: ", lname, "\nUD Group :", enrollmentGroup, "\n")
-        
         update_data = { '_key': narc_id,
                        'record_id': record_id, 
                        'group': enrollmentGroup,
@@ -49,7 +47,8 @@ def addEnrollments():
                             'meets_criteria': subject['ie_enrollment_group'],
                             'recruited_from': subject['recruitment_location'] or subject['recruitment_location_other']                      
                     }}
-        print(json.dumps(update_data))
+        
+        print(update_data)
         arango_collection.insert(update_data)
         # for k, v in subject.items():
         #     # print(k,v)

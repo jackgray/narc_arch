@@ -1,25 +1,41 @@
-from narc_cluster.db.arango_queries.group import groupQuery
-from narc_cluster.db.utils.dbConnect import getCollection
-from narc_cluster.db.utils.dbUpdate import updateArango
+from arango_queries.group import groupQuery
+from utils.dbConnect import getCollection
+from utils.dbUpdate import updateArango
+from configs.arango import config
 
-enrollment_groups = groupQuery()   # returns dict of db query of narc_ids and enrollment_groups
-db, collection = getCollection('MORE', 'subjects3')
-
-for subject in enrollment_groups:
-    if subject['enrollment_group'] == '1':
-        update_data = { 'enrollment_group': 'HC' }
-    elif subject['enrollment_group'] == '2':
-        update_data = { 'enrollment_group': 'OUD' }
-    else:
-        update_data = { 'enrollment_group': 'None'}
+def xfrmGroupCode():
+    groups = groupQuery()   # returns dict of db query of narc_ids and groups
+    db, collection = getCollection(config['db_name'], config['collection_name'])
     
-    updateArango(collection, subject['narc_id'], update_data)
-    
-    # prune 
-    # aql.execute({
-    #     '
-    #     FOR subject in subjects3
-    #         FILTER subject.enrollment_group == None
-    #         REMOVE { enrollment_group: subject.enrollment_group } in subjects3
-    #     '
-    # })
+    for subject in groups:
+        print(subject)
+        if config['collection_name'] == 'Baseline_3T':
+            if subject['group'] == '1':
+                    update_data = { 'group': 'HC' }
+            elif subject['group'] == '2':
+                update_data = { 'group': 'CUD' }
+            elif subject['group'] == '3':
+                update_data = { 'group': 'CUD'}
+            else:
+                update_data = { 'group': 'None'}   
+        elif config['collection_name'] == 'subjects': 
+            if subject['group'] == '1':
+                update_data = { 'group': 'HC' }
+            elif subject['group'] == '2':
+                update_data = { 'group': 'OUD' }
+            elif subject['group'] == '3':
+                update_data = { 'group': 'CUD'}
+            else:
+                update_data = { 'group': 'None'}
+        
+        print(update_data)
+        updateArango(collection, subject['narc_id'], update_data)
+        
+        # prune 
+        # aql.execute({
+        #     '
+        #     FOR subject in subjects3
+        #         FILTER subject.group == None
+        #         REMOVE { group: subject.group } in subjects3
+        #     '
+        # })

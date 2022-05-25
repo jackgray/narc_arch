@@ -1,24 +1,14 @@
-from db.utils.dbConnect import getCollection
-from db.utils.dbUpdate import updateArango
+from utils.dbConnect import getCollection
+from utils.dbUpdate import updateArango
+from configs.arango import config
 
 def groupQuery():
-    db, collection = getCollection('MORE', 'subjects3')
-
-    cursor = db.aql.execute(
-        'FOR subject IN subjects3 \
-            FILTER subject.enrollment_group != null \
-            RETURN { narc_id: subject._key, enrollment_group: subject.enrollment_group }',
-        batch_size=1
-    )
+    db, collection = getCollection(config['db_name'], config['collection_name'])
+    querystring = 'FOR s IN ' + config['collection_name'] + ' FILTER s.group != null \
+        RETURN { narc_id: s._key, group: s.group }'
+    resp_cursor = db.aql.execute(querystring, batch_size=1)
     
-    # for subject in cursor:
-        # score calculated from total (raw) score. make sure it exists first
-        # print(subject)
-        # if subject['enrollment_group']:        
-        #     update_data = wasiCalc(int(subject['total']), round(float(subject['age'])) )
-        #     print(update_data)
-        #     updateArango(collection, subject['narc_id'], update_data),
-    return cursor
+    return resp_cursor
    
     
     

@@ -1,10 +1,10 @@
 import json
 import pandas as pd
 
-from db.excel_conv.config import files, sheets
-from db.utils.dbConnect import getCollection
-from db.utils.dbUpdate import updateArango
-from db.configs import arango
+from excel_conv.config import files, sheets
+from utils.dbConnect import getCollection
+from utils.dbUpdate import updateArango
+from configs import arango
 
 def mriData():
     db, collection = getCollection(arango.config['db_name'], arango.config['collection_name'])
@@ -47,35 +47,33 @@ def mriData():
                             session = str(k.split('_')[1])
                             
                             update_data = { 'tasks': { taskname: { 
-                                                'sessions': { session: { 
-                                                    'responses': { 
+                                                'responses': { 
+                                                    session: {
                                                         { version: 
                                                             { k.split('_')[-1]: v }
                                                         }
                                                     }
                                                 }}
-                                            }}}
+                                            }}
                         
                         elif 'movie_' in k:
                             taskname = 'movie'
                             if '69' in k:
-                                session = "1"
+                                sesnum = "1"
                             if '35' in k:
-                                session = "2"
-                                
+                                sesnum = "2"
+                            session = 'ses_' + str(sesnum)
                             k = "_".join(k.split('_')[-2:])
                             if 'mean' in k:
                                 k = k.split('_')[-1]
                             
                             update_data = { 'tasks': { taskname: {
-                                                'sessions': { session: {
-                                                    'responses': { '' },
-                                                    'raw_data': {''},
-                                                    'analysis': { 
-                                                        'LNAc': { k: v }
-                                                        }
-                                                    }}
-                                                }}}
+                                            'analysis': { 
+                                                'LNAc': { 
+                                                    session: {k: v }
+                                                }
+                                            }}
+                                        }}
                                             
                         # print(k)
                         elif k.startswith('fa') or k.startswith('md') or k.startswith('rd'):
@@ -85,16 +83,15 @@ def mriData():
                                 subregion = k.split('_')[-1]
                                 region = 'clusters'
                                 update_data = { 'tasks': { 'diffusion': {
-                                                'sessions': { session: {
-                                                    'analysis': { 
-                                                        'regions': { region: {
-                                                                subregion: { scalar: v }
-                                                                }}
-                                                            },
-                                                    'raw_data': { '' }
-                                                    }}
-                                                }}}
-                                                                                                
+                                                'analysis': { 
+                                                    region: {
+                                                        subregion: { 
+                                                            session: { scalar: v }
+                                                        }}
+                                                    },
+                                                }}
+                                            }
+                                                                                            
                         elif '_hb' in k:
                             split = k.split('_')
                             scalar = split[3].upper()
@@ -103,16 +100,15 @@ def mriData():
                             subregion = split[0]
                             region = region1 + "_" + region2
                             update_data = { 'tasks': { 'diffusion': {
-                                            'sessions': { session: {
-                                                'analysis': { 
-                                                    'regions': { region: {
-                                                            subregion: { scalar: v }
-                                                            }}
-                                                        },
-                                                'raw_data': { '' }
-                                                }}
-                                            }}}
-                                
+                                            'analysis': { 
+                                                region: {
+                                                    subregion: { 
+                                                        session: { scalar: v }
+                                                    }
+                                                }
+                                            }
+                                        }}}
+                                                                        
                         # elif k.startswith('mri'):
                         #     print(k)
                         #     split = k.split('_')

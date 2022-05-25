@@ -130,7 +130,7 @@ def emaQuery():
     '''
     
     subj_dfs = []    # You can store dataframes for each subject as into an array as they are collected
-    # query_result is an arango Cursor object that must be iterated through to be extracted
+    # query_result is an arango Cursor object that must be iterated through to be extracted. each iteration returns python dict
     for subject in query_result:
         ema_days = subject['ema']
         
@@ -146,10 +146,14 @@ def emaQuery():
             if 'day_' in day:
                 day_int = int(day.split('day_')[-1])
                 try: 
-                    # Try statement to catch error when a subject doesn't have a response
-                    if questions['3'] > 7 and day > 15:
-                        # print('\n\nMethod 1\n')
-                        # Get ao of all drugs if subject responds with temptation to do drugs above x on a treatment day past y
+                    # Use try statement to catch error when a subject doesn't have a response for that question
+                    if questions['3'] > 7 and day_int > 15:
+                        
+                        '''
+                        Get ao of all drugs if subject responds with temptation to do drugs above x on a treatment day past y.
+                        Condition that the response to question '3' must be above 7 and the day must be past 15
+                        
+                        '''
                         for druglabel, drug in subject['asi_drug'].items():
                             # handle error when subj doesn't provide ao for indexed drug
                             try: print(druglabel, drug['ao'])

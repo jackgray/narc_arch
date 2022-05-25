@@ -9,11 +9,9 @@ import re
 
 from redcap import Project
 from pymongo import MongoClient
-from db.configs import mongo
-from db.configs import redcap
-from db.configs import arango 
-from db.utils.dbConnect import getCollection
-from db.utils.dbUpdate import updateArango
+from configs import mongo, redcap, arango 
+from utils.dbConnect import getCollection
+from utils.dbUpdate import updateArango
 # from reports import reports
 
 def allRecords():
@@ -59,7 +57,7 @@ def allRecords():
             # convert back to json.
             json.dump(file_data, file, indent = 4)
     
-    surveys = ['caars', 'sogs', 'surps', 'bai', 'bdi','hcq', 'bisbas', 'smast', 'sows', 'tsr', 'sds', 'tlfb', 'colorblind', 'menstrual_v2', 'menstrual', 'ftnd', 'spsrq', 'nada_t', 'nada', 'frsbe', 'mpq', 'strap_r', 'strap', 'staxi', 'ctq', 'pss', 'ffmq', 'wos_s', 'wos','aliens', 'cohs' ]
+    questionaires = ['caars', 'sogs', 'surps', 'bai', 'bdi','hcq', 'bisbas', 'smast', 'sows', 'tsr', 'sds', 'tlfb', 'colorblind', 'menstrual_v2', 'menstrual', 'ftnd', 'spsrq', 'nada_t', 'nada', 'frsbe', 'mpq', 'strap_r', 'strap', 'staxi', 'ctq', 'pss', 'ffmq', 'wos_s', 'wos','aliens', 'cohs' ]
     drugs = ['opioid', 'thc', 'alc', 'coc', 'barb', 'hall', 'sed', 'stim']
     asi_cat1s = [['lastuse'], ['abs'], ['abs_end'], 'dur_yrs', 'hx', 'quit_attempts']
     # asi_cat2s = [['lastuse']['amt', 'date', 'money'], ['abs']['longest', 'end'] ]
@@ -71,21 +69,32 @@ def allRecords():
 #     # Doesn't return 'form' property 
 #     # Find way to identify unique event 
     for subject in records:
+        
+        print('\n\n')
         narc_id = str(subject['narc_id']).strip()
+        current_data = arango_collection.find({'_key': narc_id})
+        # print('CURRENT_DATA')
+        # print(current_data)
         lname = str(subject['lname'])
         fname = str(subject['fname'])
         event_name = str(subject['redcap_event_name'])
         repeat_instrument = str(subject['redcap_repeat_instrument'])
         repeat_instance = subject['redcap_repeat_instance']
         record_id = str(subject['record_id']).strip()
+       
         # enrollmentGroup = str(subject['ie_enrollment_group'])
-        
+        print(record_id)
         if narc_id.startswith('S'):
             narc_id = narc_id.replace('S', '')
         if len(narc_id) < 1:
             narc_id_cursor = arango_collection.find({'record_id': record_id})
             for i in narc_id_cursor:
                 narc_id = i['_key']
+                print("NARCID")
+        if len(narc_id) < 1:
+            continue
+            
+            
 
             # print("Dropped 'S' from narc ID: ", narc_id)
         # print("\n\n\n", subject)
@@ -94,10 +103,12 @@ def allRecords():
         # print("\nUpdating form responses for redcap record ID ", record_id) 
         # print("{'<redcap_repeat_instrument_name>': {'<redcap_repeat_instance_count>': {'_' separated key 1st element: {'<elements 2-n>': {'<value>}}}")
         count = 1
+        update_data = {'_key': narc_id}
         for key,value in subject.items():
-            update_data = []
+            print("\n\nUPDATE DATA")
+            print(update_data)
             count=+1
-            if len(str(value)) > 0 and value != '0': 
+            if len(str(value)) > 2 and value != '0': 
                 # print('\n\n\nNARC',narc_id)
 
                 # print(key, ": ", value) 
@@ -109,20 +120,25 @@ def allRecords():
                 
                 if 'asi' in key and not 'wasi' in key:
                     if any (x in kelements[1] for x in drugs):
-                        update_data = {'surveys': {'asi': {'drugs': { kelements[1]: { '_'.join(kelements[2:]): value } } } } } 
+                        update_data.update({'questionaires': {'asi': { kelements[1]: { '_'.join(kelements[2:]): value } } } } )
                         # print(update)
                     else:
-                        update_data = {'surveys': {'asi': { '_'.join(kelements[1:]): value } } }
+                        update_data = {'questionaires': {'asi': { '_'.join(kelements[1:]): value } } }
                         # updateArango(update, record_id)
-                
+                    update_attributes = 'questionaires.asi'
+                    hash_index_fields = ['questionaires: { asi }']
+                    match_criteria = { '_key': narc_id }
+                    
                 elif 'wasi' in key:
-                    update_data = {'surveys': {'wasi': { '_'.join(kelements[1:]): value } } }
-                elif 'wrat' in key:
-                    if 'tan' or 'blue' in key:  
-                        update_data = {'surveys': {'wrat': {kelements[1]: { '_'.join(kelements[2:]): value } } } }
-                    else:
-                        update_data = {'surveys': {'wrat': { '_'.join(kelements[1:]): value } } }
-
+                    update_data = {'questionaires': {'wasi': { '_'.join(kelements[1:]): value } } }
+                    update_attributes = 'questionaires.wasi'
+                    hash_index_fields = ["{ questionaires: { wasi: { date }}}"]
+                    match_criteria = { '_key': narc_id }
+                elif 'wrat' in key:                
+                    update_data = {'questionaires': {'wrat': { '_'.join(kelements[1:]): value } } }
+                    update_attributes = 'questionaires.wrat'
+                    hash_index_fields = ['{ questionaires: { wrat: { date']
+                    match_criteria = { '_key': narc_id}
                     # print(update)
                     
                     # updateArango(update, record_id)
@@ -133,32 +149,42 @@ def allRecords():
                     
                     '''
         
+              
                 
-                #### CURRDRUGS_DAILY_INTERVIEW ########
-                elif repeat_instrument == 'currdrugs_daily_interview':
-                    # print('\nnarc_id: ', narc_id)
-                    # print('record_id: ', record_id)
-                    # print('instance: ', repeat_instance)
-                    # print(key, value)
-                    session = 'ses_' + str(repeat_instance)
-                    if key.startswith('curr_'):
-                        key = '_'.join(kelements[1:])
-                    elif key.endswith('currdrugs'):
-                        key = '_'.join(kelements[:-1])
-                    elif key.startswith('currdrugs_daily'):
-                        key = '_'.join(kelements[2:])
-                    update_data = { 'surveys': { repeat_instrument: { 'sessions': { repeat_instance: { key: value }}}}}
-                    # print(update_data)
-                    
+                # Case when record is from a repeat instrument
                 elif len(repeat_instrument) > 0:
                     session = 'ses_' + str(repeat_instance)
                     if str(kelements[0]).strip() == repeat_instrument:
                         k = "_".join(kelements[1:])
                     else:
                         k = key
-                    update_data = { 'surveys': { repeat_instrument: { 'sessions': { repeat_instance: {k: value}}}}}
-                    # print(json.dumps(update_data))
                     
+                    
+                        
+                    #### CURRDRUGS_DAILY_INTERVIEW ########
+                    # if repeat_instrument == 'currdrugs':
+                    #     # print(key, value)
+                    #     session = 'ses_' + str(repeat_instance)
+                    #     if key.startswith('curr_'):
+                    #         key = '_'.join(kelements[1:])
+                    #     elif key.endswith('currdrugs'):
+                    #         key = '_'.join(kelements[:-1])
+                    #     elif key.startswith('currdrugs_daily'):
+                    #         key = '_'.join(kelements[2:])
+                        
+                    #     currdrugs_session = repeat_instance
+                    #     fieldstr = str("{questionaires: { currdrugs: { redcap_repeat_instance }")
+                    #     index_fields = [fieldstr]
+                    #     match_criteria = {'_key': narc_id, 'questionaires': { 'currdrugs': { 'redcap_repeat_instance': repeat_instance}}}
+                    #     # print(update_data)
+                    
+                    update_data.update({ 'questionaires': { repeat_instrument: [{k: value}] } })
+                    update_attributes = 'questionaires.' + repeat_instrument + '[' + str(repeat_instance) + ']'
+                    fieldstr = 'questionaires.', repeat_instrument, '.redcap_repeat_instance'
+                    hash_index_fields = [fieldstr]
+                    # date = subject[repeat_instrument]
+                    match_criteria = { '_key': narc_id, 'questionaires': { repeat_instrument: [{'redcap_repeat_instance': repeat_instance }] } }
+                    # print(json.dumps(update_data)) 
                     
                 elif 'ema' in key:
                     
@@ -167,10 +193,18 @@ def allRecords():
                         key = '_'.join(key.split('_')[1:])
                     if 'complete' in key:
                         key = 'complete'
-                    update_data = { 'surveys': { 'ema': { 'sessions': { session: {key: value }}}}}
+                    # if 'date' in value == 
+                    # date = subject['asi_date']
+                    update_data = update_data.update({ 'questionaires': { 'ema': [{key: value }] }})
+                    # print('\nEMA: ', session)
+                    update_attributes = 'questionaires.ema'
+                    hash_index_fields = ['questionaires/ema/date']
+                    match_criteria = { '_key': narc_id, 'questionaires': { 'ema': [{ 'date': subject['ema_date']}] }}
+                    filter_criteria = 'questionaires.ema.date == ' + subject['ema_date']
                     # print(update_data)
                     
                 elif 'panas' in key:
+                    date = subject['panas_date']
                     # print(event_name, repeat_instrument, repeat_instance)
                     # print(key, value)
                     
@@ -179,19 +213,64 @@ def allRecords():
                     
                     if key.startswith('panas'):
                         key = '_'.join(key.split('_')[1:])
-                    update_data = { 'surveys': { 'panas': {key: value }}}
+                    try: update_data.update({ 'questionaires': { 'panas':  [{key: value}] } })
+                    except: pass
+                    update_attributes = 'questionaires.panas[0]'
+                    text_index_fields = ['questionaires.panas']
+                    hash_index_fields = ['questionaires.panas.date']
+                    match_criteria = {'_key': narc_id, 'questionaires': { 'panas': { 'date': subject['panas_date']} } }
                     # print(update_data)
                 
-                elif any (x in surveys for x in kelements):
+                elif any (x in questionaires for x in kelements):
                     
-                    if 'complete' in key:
-                        # print(key)
-                        key = 'complete'
-                        survey = kelements[-2]
+                    # if 'complete' in key:
+                    #     pass
+                    #     # # print(key)
+                    #     # k = 'complete'
+                    #     # questionaire = questionaire
+                    
+                        
+                    if 'strap' in key or 'nada' in key and not 'complete' in key:
+                        print('key:', key)
+                        k = '_'.join(kelements[2:])
+                        questionaire = '_'.join(kelements[0:2])
+                        print('questionaire: ', questionaire)
+                    
+                    elif 'non_dual' in key or 'aliens' in key:
+                        questionaire = questionaire
+                        k = kelements[-1]
                     else: 
-                        key = '_'.join(kelements[1:])
-                        survey = kelements[0]
-                    update_data = { 'surveys': { survey: { key: value }}}
+                        print('key: ', key)
+                        if len(kelements) < 3:
+                            k = '_'.join(kelements[1:])
+                            questionaire = kelements[0]
+                        else: 
+                            k = kelements[-1]
+                            questionaire = questionaire
+                        
+                    
+                    print('questionaire: ', questionaire)
+                    print(update_data)
+                    try: update_data.update({ 'questionaires': { questionaire: [{k: value }] } } )
+                    except: pass
+                    update_attributes = 'questionaires.' + questionaire + '[0]'
+
+                    # date = subject['questionaires'][questionaire]['date']
+                    # fieldstr = ' '.join("{ questionaires: {", questionaire, ": { date }}")
+                    # hash_index_fields = [fieldstr]
+                    q_date = questionaire + '_date'
+                    if 'menstrual' in key:
+                        questionaire = 'menstrual'
+                        q_date = 'menstrual_hx_date'
+                    print('q_date: ' + q_date)
+                    
+                    if questionaire == 'ftnd':
+                        match_criteria = { '_key': narc_id }
+                    else:
+                        match_criteria = { '_key': narc_id, 'questionaires': { questionaire: { 'date': subject[q_date]}}}
+                        filter_criteria = 'questionaires.' + questionaire + '.date == ' + subject[q_date]
+                    index_type = 'persistent'
+                    # update_data = { 'questionaires': { questionaire: [{date: q_date }] } } 
                     
                 elif key.startswith('phi_'):
                     update_data = { 'phi': { '_'.join(kelements[1:]): value}}
@@ -205,27 +284,40 @@ def allRecords():
                         k = key
                     else:
                         k = '_'.join(kelements[1:])
-                    # if key.endswith('currdrugs'):
-                        
-                    #     kelements[0] = key.split('currdrugs')[0]
-                        
                         
                     if 'curr' in key:
                         print(k)
                         kelements[0] = 'curr_drugs'
                         k = '_'.join('_'.join(key.split('_currdrugs')).split('currdrugs_'))
-                    update_data = { 'tasks': { 'sessions': {session.split('_')[-1]: {'surveys': {kelements[0]: { k: value }}}}}}
+                    update_data = update_data.update({ 'tasks': { 'curr_drugs': [{kelements[0]: { k: value, 'session': event_name.split("_")[2] }}] } } )
+                    update_attributes = 'tasks.curr_drugs[0]'
+                    hash_index_fields = ['tasks/curr_drugs/date']
+                    match_criteria = { '_key': narc_id, 'tasks': { 'curr_drugs': [{'session': event_name.split('_')[2] }] }}
                 else:
                     # print(event_name)
                     # print(key, value)
                     pass
-                if len(update_data) > 0:
+                # if len(update_data) > 0 and len(narc_id) > 0:
                     # update_data.update({"_": narc_id })
 
                     # subjects_collection.find_one_and_update({'_id': narc_id}, {'$set': update_data})
-                    print(update_data)
-                    # print(json.loads(update_data))
-                    updateArango(arango_collection, narc_id, update_data)
+                    
+                    
+                    # print(update_data)
+                    # arango_collection.update_match({'_key': narc_id }, update_data)
+
+                    # query_string = str("FOR s in " + arango.config['collection_name'] + " FILTER s._key == " + narc_id + " FILTER filter_criteria UPDATE s WITH { " + ':{'.join(update_attributes.split('.')[0:2]) + "}: APPEND(s." + update_attributes + ", " + json.dumps(update_data)+ ")} IN " + arango.config['collection_name'] )
+                    # print(query_string)
+                    # arangodb.aql.execute(query_string,
+                    #                 batch_size=1
+                    #             )
+    
+                    # if len(hash_index_fields) > 0:
+                    #     print(hash_index_fields)
+                    #     index = arango_collection.add_persistent_index(fields=hash_index_fields, sparse=True)
+                    #     print(index)
+    print(json.loads(update_data))
+                    # updateArango(arango_collection, narc_id, update_data)
 
                 # if any ([x in key for x in questionaires]):
                     # print('x: ', kelements[0], kelements[1:], value)

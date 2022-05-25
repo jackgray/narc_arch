@@ -1,5 +1,5 @@
 from arango import ArangoClient
-from db.configs import arango, mongo
+from configs import arango, mongo
 
 from pymongo import MongoClient
 
@@ -33,28 +33,28 @@ def getCollection(db_name, collection_name):
 
             # create hash index for collection 
             print("Creating hash index.")
-            collection.add_hash_index(fields=['record_id'], unique=True)
+            collection.add_hash_index(fields=['tasks', 'record_id','narc_id'], unique=True)
 
             collection.truncate() 
         return collection
     if not collection_name:
-        collection = createCollection(config['collection_name'])
+        collection = createCollection(collection_name)
     else:
         collection = createCollection(collection_name)
     return db, collection
     
 def getGraph(db_name, graph_name):   
     #############  ArangoDB Setup  #############
-    client = ArangoClient(hosts=config['arango_endpoint'])  # Replace this with env variable
+    client = ArangoClient(hosts=arango.config['arango_endpoint'])  # Replace this with env variable
     print("Setting up client object for ", client)
     # Connect to system as root - returns api wrapper for "_system" database
-    sys_db = client.db('_system', verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+    sys_db = client.db('_system', verify=False, username=arango.config['sys_dbName'], password=arango.config['root_passwd'])
     print("Connected to system db: ", sys_db)
     # Connect to db as root user - returns api wrapper for this database
     if not db_name: 
-        db = client.db(config['db_name'], verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+        db = client.db(arango.config['db_name'], verify=False, username=arango.config['sys_dbName'], password=arango.config['root_passwd'])
     else:
-        db = client.db(db_name, verify=False, username=config['sys_dbName'], password=config['root_passwd'])
+        db = client.db(db_name, verify=False, username=arango.config['sys_dbName'], password=arango.config['root_passwd'])
 
     print("Connected to db: ", db)
     
@@ -73,7 +73,7 @@ def getGraph(db_name, graph_name):
             # graph.truncate() 
         return graph
     if not graph_name:
-        graph = createGraph(config['collection_name'])
+        graph = createGraph(arango.config['collection_name'])
     else:
         graph = createGraph(graph_name)
 

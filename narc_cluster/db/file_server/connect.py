@@ -1,6 +1,6 @@
 import paramiko
 from ssh_utilities import Connection
-from db.configs import fileServer
+from configs import fileServer
 
 
 def sshConnect():
