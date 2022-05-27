@@ -123,19 +123,19 @@ def allRecords():
                         update_data.update({'questionaires': {'asi': { kelements[1]: { '_'.join(kelements[2:]): value } } } } )
                         # print(update)
                     else:
-                        update_data = {'questionaires': {'asi': { '_'.join(kelements[1:]): value } } }
+                        update_data.update({'questionaires': {'asi': { '_'.join(kelements[1:]): value } } })
                         # updateArango(update, record_id)
                     update_attributes = 'questionaires.asi'
                     hash_index_fields = ['questionaires: { asi }']
                     match_criteria = { '_key': narc_id }
                     
                 elif 'wasi' in key:
-                    update_data = {'questionaires': {'wasi': { '_'.join(kelements[1:]): value } } }
+                    update_data.update({'questionaires': {'wasi': { '_'.join(kelements[1:]): value } } })
                     update_attributes = 'questionaires.wasi'
                     hash_index_fields = ["{ questionaires: { wasi: { date }}}"]
                     match_criteria = { '_key': narc_id }
                 elif 'wrat' in key:                
-                    update_data = {'questionaires': {'wrat': { '_'.join(kelements[1:]): value } } }
+                    update_data.update({'questionaires': {'wrat': { '_'.join(kelements[1:]): value } } })
                     update_attributes = 'questionaires.wrat'
                     hash_index_fields = ['{ questionaires: { wrat: { date']
                     match_criteria = { '_key': narc_id}

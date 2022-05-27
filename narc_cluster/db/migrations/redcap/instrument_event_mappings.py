@@ -1,8 +1,7 @@
 
 import json
 from redcap import Project
-from all_records import allRecords
-from config import config
+from configs.redcap import config
 
 def allInstruments():
     ############  PyCap Setup ####################
@@ -19,11 +18,10 @@ def allInstruments():
         
         # insts.append(json.loads(form))
         print('fuck')
-        print(json.loads(form))
+        print(json.dumps(form))
+        print(json.dumps(event))
         
         # print(json.dumps(insts))
-
-    return insts
     
     # unique_event_name = event_name
     # form = form_name

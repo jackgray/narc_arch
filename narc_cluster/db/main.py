@@ -1,7 +1,8 @@
 from arango_queries.respAccrossSessions import respAccrossSessions
 from migrations.redcap.records import addRecords
 from migrations.redcap.mssm.records import mssmRecords
-# from migrations.redcap.enrollment import addEnrollments
+# from migrations.redcap.instrument_event_mappings import allInstruments
+from migrations.redcap.enrollment import addEnrollments
 
 from transformations.enrollment_group import xfrmGroupCode
 
@@ -14,11 +15,16 @@ from file_server.add_baseline import addBaselineFiles
 import json
 
 '''
+STEP 1: Create assessment/task vertices
+'''
+# allInstruments()
+
+'''
 STEP 1: import enrollment data
 '''
 # addEnrollments()
 # change group code from numbers to letters (HC, OUD, CUD, IED)
-xfrmGroupCode()
+# xfrmGroupCode()
 
 '''
 STEP 2: import RedCap data
@@ -35,6 +41,7 @@ STEP 3: import MRI task/analysis data
 STEP 4: import file server MRI path data
 '''
 # crawlDirs()
+addMoreFiles()
 # addBaselineFiles()
 
 # ema_sessions = respAccrossSessions('choice')

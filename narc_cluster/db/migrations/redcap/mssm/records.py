@@ -218,6 +218,7 @@ def mssmRecords():
                     continue
                 if len(update_data) > 0 and len(group) > 0:
                     update_data.update({"group": group })
+                    update_data = {"group": group}
 
                     # subjects_collection.find_one_and_update({'_id': narc_id}, {'$set': update_data})
                     

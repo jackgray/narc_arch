@@ -9,16 +9,18 @@ def xfrmGroupCode():
     
     for subject in groups:
         print(subject)
-        if config['collection_name'] == 'Baseline_3T':
+        if config['collection_name'] == 'Baseline3T_Subjects':
             if subject['group'] == '1':
-                    update_data = { 'group': 'HC' }
+                update_data = { 'group': 'HC' }
             elif subject['group'] == '2':
                 update_data = { 'group': 'CUD' }
             elif subject['group'] == '3':
-                update_data = { 'group': 'CUD'}
+                update_data = { 'group': 'IED'}
+            elif subject['group'] == '4':
+                update_data = {'group': 'CUD/IED'}
             else:
-                update_data = { 'group': 'None'}   
-        elif config['collection_name'] == 'subjects': 
+                update_data = { 'group': subject['group']}   
+        elif config['collection_name'] == 'MORE_Subjects': 
             if subject['group'] == '1':
                 update_data = { 'group': 'HC' }
             elif subject['group'] == '2':
@@ -26,7 +28,7 @@ def xfrmGroupCode():
             elif subject['group'] == '3':
                 update_data = { 'group': 'CUD'}
             else:
-                update_data = { 'group': 'None'}
+                update_data = { 'group': subject['group']}
         
         print(update_data)
         updateArango(collection, subject['narc_id'], update_data)

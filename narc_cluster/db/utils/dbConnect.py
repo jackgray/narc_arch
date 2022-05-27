@@ -102,6 +102,7 @@ def getVertexCollection(graph, vertex_name):
 def getEdgeCollection(graph, edge_name, from_vertex, to_vertex):
     print('\nGetting edge collection: ', edge_name)
     if graph.has_edge_definition(edge_name):
+        print('Found edge collection ', edge_name)
         edge_collection = graph.edge_collection(edge_name)
     else:
         edge_collection = graph.create_edge_definition(

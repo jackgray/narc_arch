@@ -1,7 +1,7 @@
 import json
 from arango import ArangoClient
 from redcap import Project
-from utils.dbConnect import getCollection
+from utils.dbConnect import getCollection, getGraph, getVertexCollection
 from utils.redcapConnect import redcapConnect
 from configs import arango, redcap, mongo
 from configs.reports import reports
@@ -13,8 +13,10 @@ def addEnrollments():
     mongo_collection = client.more['subjects']
 
     db, arango_collection = getCollection(arango.config['db_name'], arango.config['collection_name'])
+    narc_dev_db, more_graph = getGraph(arango.config['db_name'], "NARC_Graph")
+    subj_vertices = getVertexCollection(more_graph, arango.config['collection_name'])
+    
     proj = redcapConnect()
-
     # Contains all responses from enrollment report by report_id
     enrollment_rpt = proj.export_report(report_id=reports['enrollment'], format_type='json')
 
@@ -49,7 +51,8 @@ def addEnrollments():
                     }}
         
         print(update_data)
-        arango_collection.insert(update_data)
+        subj_vertices.insert(update_data)
+        # arango_collection.insert(update_data)
         # for k, v in subject.items():
         #     # print(k,v)
         #     if len(v) >0:
