@@ -7,7 +7,9 @@ def groupQuery():
 
     cursor = db.aql.execute(
         'FOR s IN subjects \
-            movie_mris = s.tasks.movie.raw_data != null \
+            movie_mris = s.tasks.movie.raw_data  \
+            group = s.group \
+            FILTER group == 
             RETURN { narc_id: subject._key, enrollment_group: subject.enrollment_group }',
         batch_size=1
     )

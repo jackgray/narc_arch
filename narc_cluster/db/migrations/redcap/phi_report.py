@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 from datetime import date
-
-from narc_cluster.db.configs.reports import reports
-from narc_cluster.db.utils.redcapConnect import redcapConnect
-from narc_cluster.db.utils.dbConnect import dbConnect
-from narc_cluster.db.utils.dbUpdate import updateArango
+from configs import arango
+from configs.reports import reports
+from utils.redcapConnect import redcapConnect
+from utils.dbConnect import getCollection
+from utils.dbUpdate import updateArango
 
 def phiReport():
-    db, collection = dbConnect()    # Get arango db and collection objects
+    db, collection = getCollection(arango.config['db_name'], arango.config['collection_name'])    # Get arango db and collection objects
     proj = redcapConnect()
     phi_emergency = proj.export_report(reports['phi_emergency'], format_type='json')
     
@@ -25,6 +25,12 @@ def phiReport():
     for subject in phi_emergency:
         # print('\n')
         if subject['redcap_event_name'] == 'screening_arm_1':
+            if len(subject['narc_id']) < 1:
+                narc_id_cursor = collection.find({'record_id': subject['record_id']})
+                for i in narc_id_cursor:
+                    subject['narc_id'] = i['_key']
+            else: 
+                subject['narc_id'] = subject['narc_id'].replace('S', '')
             # calc age if missing and DOB found
             if len(subject['age']) < 1 and len(subject['phi_dob']) > 0:
                 print(subject['phi_dob'])
@@ -33,10 +39,16 @@ def phiReport():
                 print("No age found. Calculating (WARNING: only returns rounded int).")
                 subject['age'] = age(date(int(dob[0]), int(dob[1]), int(dob[2])))
                 print(subject['age'])
+            
             # calc DOB if missing and age found 
             if len(subject['phi_dob']) < 1 and len(subject['age']) > 0:
                 print("missing dob")
             
             update_data = { 'dob': subject['phi_dob'], 'age': subject['age'] } 
-            # print(update_data)
-            updateArango(db, subject['record_id'], update_data)                   
+            update_data.update({'_key': subject['narc_id']})
+            print(update_data)
+            try:
+                print('updating phi info: ', update_data)
+                updateArango(collection, subject['narc_id'], update_data)  
+            except:
+                print("Could not update subject with info ", subject)                 

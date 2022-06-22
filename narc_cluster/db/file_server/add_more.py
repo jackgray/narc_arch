@@ -1,6 +1,7 @@
 
 import sys
 import pprint
+import json
 
 from file_server.connect import sshConnect
 from utils.graphItMRI import graphItMRI
@@ -56,7 +57,7 @@ def addMoreFiles():
     prev_subj = None;
     for path in paths:
         fullpath = path
-        if path.split('/')[6].startswith('sub'):
+        if path.split('/')[6].startswith('sub') and 'nii.gz' in path and 'sbref' not in path:
             try:
                 filename = path.split('/')[-1]
                 session = str(filename.split('_')[1].split('-')[1])
@@ -97,10 +98,9 @@ def addMoreFiles():
                        
                     # except: 
                     #     print("err")
+                    graphItMRI(taskname, session, seriesname, scan_type, narc_id, filename, modality, runname, parent_path, missed, collected)
                     graphItTasks(taskname, filename)
-                    # missed, collected = graphItMRI(taskname, session, seriesname, scan_type, narc_id, filename, modality, runname, parent_path, missed, collected)
-                    # print('Updated subjects collection')
-                    # print("MISSED: ", missed, "\nCOLLECTED: ", collected)
+                    
                     # try:
                     #     mri_task_vertices.insert(update_data)
                     # except: 
@@ -114,7 +114,7 @@ def addMoreFiles():
                                     
                                 
                                                 
-                    # print(json.dumps(update_data, indent=2, sort_keys=True))
+                    print(json.dumps(update_data, indent=2, sort_keys=True))
                     # mri_data = update_data['task
                     # update_data['tasks']['raw_data'][session]['subjects'].append()
                     # print(mri_data)

@@ -1,6 +1,10 @@
 from arango_queries.respAccrossSessions import respAccrossSessions
+from arango_queries.wasi import wasiUpdate
+from arango_queries.wrat import wratUpdate
+from arango_queries.wasi import wasiUpdate
 from migrations.redcap.records import addRecords
 from migrations.redcap.mssm.records import mssmRecords
+from migrations.redcap.phi_report import phiReport
 # from migrations.redcap.instrument_event_mappings import allInstruments
 from migrations.redcap.enrollment import addEnrollments
 
@@ -22,15 +26,22 @@ STEP 1: Create assessment/task vertices
 '''
 STEP 1: import enrollment data
 '''
-# addEnrollments()
-# change group code from numbers to letters (HC, OUD, CUD, IED)
-# xfrmGroupCode()
+def Step1():
+    addEnrollments()
+    # change group code from numbers to letters (HC, OUD, CUD, IED)
+    xfrmGroupCode()
+    phiReport()
+try:
+    Step1()
+except: pass
 
 '''
 STEP 2: import RedCap data
 '''
 # addRecords()
-# mssmRecords()
+# # mssmRecords()
+# wasiUpdate()
+# wratUpdate()
 
 '''
 STEP 3: import MRI task/analysis data
@@ -40,9 +51,12 @@ STEP 3: import MRI task/analysis data
 '''
 STEP 4: import file server MRI path data
 '''
-# crawlDirs()
-addMoreFiles()
-# addBaselineFiles()
+def Step4():
+    # crawlDirs()
+    addMoreFiles()
+    # addBaselineFiles()
+try: Step4()
+except: pass
 
 # ema_sessions = respAccrossSessions('choice')
 

@@ -13,8 +13,8 @@ def addEnrollments():
     mongo_collection = client.more['subjects']
 
     db, arango_collection = getCollection(arango.config['db_name'], arango.config['collection_name'])
-    narc_dev_db, more_graph = getGraph(arango.config['db_name'], "NARC_Graph")
-    subj_vertices = getVertexCollection(more_graph, arango.config['collection_name'])
+    narc_dev_db, graph = getGraph(arango.config['db_name'], arango.config['graph_name'])
+    subj_vertices = getVertexCollection(graph, arango.config['collection_name'])
     
     proj = redcapConnect()
     # Contains all responses from enrollment report by report_id

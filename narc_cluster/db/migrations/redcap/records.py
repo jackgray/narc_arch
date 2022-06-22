@@ -22,8 +22,8 @@ def addRecords():
     collected = []
     
     arangodb, arango_collection = getCollection(arango.config['db_name'], arango.config['collection_name'])
-    arangodb, more_graph = getGraph('NARC_DEV', 'NARC_Graph')
-    subject_vertices = getVertexCollection(more_graph, arango.config['collection_name'])
+    arangodb, graph= getGraph(arango.config['db_name'], arango.config['graph_name'])
+    subject_vertices = getVertexCollection(graph, arango.config['collection_name'])
    
     mongodb = MongoClient(mongo.config['endpoint'])
     mongo_collection = mongodb.more.subjects
@@ -39,7 +39,7 @@ def addRecords():
         # print(all_records_fromfile)
         records = all_records_fromfile
     
-    assessments = ['wasi', 'wrat', 'caars', 'sogs', 'surps', 'bai', 'bdi','hcq', 'bisbas', 'smast', 'sows', 'tsr', 'sds', 'tlfb', 'colorblind', 'menstrual_v2', 'menstrual', 'ftnd', 'spsrq', 'nada_t', 'nada', 'frsbe', 'mpq', 'strap_r', 'strap', 'staxi', 'ctq', 'pss', 'ffmq', 'wos_s', 'wos','aliens', 'cohs' ]
+    assessments = ['caars', 'sogs', 'surps', 'bai', 'bdi','hcq', 'bisbas', 'smast', 'sows', 'tsr', 'sds', 'tlfb', 'colorblind', 'menstrual_v2', 'menstrual', 'ftnd', 'spsrq', 'nada_t', 'nada', 'frsbe', 'mpq', 'strap_r', 'strap', 'staxi', 'ctq', 'pss', 'ffmq', 'wos_s', 'woss','aliens', 'cohs', 'mini', 'mcq']
     drugs = ['opioid', 'thc', 'alc', 'coc', 'barb', 'hall', 'sed', 'stim']
     asi_cat1s = [['lastuse'], ['abs'], ['abs_end'], 'dur_yrs', 'hx', 'quit_attempts']
     # asi_cat2s = [['lastuse']['amt', 'date', 'money'], ['abs']['longest', 'end'] ]
@@ -66,216 +66,273 @@ def addRecords():
             continue
             
         subj_data = {'_key': narc_id}
-        for key,value in subject.items():
-            itemcount=+1
-            print('ITEM COUNT ', itemcount)
-            if len(str(value)) > 0 and value != '0': 
+        if narc_id != '66666':
+            for key,value in subject.items():
+                itemcount=+1
+                # print('ITEM COUNT ', itemcount)
+                if len(str(value)) > 0 and str(value) != '0': 
 
-                kelements= key.split('_')
-                kelement_val = re.split('___', key)
+                    kelements= key.split('_')
+                    kelement_val = re.split('___', key)
 
-                subcat = kelement_val[0].split('_')
-                
-                if 'asi' in key and not 'wasi' in key:
-                    asi = getVertexCollection(more_graph, 'ASI_Assessment')
-                    asi_edge = getEdgeCollection(more_graph, 'ASI_Response_edge', 'MORE_Subjects', 'ASI_Assessment')
-                    if any (x in kelements[1] for x in drugs):
+                    subcat = kelement_val[0].split('_')
+                    
+                    if kelements[0]== 'asi':
+                        questionnaire = 'asi'
+                        print("\nASI")
+                        if any (x in kelements[1] for x in drugs):
+                            questionnaire = 'asi'
+                            question = "_".join(kelements[2:])
+                            # except: print("nope") 
+                            # pass
                         
+                            update_data = {'assessments': {questionnaire: { kelements[1]: { question: value } } } } 
+                            # graph.link(asi_resp, _from, _id)
                         
-                        questionKey = "".join(kelements[1:]).strip().replace(' ', '').replace('-', '')
-                        print(questionKey)
-                        _id = str('ASI_Assessment/' + questionKey)
-                        _from = 'Subjects' + '/' + str(narc_id)
-                        print(asi)
-                        print(_id, _from)
-                        try: asi.insert({"_key": questionKey})
-                        except: print("Could not insert. Probably exists already.")
-                        # except: print("nope") 
-                        # pass
-                        asi_resp = asi.get({"_id": _id})
-                        print("ASI RESP")
-                        print(asi_resp)
-                        narc_ids = [narc_id]
-                        print(asi_resp['responses'][value])
-                        for i in asi_resp['responses'][value]:
-                            if len(i) > 0:
-                                narc_ids.append(i)
-                            # except: print("Could not append narc_id")
-                        narc_ids = list(dict.fromkeys(narc_ids))
-                        print("BREAK")
-                        question = "_".join(kelements[1:])
-                        more_graph.update_vertex({"_id": _id, "question": question, "responses": {value: narc_ids}})
-                        update_data = {'assessments': {'asi': { kelements[1]: { '_'.join(kelements[2:]): value } } } } 
-                        # more_graph.link(asi_resp, _from, _id)
-                        try:
-                            addEdge(asi_edge, _from, _id)
-                        except:
-                            print("Could not link vertices. Edge probably exists already")
-                            pass
-                    else:
-                        update_data = {'assessments': {'asi': { '_'.join(kelements[1:]): value } } }
-                    
-                # elif 'wasi' in key:
-                #     update_data = {'assessments': {'wasi': { '_'.join(kelements[1:]): value } } }
-                    
-                    
-                   
-                # elif 'wrat' in key:                
-                #     update_data = {'assessments': {'wrat': { '_'.join(kelements[1:]): value } } }
-                    
-                    '''
-                    
-                    reports idea: assume all reports on redcap preceded with "toDB_ are legitimate. scan for all reports, add them based on their name by subject
-                    
-                    '''
-                
-                # Case when record is from a repeat instrument
-                elif len(repeat_instrument) > 0:
-                    if last_instrument == (repeat_instrument or 0):
-                        count=+1
-                    else:
-                        count=0
-                        last_instrument = repeat_instrument
-                    # if repeat instrument is the same as last iteration, keep counting question #
-                    # if new repeat instrument, start count over
-                    
-                    session = 'ses_' + str(repeat_instance)
-                    if str(kelements[0]).strip() == repeat_instrument:
-                        k = "_".join(kelements[1:])
-                    else:
-                        k = key
+                        # else:
+                        question = '_'.join(kelements[1:])
+                        update_data = {'assessments': {'asi': { question: value } } }
+                        # graphIt(graph, arango.config['collection_name'], narc_id, questionnaire, question, value)
+
                         
-                    ### CURRDRUGS_DAILY_INTERVIEW ########
-                    if repeat_instrument == 'currdrugs':
-                        # print(key, value)
+                    elif kelements[0] == 'wasi':
+                        print('\nWASI')
+                        print(key, value)
+                        question = '_'.join(kelements[1:])
+                        questionnaire = 'wasi'
+                        update_data = {'assessments': {'wasi': { question: value } } }
+                          
+                    
+                    elif kelements[0] == 'wrat':
+                        questionnaire = 'wrat'
+                        print('\n\n\n\n\n\n\n\n\nWRAT\n\n\n\n\n\n\n\n')    
+                        print(key, value) 
+                        if kelements[1] == 'blue' or kelements[1] == 'tan': 
+                            question = '_'.join(kelements[2:])         
+                            update_data = {'assessments': {'wrat': {'version': kelements[1], question: value } } }
+                        else:
+                            question = '_'.join(kelements[1:])
+
+                            update_data = {'assessments': {'wrat': { question: value } } }
+                        print(update_data)
+    # # '''
+
+    # reports idea: assume all reports on redcap preceded with "toDB_ are legitimate. scan for all reports, add them based on their name by subject
+
+    # '''
+                    
+                    # Case when record is from a repeat instrument
+                    elif len(repeat_instrument) > 0:
+                        if last_instrument == (repeat_instrument or 0):
+                            count=+1
+                        else:
+                            count=0
+                            last_instrument = repeat_instrument
+                        # if repeat instrument is the same as last iteration, keep counting question #
+                        # if new repeat instrument, start count over
+                        
                         session = 'ses_' + str(repeat_instance)
-                       
-                        if kelements[-1] == 'currdrugs':
-                            k = "_".join(kelements[:-1])
-                        if key.startswith('curr_'):
-                            k = '_'.join(kelements[1:])
-                        elif key.endswith('currdrugs'):
-                            k = '_'.join(kelements[:-1])
-                        elif key.startswith('currdrugs_daily'):
-                            k = '_'.join(kelements[2:])
+                        if str(kelements[0]).strip() == repeat_instrument:
+                            question = "_".join(kelements[1:])
+                        else:
+                            question = key
+                            
+                    #     ### CURRDRUGS_DAILY_INTERVIEW ########
+                        if repeat_instrument == 'currdrugs':
+                            # print(key, value)
+                            session = 'ses_' + str(repeat_instance)
                         
-                        fieldstr = str("{assessments: { currdrugs: { redcap_repeat_instance }")
-                        index_fields = [fieldstr]
-                        match_criteria = {'_key': narc_id, 'assessments': { 'currdrugs': { 'redcap_repeat_instance': repeat_instance}}}
-                        # print(update_data)
-                    
-                    update_data = { 'assessments': { repeat_instrument: { session: {k: value} } } }
-
-                    
-                elif 'ema' in key:
-                    
-                    session = 'ses_' + event_name.split('_')[2]
-                    if key.startswith('ema_'):
-                        key = '_'.join(key.split('_')[1:])
-                    if 'complete' in key:
-                        key = 'complete'
-                    # date = subject['asi_date']
-                    update_data = { 'assessments': { 'ema': { session: {key: value } }} }
-              
-                    
-                elif 'panas' in key:
-                    date = subject['panas_date']
-                    
-                    if 'complete' in key:
-                        key = 'complete'
-                    
-                    if key.startswith('panas'):
-                        key = '_'.join(key.split('_')[1:])
-                    try: update_data.update({ 'assessments': { 'panas':  {key: value} } })
-                    except: pass
-              
-                elif any (x in assessments for x in kelements):
-                    
-                    # if 'complete' in key:
-                    #     pass
-                    #     # # print(key)
-                    #     # k = 'complete'
-                    #     # questionaire = questionaire
-                    
+                            if kelements[-1] == 'currdrugs':
+                                question = "_".join(kelements[:-1])
+                            if key.startswith('curr_'):
+                                question = '_'.join(kelements[1:])
+                            elif key.endswith('currdrugs'):
+                                question = '_'.join(kelements[:-1])
+                            elif key.startswith('currdrugs_daily'):
+                                question = '_'.join(kelements[2:])
+                            
+                            fieldstr = str("{assessments: { currdrugs: { redcap_repeat_instance }")
+                            index_fields = [fieldstr]
+                            match_criteria = {'_key': narc_id, 'assessments': { 'currdrugs': { 'redcap_repeat_instance': repeat_instance}}}
+                            # print(update_data)
                         
-                    if 'strap' in key or 'nada' in key and not 'complete' in key:
-                        k = '_'.join(kelements[2:])
-                        questionaire = '_'.join(kelements[0:2])
-                        print('questionaire: ', questionaire)
-                    
-                    elif 'non_dual' in key or 'aliens' in key:
-                        questionaire = questionaire
-                        k = kelements[-1]
-                    else: 
-                        if len(kelements) < 2:
-                            k = '_'.join(kelements[1:])
-                            questionaire = kelements[0]
+                        update_data = { 'assessments': { repeat_instrument: { session: {question: value} } } }
+                        print(update_data)
+                        
+                    elif 'ema' in key:
+                        
+                        session = 'ses_' + event_name.split('_')[2]
+                        if key.startswith('ema_'):
+                            key = '_'.join(key.split('_')[1:])
+                        if 'complete' in key:
+                            key = 'complete'
+                        # date = subject['asi_date']
+                        update_data = { 'assessments': { 'ema': { session: {key: value } }} }
+                        print(update_data)
+                        
+                    elif 'panas' in key:
+                        date = subject['panas_date']
+                        
+                        if 'complete' in key:
+                            key = 'complete'
+                            questionnaire = 'panas'
+                        
+                        if key.startswith('panas'):
+                            key = '_'.join(key.split('_')[1:])
+                        try: 
+                            update_data.update({ 'assessments': { 'panas':  {key: value} } })
+                            print(update_data)
+                        except: pass
+                
+                    elif any (x in assessments for x in kelements):
+                        print(key, value)
+                        if any (x in kelements[1] for x in drugs):
+                            questionnaire = 'asi'
+                            question = "_".join(kelements[2:])
+                        
+                            update_data = {'assessments': {questionnaire: { kelements[1]: { question: value } } } }                   
+                            
+                        if 'strap' in key or 'nada' in key and not 'complete' in key:
+                            question = '_'.join(kelements[2:])
+                            questionnaire = '_'.join(kelements[:2])
+                            print('questionnaire: ', questionnaire)
+                        elif kelements[0] == 'frsbe':
+                            question = kelements[1]
+                            questionnaire = 'frsbe'
+                        elif 'non_dual' in key or 'aliens' in key:
+                            questionnaire = kelements[-2]
+                            question = kelements[-1]
+                        elif 'hcq' in key:
+                            question = "_".join(kelements[1:])
+                            questionnaire = 'hcq'
+                        # determine label index no.
                         else: 
-                            k = kelements[-1]
-                            questionaire = kelements[0]
-                    edgeName = str("_".join([questionaire.upper(), '_Response_edge'])).replace(' ', '').replace('__', '_')
-                    toCollectionName = str("_".join([questionaire.upper(),' Assessment'])).replace(' ', '')
-                    questionKey = k.replace(' ', '').replace('_', '')
-                    graphIt(more_graph, 'Subjects', narc_id, toCollectionName, questionKey, edgeName, "question", k, "responses", value, missed, collected)
-                    
-                    q_date = questionaire + '_date'
-              
-                    try: update_data = { 'assessments': { questionaire: {k: value } } }
-                    except: pass
-                    
-                elif key.startswith('phi_'):
-                    update_data = { 'phi': { '_'.join(kelements[1:]): value}}
-                    # print(json.dumps(update_data))
-                    
-                elif 'task_day' in event_name:
-                    print("TASK DAY")
-                    print(event_name)
-                    print(key,value)
-                    session = 'ses_' + str(event_name.split('_')[2])
-                    if kelements[0] in event_name:
-                        k = key
-                    else:
-                        k = '_'.join(kelements[1:])
+                            if len(kelements) < 2:
+                                question = '_'.join(kelements[1:])
+                                questionnaire = kelements[0]
+                            else: 
+                                question = "_".join(kelements[1:])
+                                questionnaire = kelements[0]
                         
-                    if 'curr' in key:
-                        kelements[0] = 'curr_drugs'
-                        k = '_'.join('_'.join(key.split('_currdrugs')).split('currdrugs_'))
+                        if 'complete' in key:
+                            # pass
+                            # print(key)
+                            question = 'complete'
+                            questionnaire = kelements[-2]
+                            print('IF COMPLETE')
+                            print(questionnaire)   
+                        
+                        # try:
+                        # graphIt(graph, arango.config['collection_name'], narc_id, questionnaire, question, value)
+                        # except: 
+                        #     print("\n\n\nUR A FAILURE")
+                        q_date = questionnaire + '_date'
+                
+                        try: 
+                            update_data = { 'assessments': { questionnaire: {question: value } } }
+                            print(update_data)
+                        except: 
+                            print("FAILLLLLLLLEDDDD")
+                            pass
+                        
+                    elif key.startswith('phi_'):
+                        question = '_'.join(kelements[1:])
+                        update_data = { 'phi': { question: value}}
+                        # print(json.dumps(update_data))
+                        
+                    elif 'task_day' in event_name:
+                        print("TASK DAY")
+                        print(event_name)
+                        print(key,value)
+                        session = 'ses_' + str(event_name.split('_')[2])
+                        
+                        # print("_".join(kelements[0:2]))
+                        if "_".join(kelements[0:2]) =='wos_s':
+                            questionnaire = 'wos_s'
+                            question = kelements[-1]
+                            
+                        elif kelements[0] in event_name:
+                            question = key
+                            questionnaire = kelements[0]
+                        elif 'currdrugs' in key or kelements[0] == 'curr':
+                            questionnaire = 'currdrugs'
+                            if kelements[-1] == 'currdrugs':
+                                question = "_".join(kelements[:-1])
+                            elif kelements[-1] == 'complete':
+                                question = 'complete'
+                            else:
+                                question = "_".join(kelements[1:])                                       
+                        
+                        else:
+                            question = '_'.join(kelements[1:])
+                            questionnaire = kelements[0]                      
+                                                                        
+                        if 'complete' in key:
+                            question = 'complete'
+                            if 'currstatus' in key or 'current_status' in key:
+                                questionnaire = 'currstatus'
+                                question = key
+                                
+                            # pass
+                            # print(key)
+                            else:
+                                questionnaire = kelements[-2]
+                                if questionnaire == 'woss':
+                                    questionnaire = 'wos_s'
+                                question = key
+                                       
+                        # if 'curr' in key:
+                        #     kelements[0] = 'curr_drugs'
+                        #     question = '_'.join('_'.join(key.split('_currdrugs')).split('currdrugs_'))
+                        update_data = {'assessments': { questionnaire: { session: { question: value } } } }
+                        print(update_data)
                     
-                    update_data = { 'tasks': { 'curr_drugs': { session: { kelements[0]: { k: value } } } } }
+                    else:
+                        # print(event_name)
+                        print("\n\nMISSSSEEDDDD")
+                        print(key, value)
+                        print(narc_id)
+                        # print(update_data)
+                        continue
                     
-                    edgeName = str("_".join([questionaire.upper(), '_Response_edge'])).replace(' ', '').replace('__', '_')
-                    toCollectionName = str("_".join([questionaire.upper(),' Assessment'])).replace(' ', '')
-                    questionKey = k.replace(' ', '').replace('_', '')
-                    add_fields1 = {session: {'question'}}
-                    add_fields2 = {session: {'responses'}}
-                    graphIt(more_graph, 'Subjects', narc_id, toCollectionName, questionKey, edgeName, add_fields1, k, add_fields2, value, missed, collected)
-                    
-                    
-                else:
-                    # print(event_name)
-                    # print(key, value)
-                    continue
-                # if len(update_data) > 0 and len(narc_id) > 0:
-                    # update_data.update({"_": narc_id })
+                    print('Attempting to update DB with data: ', update_data)
+                    try:
+                        update_data.update({"_key": narc_id })
 
-                    # subjects_collection.find_one_and_update({'_id': narc_id}, {'$set': update_data})
-                    
-                    
-                    # print(update_data)
-                    # arango_collection.update_match({'_key': narc_id }, update_data)
+                        # arango_collection.find_one_and_update({'_id': narc_id}, {'$set': update_data})
+                        print('UPDATING DB')
+                        print(update_data)
+                    except: 
+                        print("you done fucked up son")
+                        # arango_collection.update_match({'_key': narc_id }, update_data)
 
-                    # query_string = str("FOR s in " + arango.config['collection_name'] + " FILTER s._key == " + narc_id + " FILTER filter_criteria UPDATE s WITH { " + ':{'.join(update_attributes.split('.')[0:2]) + "}: APPEND(s." + update_attributes + ", " + json.dumps(update_data)+ ")} IN " + arango.config['collection_name'] )
-                    # print(query_string)
-                    # arangodb.aql.execute(query_string,
-                    #                 batch_size=1
-                    #             )
-    
-                    # if len(hash_index_fields) > 0:
-                    #     print(hash_index_fields)
-                    #     index = arango_collection.add_persistent_index(fields=hash_index_fields, sparse=True)
-                    #     print(index)
-                print(update_data)
-                # updateArango(arango_collection, narc_id, update_data)
-        print("MISSED :", len(missed), missed)
-        print("COLLECTED", len(collected), collected)
-               
+                        # query_string = str("FOR s in " + arango.config['collection_name'] + " FILTER s._key == " + narc_id + " FILTER filter_criteria UPDATE s WITH { " + ':{'.join(update_attributes.split('.')[0:2]) + "}: APPEND(s." + update_attributes + ", " + json.dumps(update_data)+ ")} IN " + arango.config['collection_name'] )
+                        # print(query_string)
+                        # arangodb.aql.execute(query_string,
+                        #                 batch_size=1
+                        #             )
+        
+                        # if len(hash_index_fields) > 0:
+                        #     print(hash_index_fields)
+                        #     index = arango_collection.add_persistent_index(fields=hash_index_fields, sparse=True)
+                        #     print(index)
+                    try:
+                        updateArango(arango_collection, narc_id, update_data)
+                    except: 
+                        print("FAILED TO UPDATE\n\n\n")
+                    if 'questionnaire' in locals(): 
+                        print("Graphing it")
+                        try:
+                            graphIt(graph, arango.config['collection_name'], narc_id, questionnaire, question, value)
+                        except:
+                            print("graph errored out for ", key, value)
+                    # except: 
+                    elif len(update_data) < 0:
+                        print('Nothing in update body\n\n')
+                    else:
+                        print('\n\n\n\nFAILED TO UPDATE DB')
+                        print(update_data)
+                        print('\n\n')
+                        
+                    
+                

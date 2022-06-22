@@ -15,3 +15,7 @@ narc-cluster/db/redcap/*json
 *.env*
 *.jar*
 *.log*
+*.crt*
+*.pem*
+*.p7b*
+*.ca-*

@@ -1,0 +1,5 @@
+<user-mapping>
+    <authorize username="${GUAC_USERNAME}" password="${GUAC_PASSWORD}">
+    	<protocol>vnc</protocol>
+    </authorize>
+<user-mapping>

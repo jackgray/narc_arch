@@ -99,7 +99,7 @@ def getVertexCollection(graph, vertex_name):
         vertex_collection = graph.create_vertex_collection(vertex_name)
     return vertex_collection
 
-def getEdgeCollection(graph, edge_name, from_vertex, to_vertex):
+def getEdgeCollection(graph, edge_name, from_collectionName, to_collectionName):
     print('\nGetting edge collection: ', edge_name)
     if graph.has_edge_definition(edge_name):
         print('Found edge collection ', edge_name)
@@ -107,15 +107,19 @@ def getEdgeCollection(graph, edge_name, from_vertex, to_vertex):
     else:
         edge_collection = graph.create_edge_definition(
             edge_collection=edge_name,
-            from_vertex_collections=[from_vertex],
-            to_vertex_collections=[to_vertex]
+            from_vertex_collections=[from_collectionName],
+            to_vertex_collections=[to_collectionName]
         )
     return edge_collection
 
 def addEdge(edge_collection, from_vertex, to_vertex):
-    edge_key = from_vertex.split('/')[1] + '-' + to_vertex.split('/')[1]
-    edge_collection.insert({
-        '_key': edge_key,
-        '_from': from_vertex,
-        '_to': to_vertex
-    })
+    edge_key = from_vertex.strip().split('/')[1] + '-' + to_vertex.strip().split('/')[1]
+    print("EDGE KEY:", edge_key)
+ 
+    resp = edge_collection.insert({
+    '_key': edge_key,
+    '_from': from_vertex,
+    '_to': to_vertex
+        })
+    print("Successfully added edge")
+    print(resp)

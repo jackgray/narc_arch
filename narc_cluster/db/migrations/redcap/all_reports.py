@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 from redcap import Project
-from db.utils.redcapConnect import redcapConnect
-from db.configs.redcap import config
-from db.configs.reports import reports
+from utils.redcapConnect import redcapConnect
+from configs.redcap import config
+from configs.reports import reports
 from format_redcap_res import formatResp
 
 
