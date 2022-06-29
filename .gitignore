@@ -19,3 +19,6 @@ narc-cluster/db/redcap/*json
 *.pem*
 *.p7b*
 *.ca-*
+*.key*
+narc_cluster/services/certs
+*/certs/*

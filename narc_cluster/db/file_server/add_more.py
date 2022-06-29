@@ -70,7 +70,7 @@ def addMoreFiles():
                 if 'task' in taskname:
                     seriesname = filename.split('_')[3].split('-')[1].split('series')[-1]
                     taskname = taskname.split('-')[-1]
-                    filetype = filename.split('.')[-1]
+                    filetype = filename.split('.')[-2]
                     if taskname == 'stopsignal':
                         taskname = 'sst'  
                     if not 'run' in runname:

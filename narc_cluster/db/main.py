@@ -17,23 +17,28 @@ from file_server.add_more import addMoreFiles
 from file_server.add_baseline import addBaselineFiles
 
 import json
+from utils.log import log
 
-'''
-STEP 1: Create assessment/task vertices
-'''
-# allInstruments()
+debug = True
+print(globals()['debug'])
+# globals()['debug'] = True
+log("Test")
 
 '''
 STEP 1: import enrollment data
 '''
 def Step1():
+    log("Adding enrollment data...\n")
     addEnrollments()
     # change group code from numbers to letters (HC, OUD, CUD, IED)
-    xfrmGroupCode()
-    phiReport()
-try:
-    Step1()
-except: pass
+    log("Transforming enrollment group codes...\n")
+    # xfrmGroupCode()
+    # log("Adding PHI report")
+    # phiReport()
+# try:
+Step1()
+# except: 
+#     log("Step 1 failed!")
 
 '''
 STEP 2: import RedCap data

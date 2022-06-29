@@ -1,82 +1,121 @@
-## Dynamic configuration
-version: "3"
+version: "3.9"
 services:
   traefik:
     container_name: traefik
     image: traefik:v2.7
     networks:
-      - proxy_network
+      - reverse_proxy
     command: 
+      # - bash -c "source .env"
       - "--api.insecure=true"
       - "--providers.docker=true"
       # - "--providers.docker.exposedbydefault=false"
       # - "--entrypoints.http.address=:80"
     ports:
-      - "80:80"
-      - "8088:8080"
-      - "443:443"
+      - "8000:80"
+      - "8001:8080"
+      - "8443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - './traefik/traefik.yaml:/etc/traefik/traefik.yml'
-      # - './traefik/config.yaml:/etc/traefik/config.yml'
+      - ./traefik/traefik.yaml:/etc/traefik/traefik.yml:ro
+      - ./traefik/dynamic_config.yaml:/etc/traefik/dynamic_config.yml:ro
+      - ./certs/cert.crt:/etc/ssl/cert.crt
+      - ./certs/cert.key:/etc/ssl/cert.key
     restart: always
-    environment:
-      - TRAEFIK_API=true
-      - TRAEFIK_API_DASHBOARD=true
-      - TRAEFIK_API_INSECURE=true
-      # - TRAEFIK_ENTRYPOINTS_HTTP=true
-      - TRAEFIK_ENTRYPOINTS_HTTP_ADDRESS=:80
-      # - TRAEFIK_GLOBAL_CHECKNEWVERSION=false
-      # - TRAEFIK_GLOBAL_SENDANONYMOUSUSAGE=false
-      - TRAEFIK_LOG=true
-      # - TRAEFIK_LOG_LEVEL=INFO
-      # - TRAEFIK_PROVIDERS_DOCKER=true
-      # - TRAEFIK_PROVIDERS_DOCKER_EXPOSEDBYDEFAULT=false
-      # - TRAEFIK_PROVIDERS_DOCKER_NETWORK=${COMPOSE_PROJECT_NAME:-narc-services}_proxy_net
-      # - TRAEFIK_PROVIDERS_FILE_FILENAME=/etc/traefik/traefik.providers.file.toml
-      # - TRAEFIK_PROVIDERS_FILE_WATCH=true
-  nginx:
-    container_name: nginx
-    image: nginx
-    restart: always
-    networks: 
-      - proxy_network
-    volumes:
-      - nginx
+    # environment:
+    #   - TRAEFIK_API=true
+    #   - TRAEFIK_API_DASHBOARD=true
+    #   - TRAEFIK_API_INSECURE=true
+    #   # - TRAEFIK_ENTRYPOINTS_HTTP=true
+    #   # - TRAEFIK_ENTRYPOINTS_HTTP_ADDRESS=:80
+    #   # - TRAEFIK_GLOBAL_CHECKNEWVERSION=false
+    #   # - TRAEFIK_GLOBAL_SENDANONYMOUSUSAGE=false
+    #   - TRAEFIK_LOG=true
+    #   # - TRAEFIK_LOG_LEVEL=INFO
+    #   # - TRAEFIK_PROVIDERS_DOCKER=true
+    #   # - TRAEFIK_PROVIDERS_DOCKER_EXPOSEDBYDEFAULT=false
+    #   # - TRAEFIK_PROVIDERS_DOCKER_NETWORK=${COMPOSE_PROJECT_NAME:-narc-services}_proxy_net
+    #   # - TRAEFIK_PROVIDERS_FILE_FILENAME=/etc/traefik/traefik.providers.file.toml
+    #   # - TRAEFIK_PROVIDERS_FILE_WATCH=true
     labels:
       - "traefik.enable=true"
-      # HTTP
-      - "traefik.http.routers.nginx.rule=(Host(`narclab.com`) && Path(`/vnc`)) || Host(`vnc.narclab.com`)"
-      - "traefik.http.routers.nginx.entrypoints=web"
-  #     # Middleware
+      - "traefik.docker.network=reverse_proxy"
+      # - "traefik.port=8080"
+      - "traefik.backend=traefik"
+      - "traefik.frontend.rule=Host:traefik.narclab.com"
+
+  whoami:
+    image: containous/whoami
+    container_name: whoami
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.whoami.entryPoints=web
+      - traefik.http.routers.whoami.rule=Host(`whoami.narclab.com`)
+      - traefik.http.routers.whoami.service=whoami-service
+      - traefik.http.services.whoami-service.loadbalancer.server.port=80
+
+      - traefik.http.routers.whoami-secure.entrypoints=web-secure
+      - traefik.http.routers.whoami-secure.rule=Host(`whoami.narclab.com`)
+      - traefik.http.services.whoami-secure.service=whoami-secure-service
+      - traefik.http.services.whoami-secure-service.loadbalancer.server.port=80
+      - traefik.http.routers.whoami-secure.tls=true
+
+  # nginx:
+  #   container_name: nginx
+  #   image: nginx
+  #   restart: always
+  #   networks: 
+  #     - reverse_proxy
+  #   volumes:
+  #     - nginx
+  #   labels:
+  #     - "traefik.enable=true"
+  #     # HTTP
+  #     - "traefik.http.routers.nginx.rule=(Host(`narclab.com`) && Path(`/vnc`)) || Host(`vnc.narclab.com`)"
+  #     - "traefik.http.routers.nginx.entrypoints=web"
+  # #     # Middleware
     
-
-  arango:
-    container_name: arango-db
-    image: arangodb/arangodb:3.9.1
+  remote_desktop:
+    container_name: guac
+    image: guacozy/guacozy-server
     restart: always
-    depends_on: 
+    ports: 
+      - 8033:8080
+      - 8003:80
+      - 8444:443
+    links:  
+      - guacd:guacd
+      - guac_db:guac_db
+    depends_on:
+      - guac_db
+      - guacd
       - traefik
-    networks:
-      - proxy_network   # make accessible by HTTP
     volumes:
-      - arangodb:/data
+      - ./certs:/ssl
+      - ./guacamole/ldap_config.py:/app/guacozy_server/ldap_config.py
     environment:
-      - ARANGO_ROOT_PASSWORD=openSesame
-    # ports:
-    #   - 8529:8529
+      - DJANGO_SECRET_KEY=abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz
+      - FIELD_ENCRYPTION_KEY=qjq4ObsXMqiqQyfKgD-jjEGm4ep8RaHKGRg4ohGCi1A=
+      - DJANGO_DB_URL=postgres://postgres@guac_db:5432/postgres
+      - DJANGO_ALLOWED_HOSTS=*
+      - DEBUG=True   
+    networks:
+      - backend_network
+      - reverse_proxy
     labels:
-      - "traefik.enable=true"
+      - traefik.enable=true
+      # - traefik.port=80
+      # - traefik.frontend.rule=remote.narclab.com
       # HTTP
-      - "traefik.http.routers.arango.rule=(Host(`narclab.com`) && Path(`/data`)) || Host(`data.narclab.com`)"
-      - "traefik.http.routers.arango.entrypoints=web"
-  #     # Middleware
-  #     # - "traefik.http.middlewares.arango.headers.stsincludesubdomains=true"
-  #     # - "traefik.http.middlewares.arango.headers.stsseconds=315360000"
-  #     # - "traefik.http.middlewares.arango_headers.headers.forcestsheader=true"
-  #     # # Service
-  #     # - "traefik.http.services.guac.loadbalancer.server.port=8080"
-
+      - traefik.http.routers.guac.rule=(Host(`narclab.com`) && Path(`/remote`)) || Host(`remote.narclab.com`)"
+      - traefik.http.routers.guac.entrypoints=web
+      - traefik.http.routers.guac.service=guacBalancer
+      - traefik.http.services.guacBalancer.loadbalancer.server.port=80
+      # HTTPS
+      - traefik.http.routers.guac-secure.rule=(Host(`narclab.com`) && Path(`/remote`)) || Host(`remote.narclab.com`)
+      - traefik.http.routers.guac-secure.entrypoints=https
+      - traefik.http.routers.guac-secure.service=guacBalancer-secure
+      - traefik.http.services.guacBalancer-secure.loadbalancer.server.port=80
 
   guacd:
     container_name: guacd
@@ -85,15 +124,12 @@ services:
     depends_on:
       - traefik
     networks:
-      - guac_network
-      # - proxy_network
+      - backend_network
 
   guac_db:
     container_name: guac_db
     image: postgres:10.4-alpine
     restart: always
-    depends_on:
-      - traefik
     # environment:
       # - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       # - MYSQL_USER=${MYSQL_USERNAME}
@@ -103,135 +139,88 @@ services:
       # - "./guacamole:/docker-entrypoint-initdb.d"
       - guacdb:/var/lib/postgresql/data
     networks:
-      - guac_network
-      # - proxy_network
-
-  remote_desktop:
-    container_name: guac_client
-    image: guacozy/guacozy-server
-    restart: always
-    # ports: 
-      # - 8081:8080
-    links:  
-      - guacd:guacd
-      - guac_db:guac_db
-    depends_on:
-      - guac_db
-      - guacd
-      - traefik
-    volumes:
-      # - "./guacamole/server.xml:/usr/local/tomcat/conf/server.xml"
-      # - "./guacamole:/guac_home"
-      # - ".guacamole/ssl:/ssl/"
-      - ./certs:/ssl
-      - ./guacamole/ldap_config.py:/app/guacozy_server/ldap_config.py
-    environment:
-      # - GUACAMOLE_HOME=/guac_home
-      # # - MYSQL_HOSTNAME=guac_db
-      # - MYSQL_DATABASE=guacamole
-      # - MYSQL_USER=${MYSQL_USERNAME}
-      - DJANGO_SECRET_KEY=${MYSQL_PASSWORD}
-      # - FIELD_ENCRYPTION_KEY=someplaceholdinghashsomeplaceholdinghashsomeplaceholdinghashsomeplaceholdinghashsomeplaceholdinghashsomeplaceholdinghashsomeplaceholdinghash
-      - DJANGO_DB_URL=postgres://postgres@guac_db:5432/postgres
-      - DJANGO_ALLOWED_HOSTS=remote.narclab.com
-      - GUACD_HOSTNAME=guacd
-      # - GUACD_PORT=4822
-    networks:
       - backend_network
-      - proxy_network
-    labels:
-      - "traefik.enable=true"
-      # - "traefik.port=80"
-      # - "traefik.frontend.rule=remote.narclab.com"
-      # HTTP
-      - "traefik.http.routers.guacamole.rule=(Host(`narclab.com`) && Path(`/remote`)) || Host(`remote.narclab.com`)"
-      - "traefik.http.routers.guacamole.entrypoints=web"
-      # - "traefik.http.routers.guacamole.service=guacBalance"
-      # - "traefik.http.routers.guacamole.middlewares=guacPrefix"
-      # # Middleware
-      # - "traefik.http.middlewares.guac_headers.headers.stsincludesubdomains=true"
-      # - "traefik.http.middlewares.guac_headers.headers.stsseconds=315360000"
-      # - "traefik.http.middlewares.guac_headers.headers.forcestsheader=true"
-      # - "traefik.http.middlewares.guacPrefix.addprefix.prefix=/guacamole"
-      # # Service
-      # - "traefik.http.services.guacBalance.loadBalancer.server.port=8080"
-
-  lean_db:
-      container_name: lean_db
-      image: tiredofit/mariadb
-      restart: always
-      depends_on:
-        - traefik
-      environment:
-      #   - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      #   - MYSQL_USER=${MYSQL_USERNAME}
-      #   - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      #   - MYSQL_DATABASE=leantime
-        # for tiredofit's package w/ mariadb
-        - ROOT_PASS=password
-        - DB_NAME=leantime
-        - DB_USER=leantime
-        - DB_PASS=leantime
-      # command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
-      volumes:
-        # - ./leantime/schema.sql:/var/lib/mysql/schema.sql:ro
-        # ./leantime:/config
-        # - leandb:/var/lib/mysql
-        - lean_mariadb:/var/lib/mysql
-
-      networks:
-        - leantime_network
-        # - backend_network
-        # - proxy_network
 
   leantime: 
-    container_name: leantime_client
-    image: tiredofit/leantime
+    container_name: leantime
+    image: leantime/leantime:latest
     environment:
-      - VIRTUAL_HOST=remote.narclab.com
-      - VIRTUAL_PORT=80
-      - LETSENCRYPT_HOST=remote.narclab.com
-      - LETSENCRYPT_EMAIL=${EMAIL}
-      - CONTAINER_NAME=leantime_client
-      - DB_HOST=lean_db
-      - DB_NAME=leantime
-      - DB_USER=leantime
-      - DB_PASS=leantime
-      - SITE_URL=remote.narclab.com
-      - SITE_NAME=NARemote
-      - ADMIN_EMAIL=${EMAIL}
-      - ADMIN_PASS=admin
-      - ADMIN_LAST_NAME=Administrator
-      - COMPANY_NAME=mssm
-      # - LEAN_DB_HOST=lean_db
-      # - LEAN_DB_USER=admin
-      # - LEAN_DB_PASSWORD=${DEFAULT_ROOT_PASSWORD}
-      # - LEAN_DB_DATABASE=leantime
-      # - LEAN_APP_URL=http://projects.narclab.com
-    # ports:
-    #   - "80:80"
+      - LEAN_DB_HOST=lean_db
+      - LEAN_DB_USER=admin
+      - LEAN_DB_PASSWORD=321.querty
+      - LEAN_DB_DATABASE=leantime
+      - LEAN_APP_URL=projects.narclab.com
     networks:
-      - leantime_network
-      - proxy_network
+      - reverse_proxy
     depends_on:
       - lean_db
       - traefik
-    links:
-      - lean_db:lean_db
     labels:
       - "traefik.enable=true"
       # HTTP
-      - "traefik.http.routers.leantime.rule=(Host(`narclab.com`) && Path(`/projects`)) || Host(`projects.narclab.com`)"
-      - "traefik.http.routers.leantime.entrypoints=web"
-      # Middleware
-      # - "traefik.http.middlewares.leantime_headers.headers.stsincludesubdomains=true"
-      # - "traefik.http.middlewares.leantime_headers.headers.stsseconds=315360000"
-      # - "traefik.http.middlewares.leantime_headers.headers.forcestsheader=true"
-      # # Service
-      - "traefik.http.services.leantime.loadBalancer.server.port=8080"
+      - "traefik.http.routers.leantime1.rule=(Host(`narclab.com`) && Path(`/projects`)) || Host(`projects.narclab.com`)"
+      - "traefik.http.routers.leantime1.entrypoints=web"
+      - "traefik.http.routers.leantime1.service=leanBalance1"
+      - "traefik.http.services.leanBalance1.loadbalancer.server.port=80"
+      
+      - "traefik.http.routers.leantime2.rule=(Host(`narclab.com`) && Path(`/projects`)) || Host(`projects.narclab.com`)"
+      - "traefik.http.routers.leantime2.entrypoints=leantime"
+      - "traefik.http.routers.leantime2.service=leanBalance2"
+      - "traefik.http.services.leanBalance2.loadbalancer.server.port=9000"
+    # volumes:
+    #   - ./leantime/configuration.php
 
+  lean_db:
+    container_name: lean_db
+    image: mysql:5.7
+    restart: always
+    depends_on:
+      - traefik
+    environment:
+      - MYSQL_ROOT_PASSWORD=321.qwerty
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=321.qwerty
+      - MYSQL_DATABASE=leantime 
+    # command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      # - ./leantime/schema.sql:/var/lib/mysql/schema.sql:ro
+      # ./leantime:/config
+      - leandb:/var/lib/mysql
+      # - lean_mariadb:/var/lib/mysql
+    networks:
+      - backend_network
+
+  arango:
+    container_name: arangodb
+    image: arangodb/arangodb:3.9.1
+    restart: always
+    depends_on: 
+      - traefik
+    networks:
+      - reverse_proxy   # make accessible by HTTP
+    volumes:
+      - arangodb_data:/var/lib/arangodb3
+      - arangodb_apps_data:/var/lib/arangodb3-apps
+    environment:
+      - ARANGO_ROOT_PASSWORD=defaultpassword
+    # ports:
+    #   - 8529:8529
+    labels:
+      - "traefik.enable=true"
+      # HTTP
+      - "traefik.http.routers.arango.rule=(Host(`narclab.com`) && Path(`/data`)) || Host(`data.narclab.com`)"
+      - "traefik.http.routers.arango.entrypoints=web"
+      # Middleware
+      # - "traefik.http.middlewares.arango.headers.stsincludesubdomains=true"
+      # - "traefik.http.middlewares.arango.headers.stsseconds=315360000"
+      # - "traefik.http.middlewares.arango_headers.headers.forcestsheader=true"
+      # # Service
+      # - "traefik.http.services.guac.loadbalancer.server.port=8085"
+
+
+  
 networks:
-  proxy_network:
+  reverse_proxy:
     external: true
   backend_network:
     external: true
@@ -241,10 +230,9 @@ networks:
     external: true
 
 volumes:
-  arangodb:
-    external: true
+  arangodb_data:
+  arangodb_apps_data:
   leandb: {}
   lean_mariadb: {}
   guacdb: {}
   ssl:
-  staticfiles:
