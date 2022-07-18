@@ -9,6 +9,7 @@ from migrations.redcap.phi_report import phiReport
 from migrations.redcap.enrollment import addEnrollments
 
 from transformations.enrollment_group import xfrmGroupCode
+from transformations.moveRecord import moveRecord
 
 from excel_conv.forPrediction import forPrediction
 from excel_conv.mri_data import mriData
@@ -24,6 +25,8 @@ print(globals()['debug'])
 # globals()['debug'] = True
 log("Test")
 
+
+moveRecord('49')
 '''
 STEP 1: import enrollment data
 '''
@@ -36,7 +39,7 @@ def Step1():
     # log("Adding PHI report")
     # phiReport()
 # try:
-Step1()
+# Step1()
 # except: 
 #     log("Step 1 failed!")
 
@@ -60,8 +63,8 @@ def Step4():
     # crawlDirs()
     addMoreFiles()
     # addBaselineFiles()
-try: Step4()
-except: pass
+# try: Step4()
+# except: pass
 
 # ema_sessions = respAccrossSessions('choice')
 

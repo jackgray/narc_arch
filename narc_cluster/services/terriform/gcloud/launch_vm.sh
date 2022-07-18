@@ -1,0 +1,15 @@
+gcloud compute instances create nomad-consul \
+--project=nomad-consul \
+--zone=us-east5-a \
+--machine-type=e2-micro \
+--network-interface=network-tier=PREMIUM,subnet=default \
+--maintenance-policy=MIGRATE \
+--provisioning-model=STANDARD \
+--service-account=${GCLOUD_SERVICE_ACCOUNT} \
+--scopes=${GCLOUD_SCOPES} \
+--tags=http-server,https-server \
+--create-disk=auto-delete=yes,boot=yes,device-name=nomad-consul,image=projects/debian-cloud/global/images/debian-11-bullseye-v20220621,mode=rw,size=10,type=projects/nomad-consul/zones/us-west4-b/diskTypes/pd-balanced \
+--no-shielded-secure-boot \
+--shielded-vtpm \
+--shielded-integrity-monitoring \
+--reservation-affinity=any

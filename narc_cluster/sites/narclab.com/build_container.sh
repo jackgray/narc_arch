@@ -1,0 +1,1 @@
+docker build -t narclabcom:v1.0.3 .

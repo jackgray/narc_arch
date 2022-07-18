@@ -8,6 +8,24 @@ of distributed storage solution, allocation management, a
 comprehensive backup strategy, a key management system (KMS), 
 and a means of accessing the files remotely.
 
+Mounting SMB Servers to your Linux servers
+------------------------------------------
+mkdir /mnt/<name of your choosing>
+
+create .smbcredentials file (/home/<admin_username>)/.smbcredentials
+
+add "username=<your smb server username>"
+"password=<password>"
+domain=//<smb server IP>/<folder_path>
+ensure correct permissions
+
+Configure /etc/fstab file on Linux machine 
+
+add "//<IP of SMB>/<folder path (potentially optional)> /mnt/<name you chose> cifs vers=2.0,credentials=/home/<admin_username>/.smbcredentials,iocharset=utf8,gid=1000,uid=1000,file_mode=0777,dir_mode=0777 0 0" as a new line
+
+run: sudo mount -t cifs -o username=<smb server username> //<ip>/<path> /mnt/
+
+
 S3 Buckets with Min.io
 ---------------------------------------
 Built on the same concept as Amazon's S3 bucket storage, MinIO 
