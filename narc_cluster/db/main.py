@@ -26,7 +26,7 @@ print(globals()['debug'])
 log("Test")
 
 
-moveRecord('49')
+moveRecord('47', '2', 'sexdiff')
 '''
 STEP 1: import enrollment data
 '''

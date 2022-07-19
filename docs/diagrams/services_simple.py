@@ -51,8 +51,8 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
     tab3 = Tablet("O-drive 3")
 
     with Cluster("Docker Service Ecosystem"):
-        
-        odrive = Docker("O-Drive Server")
+        with Cluster('Storage'):
+            odrive = Docker("O-Drive Server")
         
         with Cluster("Pipelines"):
             xnat2bids = Docker("xnat2bids")
@@ -64,12 +64,18 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
         
         with Cluster("narclab.com \nService Frontends"):
             # web = Docker("narclrab.com")
-            vmAccess = Docker("remote.narclab.com \nCluster Driven VMs (Client)")
-            dbAccess = Docker("data.narclab.com \nArangoDB")
+            vmAccess = Docker("vm.narclab.com \n(VM GUI)")
+            dbAccess = Docker("db.narclab.com \nArangoDB")
             jobs = Docker("jobs.narclab.com \nJobs Dashboard")
             healthweb = Docker("health.narclab.com \nHealth Stats")
-            redcapper = Docker("redcapper.narclab.com \nRedcap API Client.")
-        vms = Docker("Remote VMs \n(Server)")
+            redcapper = Docker("fix.narclab.com \nRedcap API Client.")
+        
+        with Cluster("Virtual Machines"):
+            
+            vms = Docker("Remote VMs \n(Server)")
+            vm2 = Docker("VM 2")
+            vm3 = Docker("VM 3")
+            
         
         with Cluster("RedCap API"):
             redcapDoctor = Docker("Redcap Doctor")
@@ -84,7 +90,7 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
         
         
             
-        
+         
    
         
       
@@ -97,7 +103,7 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
             
             # node1server = Server("Node 1 \n(Manager)")
             nomad1 = Nomad("Nomad Server")
-            # consul1 = Consul("Consul Server")
+            consul1 = Consul("Consul Server")
             vault1 = Vault("Key Management Server")
             # minio1 = Storage("Min.IO Storage 1")
             concourse = ConcourseCI("Conductor")  
@@ -105,15 +111,15 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
         with Cluster("Node 2 - Golgi (Worker/Database)"):
             # node2server = Server("Node 2 - Golgi \n(Worker)"),
             nomad2 = Nomad("Nomad Client")
-            # consul2 = Consul("Consul Client")
+            consul2 = Consul("Consul Client")
             db = Neo4J("ArangoDB")
 
-            minio2 = Storage("Min.IO Storage")
+            minio2 = Storage("MinIO Storage")
           
         with Cluster("Node 3 - Gazanaga (Worker/Storage)"):
             # node3server = Server("Node 3 - Cajal \n(Database)"),
             nomad3 = Nomad("Nomad Client")
-            # consul3 = Consul("Consul Client")
+            consul3 = Consul("Consul Client")
             minio3 = Storage("Min.IO Storage")
             minio_manager = Storage("Min.IO Manager")
             jdrive = Storage("J-Drive Mount")
@@ -127,7 +133,13 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
     #     lb = LoadBalancer("Load Balancer")
         
         
-
+    with Cluster("Server Farm"):
+        with Cluster("BU Server \n(Backup Manager)"):
+            buServer = Server("Rack")
+            buMinioManager = Storage("MinIO Manager \n(Backup)")
+            buMinio = Storage("MinIO Storage")
+            buNomad = Nomad("Nomad Server \n(Backup)")
+            buConsul = Consul("Consul Server \n(Backup)")
     
     dgEdge = Edge(color="darkgreen")
     # with Cluster("Multi-Cloud"):
@@ -230,7 +242,7 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
     # minio2 >> node2server
     # minio3 >> node3server
     
-    nomad1 - xnat2bids
+    # nomad1 - xnat2bids
     xnat2bids >> heudi >> fmriprep >> postanalysis
     xnat2bids >> dwipreproc >> postanalysis
     pytrack >> postanalysis
@@ -242,7 +254,7 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
     
     # user - drEdge >> web
     # web >> dbAccess 
-    vmAccess << vms
+    vmAccess - Edge(color='darkblue') - vms
     # web - drEdge >> jobs
     # redcapper >>  redcapDoctor
  
@@ -259,8 +271,10 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
     redcapdb - redcap
     
     odrive - Edge(color="purple", style="bold") - minio_manager
+    odrive - Edge(color="darkorange") - vault1
     minio_manager - minio3
     minio_manager - jdrive
+    minio_manager - Edge(color='darkorange') - vault1
     
     
     
@@ -272,9 +286,10 @@ with Diagram(name="NARC Services", show=True, graph_attr=graph_attr):
     tab3 << Edge(color="darkred") << odrive
     tab3 >> Edge(color="darkgreen") >> jobs
     
-    tab1 - boldEdge - vault1
-    tab2 - boldEdge - vault1
-    tab3 - boldEdge - vault1
+    # tab1 - boldEdge - vault1
+    # tab2 - boldEdge - vault1
+    # tab3 - boldEdge - vault1
+    tab1 >> Edge(color='darkgreen') >> redcapper
     tab2 >> dgEdge >> dbAccess
     # tab3 - vault1
     tab1 >> dgEdge >> vmAccess
