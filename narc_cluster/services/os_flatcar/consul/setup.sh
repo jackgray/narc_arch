@@ -65,7 +65,7 @@ exec consul agent -config-dir /etc/consul.d/server" \
 
 # same for client server 
 touch /etc/init/consul.conf
-echo "description "Consul client process"
+echo "description 'Consul client process'
 
 start on (local-filesystems and net-device-up IFACE=eth0)
 stop on runlevel [!12345]

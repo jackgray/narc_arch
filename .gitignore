@@ -23,3 +23,6 @@ narc-cluster/db/redcap/*json
 narc_cluster/services/certs
 */certs/*
 cert.key
+*rsa*
+*key*
+*token*

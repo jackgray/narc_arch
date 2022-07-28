@@ -10,6 +10,7 @@ from migrations.redcap.enrollment import addEnrollments
 
 from transformations.enrollment_group import xfrmGroupCode
 from transformations.moveRecord import moveRecord
+from transformations.restoreRecord import restoreRecord
 
 from excel_conv.forPrediction import forPrediction
 from excel_conv.mri_data import mriData
@@ -26,7 +27,7 @@ print(globals()['debug'])
 log("Test")
 
 
-moveRecord('47', '2', 'sexdiff')
+restoreRecord('/home/jackgray/Documents/backup. txt', 'sexdiff', 'screening_arm_2')
 '''
 STEP 1: import enrollment data
 '''
@@ -42,7 +43,7 @@ def Step1():
 # Step1()
 # except: 
 #     log("Step 1 failed!")
-
+    
 '''
 STEP 2: import RedCap data
 '''
